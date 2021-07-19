@@ -1,0 +1,27 @@
+type Post {
+    userName: String!
+    description: String!
+    image: String!
+    tags: [String!]
+    likes: [String!]
+}
+
+type Query {
+  allPosts: [Post!]!
+}
+
+
+# type Comment {
+#     userName: String!
+#     message: String!
+#     likes: [String!]
+# }
+
+# comments: [Comment] @relation
+#  Create graphql schema:
+
+# - [ ] postsDB { username, image, tag[], numberOfLikes,  CommentsDB} }
+
+# - [ ] CommentsDB { user, msg, numberOfLikes}
+
+# - [ ] usersDB  works from netlify identity
