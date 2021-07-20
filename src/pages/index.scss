@@ -1,20 +1,49 @@
- * { 
-    margin: 0;
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Sniglet&display=swap');
+
+* { 
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-    margin:auto;
+  margin:auto;
 }
 
 .top-container {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    background: ghostwhite;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  background: ghostwhite;
 }
 
 .sidebar {
-    max-width: 40%;
-    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-    background: pink;
+  width: 240px;
+  height: 100vh;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  background: pink;
 }
+
+.logo {
+    display: flex;
+    font-family: 'Sniglet', cursive;
+}
+
+.cloud {
+    fill: #1C9EFC;
+}
+
+.dream {
+    color: #4C4C66;
+}
+
+.stream {
+    color: #379AE3;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul a {
+    text-decoration: none;
+}
+

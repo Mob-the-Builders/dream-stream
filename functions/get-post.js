@@ -1,4 +1,5 @@
  // get-posts.js
+// WE NEED TO A USER TO COMMENTS!!!!!
 
  const query = require("./utils/query");
 
@@ -12,6 +13,11 @@
               description
               tags
               likes
+              comments {
+                data {
+                  message
+                }
+              }
            }
          }
       }

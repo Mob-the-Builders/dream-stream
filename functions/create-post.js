@@ -2,9 +2,23 @@
 
 const query = require("./utils/query");
 
+/*
+mutation {
+    createPost(data: { userName: "kostas", image: "xcv", imageDelete: "ppp", description: "hello world", tags: ["abc", "cats"], likes: ["kostas"] }) {
+       _id
+        userName
+        image
+    		imageDelete
+    		description
+    		tags
+    		likes
+     }
+ }
+*/
+
 const CREATE_POST = `
-  mutation($userName: String!, $image: String!, $description: String!, $tags: [String!], $likes: [String!]){
-    createPost(data: {userName: $userName, image: $image, description: $description, tags: $tags, likes: $likes}){
+  mutation($userName: String!, $image: String!, $imageDelete: String!, $description: String!, $tags: [String!], $likes: [String!]){
+    createPost(data: {userName: $userName, image: $image, imageDelete: $imageDelete, description: $description, tags: $tags, likes: $likes}){
       _id
       userName
       image
@@ -16,10 +30,10 @@ const CREATE_POST = `
 `;
 
 exports.handler = async event => {
-  const { userName, image, description, tags, likes } = JSON.parse(event.body);
+  const { userName, image, imageDelete, description, tags, likes } = JSON.parse(event.body);
   const { data, errors } = await query(
           CREATE_POST, { 
-  userName, image, description, tags, likes });
+  userName, image, imageDelete, description, tags, likes });
 
   if (errors) {
     return {
@@ -30,6 +44,6 @@ exports.handler = async event => {
 
   return {
     statusCode: 200,
-    body: JSON.stringify({ testimonial: data.createPost })
+    body: JSON.stringify({ Post: data.createPost })
   };
 };

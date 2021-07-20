@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useState , useEffect } from 'react'
 import Post from './Post'
+import axios from 'axios'
 /*
     userName: String!
     description: String!
@@ -7,38 +8,30 @@ import Post from './Post'
     tags: [String!]
     likes: [String!]
 */
-      
+
 const PostList = () => {
-  const posts = [
-    {
-      userName: "kalle_anka",
-      description: "This is the description",
-      image: 'https://i.imgur.com/QHFtJ6Cm.jpeg',
-      tags: ['dog', 'cute', 'puppy'],
-      likes: ['amund', 'kostas', 'lovely_lady'],
-      comments: [{user: 'tom', text: 'wow'}, {user: 'name', text: 'comment text'}]
-    },
-    {
-      userName: "lovely_lady",
-      description: "This is the description",
-      image: 'https://i.imgur.com/2DQiFy3m.jpeg',
-      tags: ['cats', 'funny'],
-      likes: ['amund', 'kostas', 'lovely_lady'],
-      comments: [{user: 'tommy', text: 'no words...'}, {user: 'name', text: 'comment text'}]
-    },
-    {
-      userName: "ron_perlman",
-      description: "Cat that looks like Ron Perlman",
-      image: 'https://i.imgur.com/k3e964Zm.jpeg',
-      tags: ['cats', 'funny'],
-      likes: ['amund', 'kostas', 'lovely_lady'],
-      comments: [{user: 'sara', text: 'coool'}, {user: 'name', text: 'comment text'}]
-    }
-  ];
+  const [status, setStatus ] = useState('loading...');    
+  const [posts, setPosts] = useState([]);
+
+
+  useEffect(() => {
+    console.log("CAN YOU SEE ME");
+    if (status !== "loading...") return;
+    axios("/api/get-post").then(result => {
+      if (result.status !== 200) {
+        console.error("Error loading posts");
+        console.error(result);
+        return;
+      }
+      console.log(result.data);
+      setPosts(result.data.messages);
+      setStatus("loaded");
+    });
+  }, [status]);
 
     return (
       <div>
-        {posts.map(item => <Post item={item} />)}
+        {posts && posts.map((item,index)  => <Post key={index} item={item} />)}
       </div>
     )
 }

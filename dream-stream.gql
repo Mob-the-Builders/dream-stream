@@ -1,27 +1,42 @@
+type Comment {
+    userName: String!
+    message: String!
+    post: Post
+}
+
 type Post {
     userName: String!
     description: String!
     image: String!
+    imageDelete: String!
     tags: [String!]
     likes: [String!]
+    comments: [Comment] @relation
+}
+
+type User {
+    userName: String! @unique
+    password: String!
 }
 
 type Query {
-  allPosts: [Post!]!
+  allPosts: [Post!]! 
+  allComments: [Comment]
 }
 
-
-# type Comment {
-#     userName: String!
-#     message: String!
-#     likes: [String!]
-# }
-
-# comments: [Comment] @relation
-#  Create graphql schema:
-
-# - [ ] postsDB { username, image, tag[], numberOfLikes,  CommentsDB} }
-
-# - [ ] CommentsDB { user, msg, numberOfLikes}
-
-# - [ ] usersDB  works from netlify identity
+mutation {
+  createUser(data: {
+    name: "Jane"
+    cars: {
+      create: []
+    }
+  }) {
+    _id
+    name
+    cars {
+      data {
+        plate
+      }
+    }
+  }
+}
