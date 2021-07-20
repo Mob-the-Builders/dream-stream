@@ -3,7 +3,7 @@ import Logo from './Logo';
 import { Link } from 'gatsby';
 const Menubar = () => {
     return (
-        <div classList="sidebar">
+        <div className="sidebar">
           <Logo />
           <ul>
             <li><Link to="/">Home</Link> </li>

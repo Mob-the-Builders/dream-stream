@@ -6,7 +6,7 @@ import './index.scss';
 // markup
 const IndexPage = () => {
   return (
-    <div classList="top-container">
+    <div className='top-container'>
       <Menubar />
       { <Content />}
     </div>
