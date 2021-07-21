@@ -2,6 +2,7 @@
 
 * { 
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -26,6 +27,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: fixed;
 }
 
 .logo {
@@ -33,11 +35,12 @@ body {
     font-family: 'Sniglet', cursive;
     align-items: center;
     margin-top: 30px;
-    font-size: 2rem;
+    font-size: 1.4rem;
 }
 
 .cloud {
     fill: #1C9EFC;
+
 }
 
 .dream {
