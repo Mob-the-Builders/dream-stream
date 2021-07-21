@@ -121,8 +121,8 @@ function notCalledFunction() {
   let defaultRenderer = _reactDom.default.render;
 
   if (focusEl && focusEl.children.length) {
-    if (_reactDom.default.createRoot) {
-      defaultRenderer = _reactDom.default.createRoot;
+    if (_reactDom.default.hydrateRoot) {
+      defaultRenderer = _reactDom.default.hydrateRoot;
     } else {
       defaultRenderer = _reactDom.default.hydrate;
     }
@@ -162,8 +162,8 @@ function notCalledFunction() {
         indicatorMountElement.setAttribute(`id`, `query-on-demand-indicator-element`);
         document.body.append(indicatorMountElement);
 
-        if (renderer === _reactDom.default.createRoot) {
-          renderer(indicatorMountElement).render( /*#__PURE__*/_react.default.createElement(_loadingIndicator.LoadingIndicatorEventHandler, null));
+        if (renderer === _reactDom.default.hydrateRoot) {
+          _reactDom.default.createRoot(indicatorMountElement).render( /*#__PURE__*/_react.default.createElement(_loadingIndicator.LoadingIndicatorEventHandler, null));
         } else {
           _reactDom.default.render( /*#__PURE__*/_react.default.createElement(_loadingIndicator.LoadingIndicatorEventHandler, null), indicatorMountElement);
         }
@@ -188,10 +188,8 @@ function notCalledFunction() {
         dismissLoadingIndicator();
       }
 
-      if (renderer === _reactDom.default.createRoot) {
-        renderer(rootElement, {
-          hydrate: true
-        }).render( /*#__PURE__*/_react.default.createElement(App, null));
+      if (renderer === _reactDom.default.hydrateRoot) {
+        renderer(rootElement, /*#__PURE__*/_react.default.createElement(App, null));
       } else {
         renderer( /*#__PURE__*/_react.default.createElement(App, null), rootElement);
       }
