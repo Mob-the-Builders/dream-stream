@@ -8,12 +8,19 @@
 
 body {
   margin:auto;
+  width: 100vw;
+  height: 100vh;
 }
 
 .top-container {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  background: ghostwhite;
+  grid-template-columns: auto auto;
+  background: #E8F5FF;
+}
+
+.main {
+  width: 100%;
+  padding-left: 240px;
 }
 
 

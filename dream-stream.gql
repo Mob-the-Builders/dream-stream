@@ -23,6 +23,7 @@ type Query {
   allPosts: [Post!]! 
   allComments: [Comment!]
   allUsers: [User!]
+  getUserByName(userName: String): User
   getPostByName(userName: String): [Post!]!
   getByTag(tags: String): [Post]
 

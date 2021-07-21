@@ -5,7 +5,7 @@ import PostList from './Postlist';
 const Content = () => {
 
   return (
-      <main>
+      <main className={'main'}>
         <PostList />
       </main>
   )

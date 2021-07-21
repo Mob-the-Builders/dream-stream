@@ -9,7 +9,7 @@ const IndexPage = () => {
   return (
     <div className='top-container'>
       <Menubar />
-      { <Content />}
+      <Content />
     </div>
   )
 }

@@ -8,7 +8,7 @@ import './new-post.scss';
 // upload fetchimage/cloudinary to heroku ----> future
 const NewPost = () => {
   const [name, setName] = useState('Kalle');
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState('');
   const [description, setDescription] = useState('');
   const [uploadImage, setUploadImage] = useState('');
   const [image, setImage] = useState({
@@ -42,13 +42,17 @@ const NewPost = () => {
     })
   }
 
+  const tagParser = () => {
+    return tags.split(' ');
+  }
+
   const serverCall = async () => {
-  const response = await axios.post("/api/create-post", {
+  await axios.post("/api/create-post", {
       "userName": name,
       "image": image.url,
       "imageDelete": image.signature,
       "description": description,
-      "tags": [tags],
+      "tags": tagParser(),
     },
     { 
       headers: { 
@@ -61,18 +65,38 @@ const NewPost = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (!tags) {
-      alert('PleaseTag');
-      return;
-    }
+    
    fetchImage(); 
   };
 
   return (
-      <>
+    <>
       <Menubar />
-      <form onSubmit={onSubmit}>
+      <main className={'main'}>
 
+
+
+      <section className={'newpost-card'}>
+        <div className={'description-area'}>
+          <input
+            type="text" id="Name"
+            placeholder='Description'
+            value={description}
+            onChange={e => setDescription(e.target.value)}
+          />
+          <p>kalle_anka</p>
+        </div>
+        <div className={'image-area'}>
+
+        </div>
+        <div className={'tag-area'}>
+          
+        </div>
+      </section>
+
+
+
+      {/* <form onSubmit={onSubmit}>
         <label>Name</label>
         <input type="text" id="Name"
           placeholder='Kalle'
@@ -92,9 +116,10 @@ const NewPost = () => {
           onChange={e => setTags(e.target.value)} />
         <input required type='file' onChange={e=>setUploadImage(e.target.files[0])} />
         <input type='submit' value='Create'/>
-      </form>
-      
-      </>
+        </form> */}
+
+      </main>
+    </>
   )
 }
 

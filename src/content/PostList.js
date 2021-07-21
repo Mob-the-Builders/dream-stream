@@ -1,6 +1,7 @@
 import React, {useState , useEffect } from 'react'
 import Post from './Post'
 import axios from 'axios'
+import './PostList.scss';
 /*
     userName: String!
     description: String!
@@ -30,7 +31,7 @@ const PostList = () => {
   }, [status]);
 
   return (
-    <div>
+    <div className="post-list-container-flex">
       {posts && posts.map((item,index)  => <Post key={index} item={item} />)}
     </div>
   )
