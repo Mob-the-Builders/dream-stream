@@ -21,6 +21,7 @@ const Content = () => {
     setImageSignature(data.data.signature);
   }
     // USE USEEFFECT !!!!!!!!!
+    // test
       const onSubmit = e => {
         e.preventDefault();
         if (!tags) {
