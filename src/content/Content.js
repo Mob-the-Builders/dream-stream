@@ -1,44 +1,72 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import YourStreams from './YourStreams';
 import PostList from './Postlist';
 import axios from 'axios';
-
+// Remove filename after upload
+// How to break multiple tags (Tag parser)
+// upload fetchimage/cloudinary to heroku ----> future
+// 
 const Content = () => {
   const [name, setName] = useState('Kalle');
   const [tags, setTags] = useState([]);
   const [description, setDescription] = useState('');
-  const [image, setImage] = useState('');
-  const [imageSignature, setImageSignature] = useState('');
-  const [imageURL, setImageURL] = useState('');
+  const [uploadImage, setUploadImage] = useState('');
+  const [image, setImage] = useState({
+    url: null,
+    signature: null,
+  });
   
   const fetchImage = async () => {
-    console.log("upload handler");
     const formData = new FormData();
-    formData.append('file', image);
+    formData.append('file', uploadImage);
     formData.append('upload_preset', "qxmdpdn1");
     const data = await axios.post("https://api.cloudinary.com/v1_1/dx50vyks7/image/upload", formData)
-    setImageURL(data.data.secure_url);
-    setImageSignature(data.data.signature);
+    setImage({
+      url: data.data.secure_url,
+      signature: data.data.signature
+    })
   }
-    // USE USEEFFECT !!!!!!!!!
-    // test 2
-      const onSubmit = e => {
-        e.preventDefault();
-        if (!tags) {
-          alert('PleaseTag');
-          return;
-        }
-        fetchImage();
-        console.log(name)
-        console.log(description)
-        console.log(tags)
-        console.log(imageURL)
-        console.log(imageSignature)
+
+  useEffect(() => {
+    if (image.url && image.signature) {
+      serverCall()
+    };
+  }, [image]);
+
+  const resetValues = () => {
+    setDescription('');
+    setTags('');
+    setImage({
+      url: null,
+      signature: null,
+    })
+  }
+
+  const serverCall = async () => {
+  const response = await axios.post("/api/create-post", {
+      "userName": name,
+      "image": image.url,
+      "imageDelete": image.signature,
+      "description": description,
+      "tags": [tags],
+    },
+    { 
+      headers: { 
+      "Content-Type": "application/json"
+      } 
+    });
     
-        setDescription('');
-        setTags('');
-        
-      };
+    resetValues();
+  }
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (!tags) {
+      alert('PleaseTag');
+      return;
+    }
+   fetchImage(); 
+  };
 
   return (
       <>
@@ -61,7 +89,7 @@ const Content = () => {
           placeholder='tag'
           value={tags}
           onChange={e => setTags(e.target.value)} />
-        <input required type='file' onChange={e=>setImage(e.target.files[0])} />
+        <input required type='file' onChange={e=>setUploadImage(e.target.files[0])} />
         <input type='submit' value='Create'/>
       </form>
       
@@ -69,11 +97,5 @@ const Content = () => {
       </>
   )
 }
-
-        // // <label className="card--subtitle">Receiver</label>
-        // <input className='card__input--sendName' type="text" id="title"
-        // placeholder='Receiver'
-        // value={receiver}
-        // onChange={e => setReceiver(e.target.value)}></input>
 
 export default Content

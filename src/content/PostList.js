@@ -24,16 +24,16 @@ const PostList = () => {
         return;
       }
       console.log(result.data);
-      setPosts(result.data.messages);
+      setPosts(result.data.messages.reverse());
       setStatus("loaded");
     });
   }, [status]);
 
-    return (
-      <div>
-        {posts && posts.map((item,index)  => <Post key={index} item={item} />)}
-      </div>
-    )
+  return (
+    <div>
+      {posts && posts.map((item,index)  => <Post key={index} item={item} />)}
+    </div>
+  )
 }
 
 export default PostList
