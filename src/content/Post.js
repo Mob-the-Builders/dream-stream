@@ -2,7 +2,7 @@ import React from 'react'
 import './post.scss';
 const Post = ({ item }) => {
 
-  console.log(item.comments);
+  //console.log(item.comments);
 
   return (
     <article className="post">

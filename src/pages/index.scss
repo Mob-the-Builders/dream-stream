@@ -15,6 +15,9 @@ body {
   background: ghostwhite;
 }
 
+
+////// sidebar
+
 .sidebar {
   width: 240px;
   height: 100vh;
@@ -25,6 +28,7 @@ body {
 .logo {
     display: flex;
     font-family: 'Sniglet', cursive;
+    align-items: center;
 }
 
 .cloud {
@@ -36,14 +40,36 @@ body {
 }
 
 .stream {
-    color: #379AE3;
+  color: #379AE3;
+}
+
+.menuList li {
+  margin-top: 30px;
+}
+
+.menuList li a{
+  display: flex;
+  align-items: center;
+  // background: blue;
+}
+
+.menuList svg {
+  fill: #423F62;
 }
 
 ul {
     list-style-type: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 ul a {
     text-decoration: none;
+
 }
+
+ul a:visited {
+  color: #423F62;
+}
+
+////// sidebar
 

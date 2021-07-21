@@ -6,7 +6,7 @@ type Comment {
 
 type Post {
     userName: String!
-    description: String!
+    description: String
     image: String!
     imageDelete: String!
     tags: [String!]
