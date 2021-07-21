@@ -21,22 +21,10 @@ type User {
 
 type Query {
   allPosts: [Post!]! 
-  allComments: [Comment]
+  allComments: [Comment!]
+  allUsers: [User!]
+  getPostByName(userName: String): [Post!]!
+  getByTag(tags: String): [Post]
+
 }
 
-mutation {
-  createUser(data: {
-    name: "Jane"
-    cars: {
-      create: []
-    }
-  }) {
-    _id
-    name
-    cars {
-      data {
-        plate
-      }
-    }
-  }
-}
