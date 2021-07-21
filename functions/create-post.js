@@ -2,20 +2,6 @@
 
 const query = require("./utils/query");
 
-/*
-mutation {
-    createPost(data: { userName: "kostas", image: "xcv", imageDelete: "ppp", description: "hello world", tags: ["abc", "cats"], likes: ["kostas"] }) {
-       _id
-        userName
-        image
-    		imageDelete
-    		description
-    		tags
-    		likes
-     }
- }
-*/
-
 const CREATE_POST = `
   mutation($userName: String!, $image: String!, $imageDelete: String!, $description: String!, $tags: [String!], $likes: [String!]){
     createPost(data: {userName: $userName, image: $image, imageDelete: $imageDelete, description: $description, tags: $tags, likes: $likes}){
