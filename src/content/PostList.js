@@ -10,7 +10,7 @@ import './PostList.scss';
     likes: [String!]
 */
 
-const PostList = ({ tag }) => {
+const PostList = ({ tag, likePost }) => {
   console.log("IN POSTLIST", tag);
   const [status, setStatus ] = useState('loading...');    
   const [posts, setPosts] = useState([]);
@@ -40,7 +40,7 @@ const PostList = ({ tag }) => {
 
   return (
     <div className="post-list-container-flex">
-      {posts && posts.map((item , index)  => <Post key={index} item={item} />)}
+      {posts && posts.map((item , index)  => <Post key={index} item={item} likePost={likePost}/>)}
     </div>
   )
 }

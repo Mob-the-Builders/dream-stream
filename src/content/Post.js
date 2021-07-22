@@ -1,6 +1,6 @@
 import React from 'react'
 import './post.scss';
-const Post = ({ item }) => {
+const Post = ({ item, likePost }) => {
 
   //console.log(item.comments);
 
@@ -11,7 +11,7 @@ const Post = ({ item }) => {
       <p className="post__streams">Streams:{item.tags.map(t => t + ' ')}</p>
       <p className="post__description">{item.description}</p>
 
-      <span className="post__likes-container-flex">
+      <span className="post__likes-container-flex" onClick={() => likePost('LOL')}>
         {/* <p>Likes:{item.likes.map(l => l + ' ')}</p> */}
         {/* <FaBeer /> */}
         <span>❤️</span>

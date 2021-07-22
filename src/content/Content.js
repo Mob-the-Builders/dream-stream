@@ -8,6 +8,10 @@ const Content = () => {
     console.log(tag)
   }, [tag]);
   
+  const likePost = (id) => {
+    console.log('liking a post', id)
+  }
+
   const updateTag = (text) => {
     if(tag === text){
       setTag(null)
@@ -19,7 +23,7 @@ const Content = () => {
   return (
       <main className={'main'}>
         <StreamFilter setTag={updateTag}/>
-        <PostList tag={tag}/>
+        <PostList tag={tag} likePost={likePost}/>
       </main>
   )
 }
