@@ -4,13 +4,18 @@ type Comment {
     post: Post
 }
 
+type Likes {
+    likes: [String!]
+    post: Post
+}
+
 type Post {
     userName: String!
     description: String
     image: String!
     imageDelete: String!
     tags: [String!]
-    likes: [String!]
+    likes: Likes @relation
     comments: [Comment] @relation
 }
 
@@ -23,7 +28,6 @@ type User {
     userName: String! @unique
     password: String!
     userTags: UserTags @relation
-    
 }
 
 type Query {
@@ -33,6 +37,5 @@ type Query {
   getUserByName(userName: String): User
   getPostByName(userName: String): [Post!]!
   getByTag(tags: String): [Post]
-
 }
 

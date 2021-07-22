@@ -1,0 +1,79 @@
+.sidebar {
+  width: 270px;
+  height: 100vh;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  background: linear-gradient(0deg, rgba(8,150,253,1) 0%, rgba(103,184,249,1) 35%, rgba(255,246,240,1) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+}
+
+.logo {
+    display: flex;
+    font-family: 'Sniglet', cursive;
+    align-items: center;
+    margin-top: 55px;
+    font-size: 27px;
+}
+
+.cloud {
+    fill: #1C9EFC;
+
+}
+
+.dream {
+    color: #4C4C66;
+}
+
+.stream {
+  color: #379AE3;
+}
+
+.menuList {
+  padding-left: 0;
+  margin-top: 70px;
+}
+
+.menuList li {
+  margin-top: 30px;
+}
+
+.menuList li a{
+  display: flex;
+  align-items: center;
+  // background: blue;
+}
+
+.menuList svg {
+  fill: #423F62;
+  margin-right: 30px;
+}
+
+ul {
+    list-style-type: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+}
+
+ul a {
+    text-decoration: none;
+
+}
+
+ul a:visited {
+  color: #423F62;
+}
+
+.menuList li:hover {
+  color: #1EA0DE;
+  fill: #1EA0DE;
+
+  & svg {
+    fill: #1EA0DE;
+  }
+}
+
+.menuList a:hover {
+  color: #1EA0DE;
+}

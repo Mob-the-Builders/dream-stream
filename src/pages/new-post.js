@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from 'axios';
+import { navigate } from 'gatsby';
 import Menubar from '../components/Menubar';
 import './new-post.scss';
 
@@ -7,7 +8,8 @@ import './new-post.scss';
 // How to break multiple tags (Tag parser)
 // upload fetchimage/cloudinary to heroku ----> future
 const NewPost = () => {
-  const [name, setName] = useState('Kalle');
+  if (!localStorage.getItem('user')) navigate('/login');
+
   const [tags, setTags] = useState('');
   const [description, setDescription] = useState('');
   const [uploadImage, setUploadImage] = useState('');
@@ -15,7 +17,20 @@ const NewPost = () => {
     url: null,
     signature: null,
   });
-  
+
+  const newPost = {};
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    fetchImage(); 
+  };
+
+  const tagParser = () => {
+    const multipleSpacesRegex = /\s\s+/g;
+    tags.replace(multipleSpacesRegex, ' ');
+    return tags.split(' ', 3);
+  }
+
   const fetchImage = async () => {
     const formData = new FormData();
     formData.append('file', uploadImage);
@@ -33,24 +48,9 @@ const NewPost = () => {
     };
   }, [image]);
 
-  const resetValues = () => {
-    setDescription('');
-    setTags('');
-    setImage({
-      url: null,
-      signature: null,
-    })
-  }
-
-  const tagParser = () => {
-    const multipleSpacesRegex = /\s\s+/g;
-    tags.replace(multipleSpacesRegex, ' ');
-    return tags.split(' ', 3);
-  }
-
   const serverCall = async () => {
   await axios.post("/api/create-post", {
-      "userName": name,
+      "userName": localStorage.getItem('user'),
       "image": image.url,
       "imageDelete": image.signature,
       "description": description,
@@ -61,15 +61,18 @@ const NewPost = () => {
       "Content-Type": "application/json"
       } 
     });
-    
-    resetValues();
+    cleanup();
   }
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    
-   fetchImage(); 
-  };
+  const cleanup = () => {
+    setImage({
+      url: null,
+      signature: null,
+    })
+    setDescription('');
+    setTags('');
+    navigate('/');
+  }
 
   return (
     <>
@@ -80,48 +83,37 @@ const NewPost = () => {
             <div className={'description-area'}>
               <input
                 type="text" id="Name"
-                placeholder='Description'
+                placeholder='Add a description...'
                 value={description}
                 onChange={e => setDescription(e.target.value)}
               />
-              <p>kalle_anka</p>
+              <div><span >🐤</span>{localStorage.getItem('user')}</div>
             </div>
             <div className={'image-area'}>
-              <input required type='file' onChange={e=>setUploadImage(e.target.files[0])} />
+
+              <div class="file-input">
+                <input
+                  required type='file' onChange={e=>setUploadImage(e.target.files[0])}
+                  name="file-input"
+                  id="file-input"
+                  className="file-input__input"
+                />
+                <label class="file-input__label" for="file-input">
+
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M4 5h13v7h2V5c0-1.103-.897-2-2-2H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h8v-2H4V5z"/><path d="m8 11-3 4h11l-4-6-3 4z"/><path d="M19 14h-2v3h-3v2h3v3h2v-3h3v-2h-3z"/></svg>
+                  <span className={'uploadLabel'}>Upload Image</span></label>
+              </div>
             </div>
+
             <div className={'tag-area'}>
-              <label>Tags</label>
-              <input required  type="text" id="Name"
-                placeholder='tag'
+              <input required  type="text" id="Name" placeholder='Select streams...'
                 value={tags}
                 onChange={e => setTags(e.target.value)} />
-              <input type='submit' value='Create'/>
+              <input type='submit' value='Post'/>
             </div>
           </section>
         </form>
 
-
-
-        {/* <label>Name</label>
-        <input type="text" id="Name"
-          placeholder='Kalle'
-          value={name}
-          onChange={e => setName(e.target.value)} />
-
-        <label>Description</label>
-        <input  type="text" id="Name"
-          placeholder='Description'
-          value={description}
-          onChange={e => setDescription(e.target.value)} />
-
-        <label>Tags</label>
-        <input required  type="text" id="Name"
-          placeholder='tag'
-          value={tags}
-          onChange={e => setTags(e.target.value)} />
-        <input required type='file' onChange={e=>setUploadImage(e.target.files[0])} />
-        <input type='submit' value='Create'/>
-        </form> */}
 
       </main>
     </>

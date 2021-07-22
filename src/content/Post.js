@@ -1,35 +1,31 @@
 import React from 'react'
-import './post.scss';
-const Post = ({ item, likePost }) => {
+import './Post.scss';
+import CommentSection from "./CommentSection";
+import AddStream from "./AddStream";
 
-  //console.log(item.comments);
+const Post = ({ item, likePost, streams, updateStreams }) => {
 
   return (
     <article className="post">
-      <p className="post__userName">{item.userName}</p>
+
+      <div className={'post__descriptionArea'}>
+        <span className="post__description">{item.description}</span>
+        <span className="post__userName">{item.userName}</span>
+      </div>
+      
       <img src={item.image} alt="Dummy text" className="post__image"></img>
-      <p className="post__streams">Streams:{item.tags.map(t => t + ' ')}</p>
-      <p className="post__description">{item.description}</p>
 
-      <span className="post__likes-container-flex" onClick={() => likePost('LOL')}>
-        {/* <p>Likes:{item.likes.map(l => l + ' ')}</p> */}
-        {/* <FaBeer /> */}
-        <span>❤️</span>
-        <span className="post__likes__nr">{item.likes.length}</span>
-      </span> 
+      <div className={'post__infoBar'}>
+        {/* <p className="post__streams">Streams: {item.tags.map(t => t + ' ')}</p> */}
+        <span className="post__streams">Streams: {item.tags.map(t => <AddStream currentStream={t} followedStreams={streams} updateStreams={updateStreams}/>)}</span>
+        <span className="post__posted">Posted 2 hours ago</span>
+      </div>
 
-      <ul>
-        {item.comments.data.length > 0 
-      ? item.comments.data.map(t => <li> {t.userName}
-      : {t.message}</li>) : <></> }
-      </ul>
+      <CommentSection post={item} likePost={likePost}/>
+      
 
-      <form>
-        <input type="text" id="comment" placeholder='Add a comment...'/>
-        <input type='submit' value='Post'/>
-     </form>
+      
     </article>
-// https://i.imgur.com/DwXN2qe.jpeg
   )
 }
 export default Post

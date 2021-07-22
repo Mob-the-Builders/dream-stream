@@ -5,7 +5,7 @@
 }
 
 .newpost-card {
-  width: 36rem;
+  width: 710px;
   // min-height: 300px;
   // background: skyblue;
   margin-top: 8rem;
@@ -25,6 +25,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-left: 37px;
+  padding-right: 37px;
 
   & input {
     height: 2rem;
@@ -38,6 +40,7 @@
   }
 }
 
+
 textarea:focus, input:focus{
   outline: none;
 }
@@ -47,11 +50,63 @@ textarea:focus, input:focus{
   height: 22rem;
   background: rgba(216, 238, 254, 0.2);
   border-bottom: 0.5px solid #78788D;
+  display: grid;
+  place-items: center;
 }
+
+
+.file-input__input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.file-input__label {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  font-size: 14px;
+  padding: 10px 12px;
+  background-color: #798791;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+}
+
+.file-input__label svg {
+  height: 16px;
+  margin-right: 4px;
+}
+
 
 .tag-area {
   width: 100%;
   height: 2.3rem;
-  background: rgb(219, 234, 106);
+  background: #D8EEFE;
   border-radius: 0 0 10px 10px;
+  color: rgb(166, 163, 163);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 47px;
+  padding-right: 47px;
+
+  & input {
+    height: 2rem;
+    border-style: hidden;
+    background: #D8EEFE;
+    color: #4C4D66;
+    font-size: 13px;
+
+    &::placeholder{
+      color: #4C4D66;
+    }
+  }
 }
+
+

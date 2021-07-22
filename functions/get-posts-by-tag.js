@@ -11,7 +11,10 @@
               image
               description
               tags
-              likes
+              likes {
+                _id
+                likes
+              }
               comments {
                 data {
                   userName

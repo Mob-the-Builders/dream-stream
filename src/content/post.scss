@@ -2,23 +2,65 @@
   display:flex;
   flex-direction: column;
   margin-bottom: 3%;
-  max-width: 50%;
-  padding: 1rem;
+  // max-width: 50%;
+  width: 710px;
+  // padding: 1rem;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 5px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
   &__image {
     max-width: 100%;
     max-height: 100%;
   }
+
+  &__descriptionArea{
+    background: #59AFED;
+    color: white;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px 10px 0 0;
+  }
+
   &__description{
-    
+    margin-left: 37px;
   }
-  &__streams{
-    background-color: coral;
-  }
+
   &__userName{
-    background-color: purple;
+    // float: right;
+    margin-right: 37px;
   }
+
+  &__streams{
+    margin-left: 37px;
+  }
+  
+  &__infoBar{
+    background: #D8EEFE;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  &__posted{
+    margin-right: 37px;
+  }
+
+  &__commentSection{
+    background: #E4F4FF;
+    border-radius: 0 0 10px 10px;
+  }
+
+  &__commentsAndHeart{
+    display: flex;
+  }
+
+  &__heartContainer{
+    background: blue;
+  }
+
   &__likes-container-flex{
     display: flex;
     border: 1px solid #F31E52 ;
@@ -26,9 +68,19 @@
     max-width: 3rem;
     min-width: 2rem;
     justify-content: space-around;
+
+    // background: green;
   }
+
   &__likes__nr{
     margin-top: 9%;       
 
   }
+
+
+  &__inputArea{
+    background: #D8EEFE;
+    border-radius: 0 0 10px 10px;
+  }
+
 }

@@ -13,7 +13,8 @@ mutation ($userName: String!, $password: String!) {
 
 const CREATE_USER_TAGS = `
 mutation ($tags: [String!] $userId: ID!) {
-  createUser(data: { tags: $tags, user: $userId } ) {
+  createUserTags(data: { tags: $tags, user: { connect: $userId } } ) {
+      _id
       tags
    }
 }
@@ -32,17 +33,19 @@ exports.handler = async event => {
     };
   }
   const userId = data.createUser._id;
-  console.log("USERid", userId)
   const tags = [];
-  const { dataTags, errorsTags } = await query(
+  const { data: dataTag, errors: errorsTag } = await query(
     CREATE_USER_TAGS, { 
-      userId });
-
-  console.log(dataTags);
-   
+     tags, userId }); 
+     if (errorsTag) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify(errors)
+    };
+  }
 
   return {
     statusCode: 200,
-    body: JSON.stringify({ message: `User ${data.createUser.userName} created` })
+    body: JSON.stringify({ message: `User ${data.createUser.userName} created.` })
   };
 };

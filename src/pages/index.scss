@@ -13,82 +13,19 @@ body {
 }
 
 .top-container {
-  display: grid;
-  grid-template-columns: auto auto;
+  display: flex;
+  // grid-template-columns: auto auto;
   background: #E8F5FF;
 }
 
 .main {
   width: 100%;
-  padding-left: 240px;
+  margin-left: 240px;
+  margin-left: 270px;
+
+  // border: 5px solid pink;
 }
 
 
-////// sidebar
 
-.sidebar {
-  width: 240px;
-  height: 100vh;
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-  background: pink;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: fixed;
-}
-
-.logo {
-    display: flex;
-    font-family: 'Sniglet', cursive;
-    align-items: center;
-    margin-top: 30px;
-    font-size: 1.4rem;
-}
-
-.cloud {
-    fill: #1C9EFC;
-
-}
-
-.dream {
-    color: #4C4C66;
-}
-
-.stream {
-  color: #379AE3;
-}
-
-.menuList {
-  padding-left: 0;
-}
-
-.menuList li {
-  margin-top: 30px;
-}
-
-.menuList li a{
-  display: flex;
-  align-items: center;
-  // background: blue;
-}
-
-.menuList svg {
-  fill: #423F62;
-}
-
-ul {
-    list-style-type: none;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-ul a {
-    text-decoration: none;
-
-}
-
-ul a:visited {
-  color: #423F62;
-}
-
-////// sidebar
 

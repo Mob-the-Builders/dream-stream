@@ -1,21 +1,22 @@
- // get-posts.js
+ // login-user.js
 
 const query = require("./utils/query");
 
 const LOGIN = `
   query getUserByName($userName: String){
     getUserByName(userName: $userName){
- 	    password    
+ 	    password
+       userTags{
+        _id
+        tags
+      }   
   }
 }
 `;
 
  exports.handler = async event => {
     const { userName, password } = JSON.parse(event.body);
-    console.log( userName, password)
     const { data, errors } = await query(LOGIN, {userName} );
-    
-
     if (errors) {
        return {
          statusCode: 500,
@@ -26,7 +27,7 @@ const LOGIN = `
     if(data.getUserByName !== null && password===data.getUserByName.password) {
       return {
         statusCode: 200,
-        body: JSON.stringify({ messages: "success"})
+        body: JSON.stringify({ messages: "success", userTags: data.getUserByName.userTags._id})
       };
     }
 
