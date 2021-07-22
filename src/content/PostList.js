@@ -11,9 +11,9 @@ import './PostList.scss';
 */
 
 const PostList = ({ tag }) => {
-  console.log("IN POSTLIST", tag);
   const [status, setStatus ] = useState('loading...');    
   const [posts, setPosts] = useState([]);
+
 
   useEffect(() => {
     if(!tag){
@@ -35,12 +35,15 @@ const PostList = ({ tag }) => {
       setPosts(result.data.messages.reverse());
     });
     }
+    console.log(posts);
+    console.log("above this posts");
   }, [tag]);
+
 
 
   return (
     <div className="post-list-container-flex">
-      {posts && posts.map((item , index)  => <Post key={index} item={item} />)}
+      {posts.map((item, index)  => <Post item={item} key={index}/>)}
     </div>
   )
 }

@@ -91,8 +91,7 @@ const NewPost = () => {
             </div>
             <div className={'tag-area'}>
               <label>Tags</label>
-              <input required  type="text" id="Name"
-                placeholder='tag'
+              <input required  type="text" id="Name" placeholder='tag'
                 value={tags}
                 onChange={e => setTags(e.target.value)} />
               <input type='submit' value='Create'/>

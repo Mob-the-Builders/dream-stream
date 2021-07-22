@@ -1,8 +1,8 @@
 import React from 'react'
 import './post.scss';
-const Post = ({ item }) => {
+import CommentSection from "./CommentSection";
 
-  //console.log(item.comments);
+const Post = ({ item }) => {
 
   return (
     <article className="post">
@@ -18,16 +18,7 @@ const Post = ({ item }) => {
         <span className="post__likes__nr">{item.likes.length}</span>
       </span> 
 
-      <ul>
-        {item.comments.data.length > 0 
-      ? item.comments.data.map(t => <li> {t.userName}
-      : {t.message}</li>) : <></> }
-      </ul>
-
-      <form>
-        <input type="text" id="comment" placeholder='Add a comment...'/>
-        <input type='submit' value='Post'/>
-     </form>
+      <CommentSection post={item}/>
     </article>
 // https://i.imgur.com/DwXN2qe.jpeg
   )

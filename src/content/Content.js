@@ -4,9 +4,9 @@ import PostList from './Postlist';
 
 const Content = () => {
   const [tag, setTag] = useState(null);
-  useEffect(() => {
-    console.log(tag)
-  }, [tag]);
+  // useEffect(() => {
+  //   console.log(tag)
+  // }, [tag]);
   
   const updateTag = (text) => {
     if(tag === text){
