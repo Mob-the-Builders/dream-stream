@@ -16,10 +16,12 @@ const LoginPage = () => {
     console.log(userName, password)
     const login = { userName, password }
     try {
-      const data = await axios.post('/api/login-user', login)
+      const response = await axios.post('/api/login-user', login)
       localStorage.setItem('user', userName);
-      console.log((localStorage.getItem('user')));
-      console.log(data);
+      localStorage.setItem('userId', response.data.userTags)
+      console.log(localStorage.getItem('userId'));
+      console.log(localStorage.getItem('user'));
+
       navigate('/');
       
     } catch (error) {

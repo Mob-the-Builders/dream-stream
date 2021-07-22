@@ -7,8 +7,6 @@ const Content = () => {
   const [tag, setTag] = useState(null);
   const user = localStorage.getItem('user');
   
-
-
   const likePost = async (arr) => {
     const user = localStorage.getItem('user');
     let likes;
@@ -43,7 +41,6 @@ const Content = () => {
     updateStreams(response.data.userTags);
   }, []);
 
-  
   return (
       <main className={'main'}>
         {user

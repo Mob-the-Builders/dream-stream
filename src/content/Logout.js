@@ -3,8 +3,8 @@ import { navigate } from 'gatsby'; //import navigate from gatsby
 
 const Logout = () => {
   const onClick = () => {
-    localStorage.getItem('user')
-    localStorage.setItem('user', '');
+    localStorage.removeItem('user');
+    localStorage.removeItem('userId');
     navigate('/login');
   }
 
