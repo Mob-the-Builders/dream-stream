@@ -10,13 +10,24 @@ const Post = ({ item }) => {
       <img src={item.image} alt="Dummy text" className="post__image"></img>
       <p className="post__streams">Streams:{item.tags.map(t => t + ' ')}</p>
       <p className="post__description">{item.description}</p>
+
       <span className="post__likes-container-flex">
         {/* <p>Likes:{item.likes.map(l => l + ' ')}</p> */}
         {/* <FaBeer /> */}
         <span>❤️</span>
         <span className="post__likes__nr">{item.likes.length}</span>
       </span> 
-      <p>{item.comments.data.length > 0 ? item.comments.data.map(t =>  t.userName + ': ' + t.message + ' ') : <></> }</p>
+
+      <ul>
+        {item.comments.data.length > 0 
+      ? item.comments.data.map(t => <li> {t.userName}
+      : {t.message}</li>) : <></> }
+      </ul>
+
+      <form>
+        <input type="text" id="comment" placeholder='Add a comment...'/>
+        <input type='submit' value='Post'/>
+     </form>
     </article>
 // https://i.imgur.com/DwXN2qe.jpeg
   )

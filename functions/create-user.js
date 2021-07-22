@@ -12,8 +12,8 @@ mutation ($userName: String!, $password: String!) {
 `;
 
 const CREATE_USER_TAGS = `
-mutation ($userId: ID!) {
-  createUser(data: { tags: [], user: $userId } ) {
+mutation ($tags: [String!] $userId: ID!) {
+  createUser(data: { tags: ["cats"], user: $userId } ) {
       tags
    }
 }
@@ -31,18 +31,14 @@ exports.handler = async event => {
       body: JSON.stringify(errors)
     };
   }
-  const id = data.createUser._id
-
+  const userId = data.createUser._id;
+  const tags = [];
   const { dataTags, errorsTags } = await query(
     CREATE_USER_TAGS, { 
-      userName, password });
-  
-    // if (errorsTags) {
-    //   return {
-    //     statusCode: 500,
-    //     body: JSON.stringify(errorsTags)
-    //   };
-    // }  
+      userId });
+
+  console.log(dataTags);
+   
 
   return {
     statusCode: 200,
