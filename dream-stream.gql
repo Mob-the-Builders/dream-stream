@@ -14,9 +14,16 @@ type Post {
     comments: [Comment] @relation
 }
 
+type UserTags {
+    tags: [String!]
+    user: User
+}
+
 type User {
     userName: String! @unique
     password: String!
+    userTags: UserTags @relation
+    
 }
 
 type Query {

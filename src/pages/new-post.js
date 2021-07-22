@@ -29,7 +29,7 @@ const NewPost = () => {
 
   useEffect(() => {
     if (image.url && image.signature) {
-      serverCall()
+      serverCall();
     };
   }, [image]);
 
@@ -43,7 +43,9 @@ const NewPost = () => {
   }
 
   const tagParser = () => {
-    return tags.split(' ');
+    const multipleSpacesRegex = /\s\s+/g;
+    tags.replace(multipleSpacesRegex, ' ');
+    return tags.split(' ', 3);
   }
 
   const serverCall = async () => {
@@ -73,31 +75,34 @@ const NewPost = () => {
     <>
       <Menubar />
       <main className={'main'}>
+        <form onSubmit={onSubmit}>
+          <section className={'newpost-card'}>
+            <div className={'description-area'}>
+              <input
+                type="text" id="Name"
+                placeholder='Description'
+                value={description}
+                onChange={e => setDescription(e.target.value)}
+              />
+              <p>kalle_anka</p>
+            </div>
+            <div className={'image-area'}>
+              <input required type='file' onChange={e=>setUploadImage(e.target.files[0])} />
+            </div>
+            <div className={'tag-area'}>
+              <label>Tags</label>
+              <input required  type="text" id="Name"
+                placeholder='tag'
+                value={tags}
+                onChange={e => setTags(e.target.value)} />
+              <input type='submit' value='Create'/>
+            </div>
+          </section>
+        </form>
 
 
 
-      <section className={'newpost-card'}>
-        <div className={'description-area'}>
-          <input
-            type="text" id="Name"
-            placeholder='Description'
-            value={description}
-            onChange={e => setDescription(e.target.value)}
-          />
-          <p>kalle_anka</p>
-        </div>
-        <div className={'image-area'}>
-
-        </div>
-        <div className={'tag-area'}>
-          
-        </div>
-      </section>
-
-
-
-      {/* <form onSubmit={onSubmit}>
-        <label>Name</label>
+        {/* <label>Name</label>
         <input type="text" id="Name"
           placeholder='Kalle'
           value={name}

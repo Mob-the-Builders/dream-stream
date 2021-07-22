@@ -10,25 +10,34 @@ import './PostList.scss';
     likes: [String!]
 */
 
-const PostList = () => {
+const PostList = ({ tag }) => {
+  console.log("IN POSTLIST", tag);
   const [status, setStatus ] = useState('loading...');    
   const [posts, setPosts] = useState([]);
 
-
   useEffect(() => {
-    console.log("CAN YOU SEE ME");
-    if (status !== "loading...") return;
-    axios("/api/get-post").then(result => {
-      if (result.status !== 200) {
-        console.error("Error loading posts");
-        console.error(result);
-        return;
-      }
-      console.log(result.data);
+    if(!tag){
+      axios("/api/get-post")
+        .then(res => {
+          console.log('Hello in axios get post!')
+          console.log(res);
+          setPosts(res.data.messages.reverse());
+          setStatus("loaded");
+        })
+    } else {
+      axios.post("/api/get-posts-by-tag", { tags: tag })
+      .then(result => {
+        if (result.status !== 200) {
+          console.error("Error loading posts");
+          console.error(result);
+          return;
+        }
       setPosts(result.data.messages.reverse());
-      setStatus("loaded");
     });
-  }, [status]);
+    }
+  }, [tag]);
+
+
 
   return (
     <div className="post-list-container-flex">

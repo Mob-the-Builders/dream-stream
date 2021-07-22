@@ -26,6 +26,8 @@
 
   exports.handler = async event => {
     const { tags } = JSON.parse(event.body);
+    console.log('Hello Mob from serverless!')
+    console.log(tags)
     const { data, errors } = await query(GET_BY_TAG, {tags} );
 
      if (errors) {
