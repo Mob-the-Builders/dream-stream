@@ -5,26 +5,25 @@ import axios from 'axios';
 
 const Content = () => {
   const [tag, setTag] = useState(null);
-  // useEffect(() => {
-  //   console.log(tag)
-  // }, [tag]);
   const user = localStorage.getItem('user');
   
+
+
   const likePost = async (arr) => {
     const user = localStorage.getItem('user');
-    const id = arr._id;
+    let likes;
     if(!user){
       return;
     }
-    
     if(arr.likes.includes(user)){
-      return;
+      const index = arr.likes.indexOf(user); 
+      arr.likes.splice(index, 1);
+      likes = arr.likes;
+    } else {
+     likes = [...arr.likes, localStorage.getItem('user')]; 
     }
-    const likes = [...arr.likes, localStorage.getItem('user')];
-    const body = {id, likes} 
-    console.log(body)
-    const data = await axios.post('/api/update-post-likes', body);
-    console.log(data);
+    const body = {id: arr._id, likes} 
+    await axios.post('/api/update-post-likes', body);
   }
 
   const updateTag = (text) => {
