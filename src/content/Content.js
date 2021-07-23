@@ -7,7 +7,6 @@ const Content = () => {
   const [tag, setTag] = useState(null);
   const user = localStorage.getItem('user');
   const [liked, setLiked] = useState(false);
-  
 
   const likePost = async (arr) => {
     const user = localStorage.getItem('user');
