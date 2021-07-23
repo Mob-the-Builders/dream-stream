@@ -6,7 +6,8 @@
   width: 710px;
   // padding: 1rem;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 5px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border: 0.1px solid rgba(120, 120, 141, 0.5);
 
   &__image {
     max-width: 100%;

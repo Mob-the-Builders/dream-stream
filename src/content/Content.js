@@ -4,38 +4,28 @@ import PostList from './Postlist';
 import axios from 'axios';
 
 const Content = () => {
-  const [tag, setTag] = useState(null);
   const user = localStorage.getItem('user');
   const [liked, setLiked] = useState(false);
-
+  
   const likePost = async (arr) => {
-    const user = localStorage.getItem('user');
     let likes;
     if(!user){
       return;
     }
     if(arr.likes.includes(user)){
-      const index = arr.likes.indexOf(user); 
+      const index = arr.likes.indexOf(user);
+      // likes = arr.likes.filter(like => like !== user);
       arr.likes.splice(index, 1);
       likes = arr.likes;
     } else {
-     likes = [...arr.likes, localStorage.getItem('user')]; 
+     likes = [...arr.likes, user]; 
     }
-    resetLike(true)
     const body = {id: arr._id, likes} 
     await axios.post('/api/update-post-likes', body);
-    console.log('content liked', liked)
+    setLiked(!liked)
   }
-  const resetLike = (bool) => {
-    if(bool){
-      console.log(bool)
-      setLiked(false)
-    } else {
-      console.log(bool)
-      setLiked(true)
-    }
-  };
 
+  const [tag, setTag] = useState(null);
   const updateTag = (text) => {
     if(tag === text){
       setTag(null)
@@ -45,12 +35,13 @@ const Content = () => {
   };
 
   const [streams, updateStreams] = useState([]);
-
   useEffect(async () => {
     console.log(user);
-    const response = await axios.post('/api/get-tags-user', { userName: user });
-    console.log(response.data.userTags);
-    updateStreams(response.data.userTags);
+    if (user) {
+      const response = await axios.post('/api/get-tags-user', { userName: user });
+      console.log(response.data.userTags);
+      updateStreams(response.data.userTags);
+    }
   }, []);
 
   return (
@@ -58,7 +49,7 @@ const Content = () => {
         {user
         ? <StreamFilter setTag={updateTag} streams={streams}/>
         : <></>}
-        <PostList tag={tag} likePost={likePost} liked={liked} resetLike={resetLike} streams={streams} updateStreams={updateStreams}/>
+        <PostList tag={tag} likePost={likePost} liked={liked} setLiked={setLiked} streams={streams} updateStreams={updateStreams}/>
       </main>
   )
 }

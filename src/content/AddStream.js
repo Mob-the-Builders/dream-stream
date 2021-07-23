@@ -3,8 +3,11 @@ import axios from 'axios';
 
 const AddStream = ({ currentStream, followedStreams, updateStreams }) => {
   
+  const user = localStorage.getItem('user');
  
   const onClick = () => {
+    console.log("in add stream on click");
+    
     let newStreams = followedStreams;
 
     if (followedStreams.includes(currentStream)) {
@@ -24,10 +27,14 @@ const AddStream = ({ currentStream, followedStreams, updateStreams }) => {
     const response = await axios.post('/api/update-user-tags', { id: localStorage.getItem('userId'), tags: streams});
     console.log(response);
   }
-
-  return (
-    <button onClick={onClick}>{currentStream}</button>
-  )
+   
+    return (
+      <>
+      {user
+        ? <button onClick={onClick}>{currentStream}</button>
+        : <button>{currentStream}</button>}
+      </>
+    )
 }
 
 export default AddStream;

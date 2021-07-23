@@ -22,9 +22,6 @@ const Post = ({ item, likePost, streams, updateStreams }) => {
       </div>
 
       <CommentSection post={item} likePost={likePost}/>
-      
-
-      
     </article>
   )
 }

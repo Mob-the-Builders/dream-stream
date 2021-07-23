@@ -2,46 +2,30 @@ import React, {useState , useEffect } from 'react'
 import Post from './Post'
 import axios from 'axios'
 import './PostList.scss';
-/*
-    userName: String!
-    description: String!
-    image: String!
-    tags: [String!]
-    likes: [String!]
-*/
 
-const PostList = ({ tag, likePost, streams, updateStreams, liked, resetLike }) => {
-  console.log("IN POSTLIST", tag);
-  const [status, setStatus ] = useState('loading...');    
+const PostList = ({ tag, likePost, streams, updateStreams, liked, setLiked }) => {
+
   const [posts, setPosts] = useState([]);
 
+  const getAllPosts = async () => {
+    const res = await axios("/api/get-post");
+    console.log(res);
+    setPosts(res.data.messages.reverse());
+  }
+
+  const getPostsByTag = async () => {
+    const res = await axios.post("/api/get-posts-by-tag", { tags: tag });
+    console.log(res);
+    setPosts(res.data.messages.reverse());
+  }
+
   useEffect(() => {
-    if(!tag){
-      axios("/api/get-post")
-        .then(res => {
-          console.log('Hello in axios get post!')
-          console.log(res);
-          setPosts(res.data.messages.reverse());
-          setStatus("loaded");
-        })
+    if (tag) {  
+      getPostsByTag();
     } else {
-      axios.post("/api/get-posts-by-tag", { tags: tag })
-      .then(result => {
-        if (result.status !== 200) {
-          console.error("Error loading posts");
-          console.error(result);
-          return;
-        }
-      setPosts(result.data.messages.reverse());
-    });
+      getAllPosts();
     }
-    console.log('postlist liked', liked)
-    resetLike(false);
-    console.log(posts);
-    console.log("above this posts");
   }, [tag, liked]);
-
-
 
   return (
     <div className="post-list-container-flex">

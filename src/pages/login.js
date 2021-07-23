@@ -43,7 +43,7 @@ const LoginPage = () => {
         value={userName}
         onChange={e => setName(e.target.value.toLowerCase())}></input>
         <label>Password</label>
-        <input required className='card__input' type="text" id="description"
+        <input required className='card__input' type="password" id="description"
         placeholder='Password'
         value={password}
         onChange={e => setPass(e.target.value.toLowerCase())}></input>

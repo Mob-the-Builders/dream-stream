@@ -54,16 +54,14 @@ const CommentSection = ({ post, likePost }) => {
 
           <span className="post__likes-container-flex" onClick={() => likePost(post.likes)}>
             <span>❤️</span>
+          <span>{post.likes.likes.length}</span>
           </span> 
-
-
         </div>
-      
       
       {user
       ? <div className={'post__inputArea'}>
           <form onSubmit={onSubmit}>
-            <input required type="text" id="comment" placeholder='Add a comment...'
+            <input required type="text" id="comment" placeholder='Add a comment...' autocomplete='off'
               value={comment}
               onChange={e => setComment(e.target.value)} />
             <input type='submit' value='Post'/>
