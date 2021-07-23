@@ -3,6 +3,7 @@ import Logo from './Logo';
 import { Link } from 'gatsby';
 import './Menubar.scss';
 import Logout from '../content/Logout';
+import Login from '../content/Login';
 
 const Menubar = ({page}) => {
     return (
@@ -18,7 +19,7 @@ const Menubar = ({page}) => {
 
           {localStorage.getItem('user')
             ? <div className={'logout'}><Logout /></div>
-            : <></>}
+            : <div className={'login'}><Login /></div>}
         </div>
     )
 }

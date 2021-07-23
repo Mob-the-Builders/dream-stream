@@ -91,7 +91,7 @@
 
 
 
-.logout{
+.logout, .login{
   margin-top: auto;
   margin-bottom: 40px;
   justify-self: flex-end;
@@ -101,5 +101,9 @@
     background: rgba(255, 255, 255, 0);
     border: none;
     font-size: 15px;
+
+    &:hover {
+      color: #443f7f;
+    }
   }
 }

@@ -1,9 +1,12 @@
 import React from "react"
 import Menubar from '../components/Menubar';
+import { navigate } from 'gatsby';
 
 
 const Streams = () => {
   
+  if (!localStorage.getItem('user')) navigate('/login');
+
 
   return (
     <div className='top-container'>
