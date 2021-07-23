@@ -162,10 +162,14 @@ textarea:focus, input:focus{
     border-style: hidden;
     background: #D8EEFE;
     color: #4C4D66;
-    font-size: 16px;
+    font-size: 17px;
 
     &::placeholder{
       color: #4C4D66;
+    }
+
+    &:hover {
+      color: #666784;
     }
   }
 }

@@ -1,11 +1,20 @@
 import React from "react";
 import TagButton from './TagButton';
+import './StreamFilter.scss';
 
-const StreamFilter = ({ setTag, streams }) => {
+const StreamFilter = ({ tag, setTag, streams }) => {
   return (
-    <aside>
-      <h3>Your Streams</h3>
-      {streams.map((a) => <TagButton buttonText={a} setTag={setTag}/>)}
+    <aside className={'streamfilter'}>
+      <h3>YOUR STREAMS</h3>
+      
+      
+      <div className={'streamfilter__buttonlist'}>
+        {/* <button id={'tagbutton--selected'}>puppy</button> */}
+        {streams.map((a) => <TagButton buttonText={a} tag={tag} setTag={setTag}/>)}
+      </div>
+
+
+
     </aside>
   )
 }

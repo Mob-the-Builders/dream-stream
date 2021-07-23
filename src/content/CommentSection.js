@@ -5,27 +5,26 @@ import './post.scss';
 const CommentSection = ({ post, likePost }) => {
   const user = localStorage.getItem('user');
 
-  console.log(post);
-  console.log("in commentsection");
-
   const [hide, updateHide] = useState(true);
   const [comment, setComment] = useState('');
   const [commentList, updateComments] = useState([]);
 
   useEffect(() => {
     if (post.comments.data.length > 0) {
-      updateComments(post.comments.data.map(t => <li> <b>{t.userName}</b>: {t.message}</li>))
+      updateComments(post.comments.data.map(t => <li> <b>{t.userName}</b>: {t.message}</li>));
+    } else {
+      updateComments([]);
     }
-  }, [post])
+  }, [post]);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    serverCall();
+    postComments();
     updateComments([...commentList, <li><b>{user}</b>: {comment}</li>]);
     setComment('');
   }
 
-  const serverCall = async () => {
+  const postComments = async () => {
     await axios.post("/api/create-comment", {
       "userName": user,
       "message": comment,
@@ -36,6 +35,10 @@ const CommentSection = ({ post, likePost }) => {
         "Content-Type": "application/json"
         } 
       });
+  }
+
+  const getComments = async () => {
+    // Make API call in here later...
   }
 
   return (

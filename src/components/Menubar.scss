@@ -37,17 +37,23 @@
 
 .menuList li {
   margin-top: 30px;
+
 }
 
 .menuList li a{
   display: flex;
   align-items: center;
   // background: blue;
+
 }
 
-.menuList svg {
-  fill: #423F62;
+.menuList__svg {
+  fill: #423F62;  
   margin-right: 30px;
+
+  &--selected {
+    fill: #59AFED;
+  }
 }
 
 ul {
@@ -80,6 +86,13 @@ ul a:visited {
 
 .logout{
   margin-top: auto;
-  margin-bottom: 100px;
+  margin-bottom: 40px;
   justify-self: flex-end;
+  
+  & button {
+    color: rgba(255, 255, 255, 0.848);
+    background: rgba(255, 255, 255, 0);
+    border: none;
+    font-size: 15px;
+  }
 }

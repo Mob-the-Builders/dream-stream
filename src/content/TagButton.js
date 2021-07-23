@@ -1,9 +1,16 @@
 import React from "react"
 
-const TagButton = ({ buttonText, setTag}) => {
+const TagButton = ({ tag, buttonText, setTag}) => {
+
+  let selected = false;
+
+  if(buttonText == tag) {
+    selected = true;
+  }
+
 
   return (
-    <button onClick={() => setTag(buttonText)}>{buttonText}</button>
+    <button onClick={() => setTag(buttonText)} className={`tagbutton ${selected ? 'tagbutton--selected' : ''}`}>{buttonText}</button>
   )
 }
 

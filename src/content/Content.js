@@ -49,7 +49,7 @@ const Content = () => {
   return (
       <main className={'main'}>
         {user
-        ? <StreamFilter setTag={updateTag} streams={streams}/>
+        ? <StreamFilter tag={tag} setTag={updateTag} streams={streams}/>
         : <></>}
         <PostList tag={tag} likePost={likePost} liked={liked} setLiked={setLiked} streams={streams} updateStreams={updateStreams}/>
       </main>

@@ -9,7 +9,7 @@ const IndexPage = (props) => {
   console.log(props.location);
   return (
     <div className='top-container'>
-      <Menubar />
+      <Menubar page={'home'}/>
       <Content />
     </div>
   )
