@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react"
+import React from 'react';
 import axios from 'axios';
 
 const AddStream = ({ currentStream, followedStreams, updateStreams }) => {
-  
   const user = localStorage.getItem('user');
  
+  // Handles following and unfollowing of streams
   const onClick = () => {
-    console.log("in add stream on click");
-    
     let newStreams = followedStreams;
 
     if (followedStreams.includes(currentStream)) {
@@ -23,6 +21,7 @@ const AddStream = ({ currentStream, followedStreams, updateStreams }) => {
     updateDatabase(newStreams);
   }
   
+  // Posts the new set of followed streams to database
   const updateDatabase = async (streams) => {
     const response = await axios.post('/api/update-user-tags', { id: localStorage.getItem('userId'), tags: streams});
     console.log(response);

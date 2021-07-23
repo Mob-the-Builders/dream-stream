@@ -3,8 +3,7 @@ import Post from './Post'
 import axios from 'axios'
 import './PostList.scss';
 
-const PostList = ({ tag, likePost, streams, updateStreams, liked, setLiked }) => {
-
+const PostList = ({ tag, likePost, streams, updateStreams, liked }) => {
   const [posts, setPosts] = useState([]);
 
   const getAllPosts = async () => {
@@ -19,6 +18,7 @@ const PostList = ({ tag, likePost, streams, updateStreams, liked, setLiked }) =>
     setPosts(res.data.messages.reverse());
   }
 
+  // Updates post list when filtering by tags or liking post
   useEffect(() => {
     if (tag) {  
       getPostsByTag();

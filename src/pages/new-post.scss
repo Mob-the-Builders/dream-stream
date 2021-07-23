@@ -61,10 +61,30 @@ body {
     border-style: hidden;
     background: #59AFED;
     color: white;
+    font-size: 18px;
 
     &::placeholder{
       color: white;
     }
+  }
+}
+
+.newpost_user {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+
+  &__pic {
+    background: ghostwhite;
+    font-size: 20px;
+    margin-right: 10px;
+    border: 2px solid rgba(43, 114, 165, 0.82);
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    // display: inline;
   }
 }
 
@@ -118,7 +138,7 @@ textarea:focus, input:focus{
 }
 
 .file-input__label svg {
-  height: 16px;
+  // height: 16px;
   margin-right: 4px;
   fill: #28628C;
 }
@@ -135,13 +155,14 @@ textarea:focus, input:focus{
   align-items: center;
   padding-left: 47px;
   padding-right: 47px;
+  font-size: 16px;
 
   & input {
     height: 2rem;
     border-style: hidden;
     background: #D8EEFE;
     color: #4C4D66;
-    font-size: 13px;
+    font-size: 16px;
 
     &::placeholder{
       color: #4C4D66;

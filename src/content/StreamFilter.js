@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react"
+import React from "react";
 import TagButton from './TagButton';
-import axios from 'axios';
 
 const StreamFilter = ({ setTag, streams }) => {
   return (

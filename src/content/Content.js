@@ -5,18 +5,17 @@ import axios from 'axios';
 
 const Content = () => {
   const user = localStorage.getItem('user');
-  const [liked, setLiked] = useState(false);
   
+  // Handles liking posts
+  const [liked, setLiked] = useState(false);
+
   const likePost = async (arr) => {
     let likes;
-    if(!user){
+    if (!user) {
       return;
     }
-    if(arr.likes.includes(user)){
-      const index = arr.likes.indexOf(user);
-      // likes = arr.likes.filter(like => like !== user);
-      arr.likes.splice(index, 1);
-      likes = arr.likes;
+    if (arr.likes.includes(user)) {
+      likes = arr.likes.filter(like => like !== user);
     } else {
      likes = [...arr.likes, user]; 
     }
@@ -25,18 +24,21 @@ const Content = () => {
     setLiked(!liked)
   }
 
+  // Handles filtering feed by tags
   const [tag, setTag] = useState(null);
+
   const updateTag = (text) => {
-    if(tag === text){
+    if (tag === text) {
       setTag(null)
-    } else{
+    } else {
       setTag(text)
     }
   };
 
+  // Generates the "Your streams" section
   const [streams, updateStreams] = useState([]);
+
   useEffect(async () => {
-    console.log(user);
     if (user) {
       const response = await axios.post('/api/get-tags-user', { userName: user });
       console.log(response.data.userTags);

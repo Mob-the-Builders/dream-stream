@@ -10,7 +10,10 @@ const Post = ({ item, likePost, streams, updateStreams }) => {
 
       <div className={'post__descriptionArea'}>
         <span className="post__description">{item.description}</span>
-        <span className="post__userName">{item.userName}</span>
+        <div className={'post__user'}>
+                <div className={'post__profilePic'}>🐤</div>
+                {item.userName}
+        </div>
       </div>
       
       <img src={item.image} alt="Dummy text" className="post__image"></img>

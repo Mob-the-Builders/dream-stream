@@ -39,7 +39,7 @@ const LoginPage = () => {
       <form className="card card--register" onSubmit={onSubmit}>
         <h1 className='card__register-title'>Login / Create User</h1>
         <label>Name</label>
-        <input required className='card__input' type="text" id="title" placeholder='UserName'
+        <input required className='card__input' type="text" id="title" autocomplete='off' placeholder='UserName'
         value={userName}
         onChange={e => setName(e.target.value.toLowerCase())}></input>
         <label>Password</label>
