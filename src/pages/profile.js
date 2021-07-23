@@ -7,7 +7,7 @@ const Profile = () => {
 
   return (
     <div className='top-container'>
-      <Menubar />
+      <Menubar page={'profile'}/>
       <main className={'main'}>
 
         <p>this is the profile page</p>

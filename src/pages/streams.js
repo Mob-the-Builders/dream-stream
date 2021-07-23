@@ -7,7 +7,7 @@ const Streams = () => {
 
   return (
     <div className='top-container'>
-      <Menubar />
+      <Menubar page={'streams'}/>
       <main className={'main'}>
 
         <p>this is the streams page</p>

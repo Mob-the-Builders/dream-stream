@@ -76,7 +76,7 @@ const NewPost = () => {
 
   return (
     <div className='top-container'>
-      <Menubar />
+      <Menubar page={'newpost'}/>
       <main className={'main'}>
         <form onSubmit={onSubmit}>
           <section className={'newpost-card'}>
