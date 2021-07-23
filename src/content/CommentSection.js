@@ -1,21 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import './post.scss';
 
 const CommentSection = ({ post, likePost }) => {
   const user = localStorage.getItem('user');
 
+  console.log(post);
+  console.log("in commentsection");
+
   const [hide, updateHide] = useState(true);
   const [comment, setComment] = useState('');
-  const [commentList, updateComments] = useState(
-    post.comments.data.length > 0 
-    ? post.comments.data.map(t => <li> <b>{t.userName}</b>: {t.message}</li>) 
-    : []);
+  const [commentList, updateComments] = useState([]);
+
+  useEffect(() => {
+    if (post.comments.data.length > 0) {
+      updateComments(post.comments.data.map(t => <li> <b>{t.userName}</b>: {t.message}</li>))
+    }
+  }, [post])
 
   const onSubmit = (e) => {
     e.preventDefault();
     serverCall();
-    // updateComments([...commentList, <li>{user}: {comment}</li>]);
     updateComments([...commentList, <li><b>{user}</b>: {comment}</li>]);
     setComment('');
   }
