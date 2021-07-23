@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { navigate } from 'gatsby'; //import navigate from gatsby
 import axios from 'axios';
 import Menubar from '../components/Menubar';
+import './login.scss';
 
 
 const LoginPage = () => {
@@ -43,21 +44,34 @@ const LoginPage = () => {
       <Menubar page={'streams'}/>
       <main className={'main'}>
 
-      <button onClick={() => navigate('/')}>Proceed without logging in</button>
+
+      {/* <button onClick={() => navigate('/')}>Proceed without logging in</button> */}
+
+
 
       <form className="card card--register" onSubmit={onSubmit}>
-        <h1 className='card__register-title'>Login / Create User</h1>
-        <label>Name</label>
-        <input required className='card__input' type="text" id="title" autocomplete='off' placeholder='UserName'
+        <p className='card__register-title'>Login</p>
+
+        <input required className='card__input' type="text" id="title" autocomplete='off' placeholder='Username'
           value={userName}
-          onChange={e => setName(e.target.value.toLowerCase())}></input>
-        <label>Password</label>
+          onChange={e => setName(e.target.value.toLowerCase())}
+          onFocus={e => e.target.placeholder = ""}
+          onBlur={e => e.target.placeholder = "Username"}
+        ></input>
+
         <input required className='card__input' type="password" id="description"
           placeholder='Password'
           value={password}
-          onChange={e => setPass(e.target.value.toLowerCase())}></input>
-        <input type="submit" className="card__btn" value="Login"></input>
+          onChange={e => setPass(e.target.value.toLowerCase())}
+          onFocus={e => e.target.placeholder = ""}
+          onBlur={e => e.target.placeholder = "Password"}
+        ></input>
+
+        <input type="submit" className="card__btn" value="LOGIN"></input>
+
+        <button className={'proceed'} onClick={() => navigate('/')}>Proceed without logging in</button>
       </form>
+      
 
       </main>
     </div>
