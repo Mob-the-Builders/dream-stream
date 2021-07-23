@@ -33,56 +33,63 @@
 .menuList {
   padding-left: 0;
   margin-top: 70px;
-}
+  list-style-type: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
 
-.menuList li {
-  margin-top: 30px;
+  & li {
+    margin-top: 30px;
 
-}
+    &:hover {
+      color: #4ba3e2;
+      fill: #4ba3e2;
 
-.menuList li a{
-  display: flex;
-  align-items: center;
-  // background: blue;
-
-}
-
-.menuList__svg {
-  fill: #423F62;  
-  margin-right: 30px;
-
-  &--selected {
-    fill: #59AFED;
+      & svg {
+        fill: #4ba3e2;
+      }
+    }
   }
-}
 
-ul {
-    list-style-type: none;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 20px;
-}
-
-ul a {
+  &__link{
+    display: flex;
+    align-items: center;
     text-decoration: none;
 
-}
+    &:visited {
+      color: #423F62;
+    }
 
-ul a:visited {
-  color: #423F62;
-}
+    &--selected {
+      color: #4ba3e2;
 
-.menuList li:hover {
-  color: #1EA0DE;
-  fill: #1EA0DE;
+      &:visited {
+        color: #4ba3e2;
+      }
 
-  & svg {
-    fill: #1EA0DE;
+    }
   }
+
+  &__svg {
+    fill: #423F62;  
+    margin-right: 30px;
+
+    &--selected {
+      fill: #59AFED;
+    }
+  }
+
+  & a:hover {
+    color: #1EA0DE;
+  }
+
+
 }
 
-.menuList a:hover {
-  color: #1EA0DE;
-}
+
+
+
+
+
 
 .logout{
   margin-top: auto;
