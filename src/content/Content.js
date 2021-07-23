@@ -6,8 +6,8 @@ import axios from 'axios';
 const Content = () => {
   const [tag, setTag] = useState(null);
   const user = localStorage.getItem('user');
+  const [liked, setLiked] = useState(false);
   
-
 
   const likePost = async (arr) => {
     const user = localStorage.getItem('user');
@@ -22,9 +22,20 @@ const Content = () => {
     } else {
      likes = [...arr.likes, localStorage.getItem('user')]; 
     }
+    resetLike(true)
     const body = {id: arr._id, likes} 
     await axios.post('/api/update-post-likes', body);
+    console.log('content liked', liked)
   }
+  const resetLike = (bool) => {
+    if(bool){
+      console.log(bool)
+      setLiked(false)
+    } else {
+      console.log(bool)
+      setLiked(true)
+    }
+  };
 
   const updateTag = (text) => {
     if(tag === text){
@@ -43,13 +54,12 @@ const Content = () => {
     updateStreams(response.data.userTags);
   }, []);
 
-  
   return (
       <main className={'main'}>
         {user
         ? <StreamFilter setTag={updateTag} streams={streams}/>
         : <></>}
-        <PostList tag={tag} likePost={likePost} streams={streams} updateStreams={updateStreams}/>
+        <PostList tag={tag} likePost={likePost} liked={liked} resetLike={resetLike} streams={streams} updateStreams={updateStreams}/>
       </main>
   )
 }

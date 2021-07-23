@@ -10,7 +10,7 @@ import './PostList.scss';
     likes: [String!]
 */
 
-const PostList = ({ tag, likePost, streams, updateStreams }) => {
+const PostList = ({ tag, likePost, streams, updateStreams, liked, resetLike }) => {
   console.log("IN POSTLIST", tag);
   const [status, setStatus ] = useState('loading...');    
   const [posts, setPosts] = useState([]);
@@ -35,9 +35,11 @@ const PostList = ({ tag, likePost, streams, updateStreams }) => {
       setPosts(result.data.messages.reverse());
     });
     }
+    console.log('postlist liked', liked)
+    resetLike(false);
     console.log(posts);
     console.log("above this posts");
-  }, [tag]);
+  }, [tag, liked]);
 
 
 
