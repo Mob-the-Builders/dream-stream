@@ -1,0 +1,28 @@
+.profile__button {
+
+  background: #E8F5FF;
+  padding: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 7px;
+  border: 1.5px solid #868692;
+  font-size: 15px;
+  text-transform: capitalize;
+  margin-left: 20px;
+
+  &:hover {
+    background: #a2c3de;
+  }
+
+  &--selected{
+    background: #45A9F2;
+    border: 1.6px solid #868692;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+  
+    &:hover {
+      background: #3d94d2;
+    }
+  }
+}
