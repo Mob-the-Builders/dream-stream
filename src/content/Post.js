@@ -1,5 +1,5 @@
 import React from 'react'
-import './Post.scss';
+import './post.scss';
 import CommentSection from "./CommentSection";
 import AddStream from "./AddStream";
 
