@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 const AddStream = ({ currentStream, followedStreams, updateStreams }) => {
-  const user = localStorage.getItem('user');
+  const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
  
   // Handles following and unfollowing of streams
   const onClick = () => {

@@ -8,7 +8,6 @@ const PostList = ({ tag, likePost, streams, updateStreams, liked }) => {
 
   const getAllPosts = async () => {
     const res = await axios("/api/get-post");
-    console.log(res);
     setPosts(res.data.messages.reverse());
   }
 

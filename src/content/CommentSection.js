@@ -3,7 +3,7 @@ import axios from 'axios';
 import './post.scss';
 
 const CommentSection = ({ post, likePost }) => {
-  const user = localStorage.getItem('user');
+  const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
 
   const [hide, updateHide] = useState(true);
   const [comment, setComment] = useState('');

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from 'axios';
-import { navigate } from 'gatsby';
+import { navigate } from '@reach/router';
 import Menubar from '../components/Menubar';
 import './new-post.scss';
 
@@ -8,8 +8,11 @@ import './new-post.scss';
 // How to break multiple tags (Tag parser)
 // upload fetchimage/cloudinary to heroku ----> future
 const NewPost = () => {
-  if (!localStorage.getItem('user')) navigate('/login');
 
+  const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
+  if(!user){
+    navigate('/login');
+  }
   const [tags, setTags] = useState('');
   const [description, setDescription] = useState('');
   const [uploadImage, setUploadImage] = useState('');
@@ -19,7 +22,6 @@ const NewPost = () => {
   });
 
   const newPost = {};
-
   const onSubmit = (e) => {
     e.preventDefault();
     fetchImage(); 
@@ -50,7 +52,7 @@ const NewPost = () => {
 
   const serverCall = async () => {
   await axios.post("/api/create-post", {
-      "userName": localStorage.getItem('user'),
+      "userName": user,
       "image": image.url,
       "imageDelete": image.signature,
       "description": description,
@@ -90,7 +92,7 @@ const NewPost = () => {
               />
               <div className={'newpost_user'}>
                 <div className={'newpost_user__pic'}>🐤</div>
-                {localStorage.getItem('user')}
+                {user}
               </div>
             </div>
 

@@ -1,12 +1,14 @@
 import React from "react"
 import Menubar from '../components/Menubar';
-import { navigate } from 'gatsby';
+import { navigate } from '@reach/router';
 
 
 const Profile = () => {
   
-  if (!localStorage.getItem('user')) navigate('/login');
-
+  const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
+  if(!user){
+    navigate('/login');
+  }
   return (
     <div className='top-container'>
       <Menubar page={'profile'}/>

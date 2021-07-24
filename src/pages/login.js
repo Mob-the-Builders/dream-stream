@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { navigate } from 'gatsby'; //import navigate from gatsby
+import { navigate } from '@reach/router';
 import axios from 'axios';
 import Menubar from '../components/Menubar';
 import './login.scss';
@@ -8,15 +8,14 @@ import './login.scss';
 const LoginPage = () => {
   const [userName, setName] = useState('');
   const [password, setPass] = useState('');
-    // getLogin({ name, pass });
 
-  if (localStorage.getItem('user')) {
-    navigate('/');
-  }
+    const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
+    if(!user){
+      navigate('/login');
+    }
 
   const onSubmit = async e => {
     e.preventDefault();
-    console.log(userName, password)
     const login = { userName, password }
     try {
       const response = await axios.post('/api/login-user', login)

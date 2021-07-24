@@ -4,7 +4,7 @@ import PostList from './PostList';
 import axios from 'axios';
 
 const Content = () => {
-  const user = localStorage.getItem('user');
+  const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
   
   // Handles liking posts
   const [liked, setLiked] = useState(false);
