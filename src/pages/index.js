@@ -5,19 +5,20 @@ import './index.scss';
 import { connect } from 'react-redux';
 import { toggleDarkMode } from '../state/app';
 // markup
-const IndexPage = ({isDarkMode, dispatch}) => {
-
+const IndexPage = ({dark, dispatch, store}) => {
+  console.log('doing', store)
   return (
     <div className='top-container'>
       <Menubar page={'home'}/>
       <Content />
-      <button style={isDarkMode ? {background: 'black', color:'white'} : null}
-      onClick={() => dispatch(toggleDarkMode(!isDarkMode))}> Dark mode {isDarkMode ? 'on' : 'off'}
-      </button>
+      {/* <button style={dark ? {background: 'black', color:'white'} : null}
+      onClick={() => dispatch(toggleDarkMode(!dark))}> Dark mode {dark ? 'on' : 'off'}
+      </button> */}
     </div>
   )
 }
 
-export default connect(state => ({
-  isDarkMode: state.app.isDarkMode
-  }), null)(IndexPage);
+// export default connect(state => ({
+//   dark: state.app.dark
+//   }), null)(IndexPage);
+export default IndexPage;
