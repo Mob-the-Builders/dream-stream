@@ -4,8 +4,11 @@ import { navigate } from 'gatsby';
 
 
 const Streams = () => {
-  
-  if (!localStorage.getItem('user')) navigate('/login');
+  const ssr = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
+  if(!ssr){
+    navigate('/login');
+  }
+  // if (!localStorage.getItem('user')) navigate('/login');
 
 
   return (
