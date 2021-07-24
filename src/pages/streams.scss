@@ -1,0 +1,25 @@
+.main {
+  border: 5px solid pink;
+}
+
+h3 {
+  font-size: 20px;
+  margin-top: 40px;
+  color: #0f5188;
+}
+
+.streams {
+  width: 80%;
+  height: 100%;
+  border: 5px solid green;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+
+  &__container {
+    width: 40%;
+    height: 100%;
+    border: 5px solid rgb(210, 134, 27);
+    
+  }
+}
