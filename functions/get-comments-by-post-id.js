@@ -1,9 +1,9 @@
-k // get-posts-by-tag.js
+// get-posts-by-tag.js
 
  const query = require("./utils/query");
 //findAllPosts
  const GET_COMMENTS_BY_ID = `
-     query getCommentsById($id: ID!){
+     query findPostByID($id: ID!){
       findPostByID(id: $id){
         comments {
           data {
@@ -17,11 +17,13 @@ k // get-posts-by-tag.js
 
   exports.handler = async event => {
     console.log('GET COMMENTS BY POST ID!!!!!!!!! ')
+    
     const { id } = JSON.parse(event.body);
     console.log(id)
-    const { data, errors } = await query(GET_COMMENTS_BY_ID, {id});
+    const { data, errors } = await query(GET_COMMENTS_BY_ID, { id });
+    console.log(data);
     console.log(data.findPostByID.comments.data);
-     if (errors) {
+    if (errors) {
         return {
           statusCode: 500,
           body: JSON.stringify(errors)
@@ -30,6 +32,6 @@ k // get-posts-by-tag.js
 
      return {
        statusCode: 200,
-       body: JSON.stringify({ messages: data.getCommentsById })
+       body: JSON.stringify({ messages: data.findPostByID.comments.data })
      };
    };

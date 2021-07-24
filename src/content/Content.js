@@ -9,6 +9,9 @@ const Content = () => {
   // Handles liking posts
   const [liked, setLiked] = useState(false);
 
+  /* 
+    Refactor likes
+  */
   const likePost = async (arr) => {
     let likes;
     if (!user) {

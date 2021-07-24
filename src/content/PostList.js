@@ -21,38 +21,21 @@ const PostList = ({ tag, likePost, streams, updateStreams, liked }) => {
     return res.data.messages.reverse();
   }
 
+  // Updates displayed posts when filtering by tags
   useEffect(async () => {
-    console.log(tags);
+    let load = posts;
     if (tags[0]) {  
-      const load = await getPostsByTag();
-      dispatch({
-        type:'POSTS_GET_ALL', payload: load
-      });
+      load = await getPostsByTag();
     } else {
-      const load = await getAllPosts();
-      dispatch({
-        type:'POSTS_GET_ALL', payload: load
-      });
+      load = await getAllPosts();
     }
-  }, [tags]);// LIKED var här
-
-  const tagDispatch = () => {
-    const tag = ['cats'];
     dispatch({
-      type:'POSTS_GET_TAG', payload: tag
+      type:'POSTS_GET_ALL', payload: load
     });
-  }
-
-  const tester = async () => {
-    const res = await getAllPosts();
-    dispatch({
-      type:'POSTS_GET_ALL', payload: res
-    });
-  }
+  }, [tags]);  // LIKED var här
 
   return (
     <div className="post-list-container-flex">
-      <button onClick={() => tester()}> TESTER </button>
       {posts.map((post, index)  => <Post key={index} post={post} likePost={likePost} streams={streams} updateStreams={updateStreams}/>)}
     </div>
   )

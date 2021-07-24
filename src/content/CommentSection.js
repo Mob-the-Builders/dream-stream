@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import './post.scss';
-import { useSelector, useDispatch } from 'react-redux';
 
 const CommentSection = ({ post, likePost }) => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
@@ -10,41 +9,28 @@ const CommentSection = ({ post, likePost }) => {
   const [comment, setComment] = useState('');
   const [commentList, updateComments] = useState([]);
 
-  //working with redux now!
-  const state = useSelector((state) => state)
-  const dispatch = useDispatch()
+  // Creates JSX object for commentList
+  const createJSX = comments => comments.map(comment => <li> <b>{comment.userName}</b>: {comment.message}</li>);
 
-  // console.log("post in commentsection " + post.comments.data);
-
-  const testCommentGetApi = async () => {
-   const res = await axios.post("/api/get-comments-by-post-id", {id: post._id});
-    console.log(res);
-    // dispatch({
-    //   type:'POSTS_GET_ALL', payload: res
-    // });
-
-  }
-
-
+  // Updates commentList when post loads
   useEffect(() => {
     if (post.comments.data.length > 0) {
-      updateComments(post.comments.data.map(t => <li> <b>{t.userName}</b>: {t.message}</li>));
+      updateComments(createJSX(post.comments.data));
     } else {
       updateComments([]);
     }
   }, [post]);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    postComments();
-    updateComments([...commentList, <li><b>{user}</b>: {comment}</li>]);
-    setComment('');
+
+  const getComments = async () => {
+    const res = await axios.post("/api/get-comments-by-post-id", {id: post._id});
+    return res.data.messages;
   }
 
-  const postComments = async () => {
+  const postComment = async (userName, message) => {
     await axios.post("/api/create-comment", {
-      "userName": user,
-      "message": comment,
+      "userName": userName,
+      "message": message,
       "postId": post._id
       },
       { 
@@ -54,10 +40,23 @@ const CommentSection = ({ post, likePost }) => {
       });
   }
 
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const userName = user; 
+    const message = comment; 
+    const commentJSX = <li><b>{userName}</b>: {message}</li>;
+    setComment('');
+    updateComments([...commentList, commentJSX]);
+    await postComment(userName, message);
+    
+    const allComments = await getComments();
+    updateComments([...createJSX(allComments)]);
+  }
+
+
   return (
     <div className={'post__commentSection'}>
         <div className={'post__commentsAndHeart'}>
-          <button onClick={() => testCommentGetApi()}></button>
           
           <ul>
             {/* {hide && commentList.length >= 2

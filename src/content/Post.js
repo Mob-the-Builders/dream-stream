@@ -7,10 +7,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const Post = ({ post, likePost, streams, updateStreams }) => {
 
-  //working with redux now!
-  const state = useSelector((state) => state)
-  const dispatch = useDispatch()
-
   return (
     <article className="post">
 
@@ -22,7 +18,6 @@ const Post = ({ post, likePost, streams, updateStreams }) => {
         </div>
       </div>
       <img src={post.image} alt="Dummy text" className="post__image"></img>
-
       <div className={'post__infoBar'}>
         <span className="post__streams">Streams: {post.tags.map(t => 
         <AddStream currentStream={t} followedStreams={streams} updateStreams={updateStreams}/>)}</span>

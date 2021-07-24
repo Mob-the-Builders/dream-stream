@@ -11,7 +11,6 @@ const LoginPage = () => {
 
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
 
-
   const onSubmit = async e => {
     e.preventDefault();
     const login = { userName, password }
