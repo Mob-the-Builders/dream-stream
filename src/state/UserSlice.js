@@ -1,7 +1,7 @@
 
 const initialState = {
   streams: [],
-  userName: '', 
+  userName: '',
 };
 
 function userReducer(state = initialState, action) {

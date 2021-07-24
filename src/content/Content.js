@@ -9,9 +9,6 @@ const Content = () => {
   // Handles liking posts
   const [liked, setLiked] = useState(false);
 
-  /* 
-    Refactor likes
-  */
   const likePost = async (arr) => {
     let likes;
     if (!user) {
@@ -27,17 +24,6 @@ const Content = () => {
     setLiked(!liked)
   }
 
-  // Handles filtering feed by tags
-  const [tag, setTag] = useState(null);
-
-  const updateTag = (text) => {
-    if (tag === text) {
-      setTag(null)
-    } else {
-      setTag(text)
-    }
-  };
-
   // Generates the "Your streams" section
   const [streams, updateStreams] = useState([]);
 
@@ -52,9 +38,9 @@ const Content = () => {
   return (
       <main className={'main'}>
         {user
-        ? <StreamFilter tag={tag} setTag={updateTag} streams={streams}/>
+        ? <StreamFilter streams={streams}/>
         : <></>}
-        <PostList tag={tag} likePost={likePost} liked={liked} setLiked={setLiked} streams={streams} updateStreams={updateStreams}/>
+        <PostList likePost={likePost} liked={liked} setLiked={setLiked} streams={streams} updateStreams={updateStreams}/>
       </main>
   )
 }

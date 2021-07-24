@@ -2,8 +2,6 @@ import React from 'react'
 import './post.scss';
 import CommentSection from "./CommentSection";
 import AddStream from "./AddStream";
-import { useSelector, useDispatch } from 'react-redux';
-
 
 const Post = ({ post, likePost, streams, updateStreams }) => {
 

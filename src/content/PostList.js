@@ -4,7 +4,7 @@ import axios from 'axios'
 import './PostList.scss';
 import { useSelector, useDispatch } from 'react-redux';
 
-const PostList = ({ tag, likePost, streams, updateStreams, liked }) => {
+const PostList = ({ likePost, streams, updateStreams, liked }) => {
   // THIS STATE VVVVVV needs to be replaced for the redux store state
 
   const { posts, tags } = useSelector((state) => state.postList)
