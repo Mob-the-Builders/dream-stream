@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import StreamFilter from './StreamFilter';
-import PostList from './Postlist';
+import PostList from './PostList';
 import axios from 'axios';
 
 const Content = () => {
