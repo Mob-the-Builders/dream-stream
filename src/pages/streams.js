@@ -1,6 +1,6 @@
 import React from "react"
 import Menubar from '../components/Menubar';
-import { navigate } from 'gatsby';
+import { navigate } from '@reach/router';
 
 
 const Streams = () => {
@@ -9,8 +9,6 @@ const Streams = () => {
     navigate('/login');
   }
   // if (!localStorage.getItem('user')) navigate('/login');
-
-
   return (
     <div className='top-container'>
       <Menubar page={'streams'}/>
