@@ -65,15 +65,18 @@ const CommentSection = ({ post, likePost }) => {
         </div>
 
       {commentList.length >= 4
-        ? <button onClick={() => updateHide(!hide)}>Show {hide ? "all comments" : "less"}</button>
+        ? <button className={'post__allComments'} onClick={() => updateHide(!hide)}>View {hide ? "all comments" : "less"}</button>
         : <></>}
       
       {user
       ? <div className={'post__inputArea'}>
           <form onSubmit={onSubmit}>
-            <input className={'post__inputArea-field'} required type="text" id="comment" placeholder='Add a comment...' autocomplete='off'
-              value={comment}
-              onChange={e => setComment(e.target.value)} />
+            <input
+              className={'post__inputArea-field'}required type="text" id="comment" placeholder='Add a comment...' autocomplete='off' value={comment}
+              onChange={e => setComment(e.target.value)}
+              onFocus={e => e.target.placeholder = ""}
+              onBlur={e => e.target.placeholder = "Add a comment..."}
+           />
             <input className={'post__inputArea-btn'} type='submit' value='Post'/>
           </form>
         </div>
