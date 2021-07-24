@@ -3,54 +3,48 @@ import Post from './Post'
 import axios from 'axios'
 import './PostList.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { postsGetAll } from '../state/app';
 
-const PostList = ({ tag, likePost, streams, updateStreams, liked, getPosts, store }) => {
+const PostList = ({ tag, likePost, streams, updateStreams, liked }) => {
   // THIS STATE VVVVVV needs to be replaced for the redux store state
-  const [posts, setPosts] = useState([]);
-  const babas = useSelector((state) => state)
-  const babasAdd = useSelector((state) => state.add)
+
+  const { posts, tags } = useSelector((state) => state.postList)
   const dispatch = useDispatch()
-  // dispatch({type : 'ADD'})
 
-  console.log(babas)
-  // console.log(postsRedux);
-  // console.log(getPosts);
-  // This should still happen
-  const getAllPosts = async () => {
-    const res = await axios("/api/get-post");
-
-    // Instead of setPosts, a reducer should take care of it
-    setPosts(res.data.messages.reverse());
-  }
-
-  // ignore for now!
   const getPostsByTag = async () => {
-    const res = await axios.post("/api/get-posts-by-tag", { tags: tag });
+    const res = await axios.post("/api/get-posts-by-tag", { tags: tags[0] });
     console.log(res);
-    setPosts(res.data.messages.reverse());
-  }
-
-  // Updates post list when filtering by tags or liking post
-  // This useEffect should probably still do the same thing? 
-  useEffect(() => {
-    if (tag) {  
-      getPostsByTag();
-    } else {
-      getAllPosts();
-    }
-  }, [tag, liked]);
-  
-  const getReduxPosts = async () => {
-    const res = await axios("/api/get-post");
-
-    // Instead of setPosts, a reducer should take care of it
     return res.data.messages.reverse();
   }
 
-  const onClick = async () => {
-    const res = await getReduxPosts();
+  const getAllPosts = async () => {
+    const res = await axios("/api/get-post");
+    return res.data.messages.reverse();
+  }
 
+  useEffect(async () => {
+    console.log(tags);
+    if (tags[0]) {  
+      const load = await getPostsByTag();
+      dispatch({
+        type:'POSTS_GET_ALL', payload: load
+      });
+    } else {
+      const load = await getAllPosts();
+      dispatch({
+        type:'POSTS_GET_ALL', payload: load
+      });
+    }
+  }, [tags]);// LIKED var här
+
+  const tagDispatch = () => {
+    const tag = ['cats'];
+    dispatch({
+      type:'POSTS_GET_TAG', payload: tag
+    });
+  }
+
+  const tester = async () => {
+    const res = await getAllPosts();
     dispatch({
       type:'POSTS_GET_ALL', payload: res
     });
@@ -58,14 +52,10 @@ const PostList = ({ tag, likePost, streams, updateStreams, liked, getPosts, stor
 
   return (
     <div className="post-list-container-flex">
-      <button onClick={() => onClick()}> TESTER </button>
-      {posts.map((item , index)  => <Post key={index} item={item} likePost={likePost} streams={streams} updateStreams={updateStreams}/>)}
+      <button onClick={() => tester()}> TESTER </button>
+      {posts.map((post, index)  => <Post key={index} post={post} likePost={likePost} streams={streams} updateStreams={updateStreams}/>)}
     </div>
   )
 }
-
-// export default connect(state => ({
-//   postsRedux: state
-//   }), null)(PostList);
 
 export default PostList;

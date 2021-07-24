@@ -2,29 +2,33 @@ import React from 'react'
 import './post.scss';
 import CommentSection from "./CommentSection";
 import AddStream from "./AddStream";
+import { useSelector, useDispatch } from 'react-redux';
 
-const Post = ({ item, likePost, streams, updateStreams }) => {
+
+const Post = ({ post, likePost, streams, updateStreams }) => {
+
+  //working with redux now!
+  const state = useSelector((state) => state)
+  const dispatch = useDispatch()
 
   return (
     <article className="post">
 
       <div className={'post__descriptionArea'}>
-        <span className="post__description">{item.description}</span>
+        <span className="post__description">{post.description}</span>
         <div className={'post__user'}>
-                <div className={'post__profilePic'}>🐤</div>
-                {item.userName}
+          <div className={'post__profilePic'}>🐤</div>
+          {post.userName}
         </div>
       </div>
-      
-      <img src={item.image} alt="Dummy text" className="post__image"></img>
+      <img src={post.image} alt="Dummy text" className="post__image"></img>
 
       <div className={'post__infoBar'}>
-        {/* <p className="post__streams">Streams: {item.tags.map(t => t + ' ')}</p> */}
-        <span className="post__streams">Streams: {item.tags.map(t => <AddStream currentStream={t} followedStreams={streams} updateStreams={updateStreams}/>)}</span>
+        <span className="post__streams">Streams: {post.tags.map(t => 
+        <AddStream currentStream={t} followedStreams={streams} updateStreams={updateStreams}/>)}</span>
         <span className="post__posted">Posted 2 hours ago</span>
       </div>
-
-      <CommentSection post={item} likePost={likePost}/>
+      <CommentSection post={post} likePost={likePost}/>
     </article>
   )
 }

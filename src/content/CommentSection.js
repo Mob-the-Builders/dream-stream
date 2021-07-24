@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import './post.scss';
+import { useSelector, useDispatch } from 'react-redux';
 
 const CommentSection = ({ post, likePost }) => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
@@ -8,6 +9,22 @@ const CommentSection = ({ post, likePost }) => {
   const [hide, updateHide] = useState(true);
   const [comment, setComment] = useState('');
   const [commentList, updateComments] = useState([]);
+
+  //working with redux now!
+  const state = useSelector((state) => state)
+  const dispatch = useDispatch()
+
+  // console.log("post in commentsection " + post.comments.data);
+
+  const testCommentGetApi = async () => {
+   const res = await axios.post("/api/get-comments-by-post-id", {id: post._id});
+    console.log(res);
+    // dispatch({
+    //   type:'POSTS_GET_ALL', payload: res
+    // });
+
+  }
+
 
   useEffect(() => {
     if (post.comments.data.length > 0) {
@@ -37,14 +54,10 @@ const CommentSection = ({ post, likePost }) => {
       });
   }
 
-  const getComments = async () => {
-    // Make API call in here later...
-  }
-
   return (
     <div className={'post__commentSection'}>
-
         <div className={'post__commentsAndHeart'}>
+          <button onClick={() => testCommentGetApi()}></button>
           
           <ul>
             {/* {hide && commentList.length >= 2

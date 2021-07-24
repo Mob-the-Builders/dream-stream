@@ -9,7 +9,7 @@ const LoginPage = () => {
   const [userName, setName] = useState('');
   const [password, setPass] = useState('');
 
-    const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
+  const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
 
 
   const onSubmit = async e => {
