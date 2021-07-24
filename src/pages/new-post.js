@@ -21,6 +21,8 @@ const NewPost = () => {
     signature: null,
   });
 
+  console.log('heeere', uploadImage);
+
   const newPost = {};
   const onSubmit = (e) => {
     e.preventDefault();

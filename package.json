@@ -18,11 +18,14 @@
     "axios": "^0.21.1",
     "dotenv": "^10.0.0",
     "gatsby": "^3.9.1",
+    "gatsby-plugin-react-redux": "^1.1.0",
     "gatsby-plugin-sass": "^4.9.0",
     "postinstall": "^0.7.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^4.2.0",
+    "react-redux": "^7.2.4",
+    "redux": "^4.1.0",
     "sass": "^1.35.2"
   }
 }
