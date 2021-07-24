@@ -10,9 +10,7 @@ const LoginPage = () => {
   const [password, setPass] = useState('');
 
     const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
-    if(!user){
-      navigate('/login');
-    }
+
 
   const onSubmit = async e => {
     e.preventDefault();
