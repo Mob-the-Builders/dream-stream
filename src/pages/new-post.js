@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { navigate } from '@reach/router';
+import { navigate } from 'gatsby';
 import Menubar from '../components/Menubar';
 import './new-post.scss';
 
 const NewPost = () => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
   if (!user) {
+    console.log('hello! :) ')
     navigate('/login');
   }
 
