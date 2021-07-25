@@ -7,7 +7,6 @@ import './new-post.scss';
 const NewPost = () => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
   if (!user) {
-    console.log('hello! :) ')
     navigate('/login');
   }
 
