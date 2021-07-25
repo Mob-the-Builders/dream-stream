@@ -1,18 +1,17 @@
-
 const initialState = {
-  count: 0
+  count: 0,
 };
 
 function reducer(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case 'ADD':
-      console.log('hello from ADD', action.type)
+      console.log('hello from ADD', action.type);
       return {
-        count: state.count + 1
+        count: state.count + 1,
       };
-      default:
-        return state;
-    }
+    default:
+      return state;
   }
+}
 
 export default reducer;

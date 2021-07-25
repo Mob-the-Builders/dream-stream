@@ -1,6 +1,6 @@
 // update-post.js
 
-const query = require("./utils/query");
+const query = require('./utils/query');
 
 const UPDATE_POST = `
     mutation($id: ID!, $userName: String!, $image: String!, $description: String!, $tags: [String!], $likes: [String!]){
@@ -15,21 +15,28 @@ const UPDATE_POST = `
     }
 `;
 
-exports.handler = async event => {
-  const { id, userName, image, description, tags, likes } = JSON.parse(event.body);
+exports.handler = async (event) => {
+  const {
+    id, userName, image, description, tags, likes,
+  } = JSON.parse(event.body);
   const { data, errors } = await query(
-       UPDATE_POST, { id, userName, image, description, tags, likes });
+    UPDATE_POST, {
+      id, userName, image, description, tags, likes,
+    },
+  );
 
   if (errors) {
     return {
       statusCode: 500,
-      body: JSON.stringify(errors)
+      body: JSON.stringify(errors),
     };
   }
 
   return {
     statusCode: 200,
-    body: JSON.stringify({ updatedPost: 
-data.updatePost })
+    body: JSON.stringify({
+      updatedPost:
+data.updatePost,
+    }),
   };
 };

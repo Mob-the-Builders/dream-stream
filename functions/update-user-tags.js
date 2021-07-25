@@ -1,6 +1,6 @@
 // update-user-tags.js
 
-const query = require("./utils/query");
+const query = require('./utils/query');
 
 const UPDATE_USER_TAGS = `
     mutation($id: ID!, $tags: [String!]){
@@ -10,20 +10,21 @@ const UPDATE_USER_TAGS = `
     }
 `;
 
-exports.handler = async event => {
+exports.handler = async (event) => {
   const { id, tags } = JSON.parse(event.body);
   const { data, errors } = await query(
-       UPDATE_USER_TAGS, { id, tags });
+    UPDATE_USER_TAGS, { id, tags },
+  );
 
   if (errors) {
     return {
       statusCode: 500,
-      body: JSON.stringify(errors)
+      body: JSON.stringify(errors),
     };
   }
 
   return {
     statusCode: 200,
-    body: JSON.stringify({ updatedPost: data.updateUserTags.tags })
+    body: JSON.stringify({ updatedPost: data.updateUserTags.tags }),
   };
 };

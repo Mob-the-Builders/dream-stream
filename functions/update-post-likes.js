@@ -1,6 +1,6 @@
 // update-post-likes.js
 
-const query = require("./utils/query");
+const query = require('./utils/query');
 
 const UPDATE_POST_LIKES = `
     mutation($id: ID!, $likes: [String!]){
@@ -10,23 +10,24 @@ const UPDATE_POST_LIKES = `
     }
 `;
 
-exports.handler = async event => {
+exports.handler = async (event) => {
   const { id, likes } = JSON.parse(event.body);
   console.log(likes);
   const { data, errors } = await query(
-    UPDATE_POST_LIKES, { id, likes });
+    UPDATE_POST_LIKES, { id, likes },
+  );
   if (errors) {
     return {
       statusCode: 500,
-      body: JSON.stringify(errors)
+      body: JSON.stringify(errors),
     };
   }
 
   console.log(id);
   console.log(likes);
-  console.log(data)
+  console.log(data);
   return {
     statusCode: 200,
-    body: JSON.stringify({ updatedLikes: data.updateLikes })
+    body: JSON.stringify({ updatedLikes: data.updateLikes }),
   };
 };

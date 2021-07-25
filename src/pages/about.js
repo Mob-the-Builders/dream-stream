@@ -1,12 +1,10 @@
-import * as React from "react"
+import * as React from 'react';
 
 // markup
-const AboutPage = () => {
-  return (
-    <>
-      hello about
-    </>
-  )
-}
+const AboutPage = () => (
+  <>
+    hello about
+  </>
+);
 
-export default AboutPage
+export default AboutPage;

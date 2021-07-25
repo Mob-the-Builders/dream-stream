@@ -1,6 +1,6 @@
 // create-comment.js
 
-const query = require("./utils/query");
+const query = require('./utils/query');
 
 const CREATE_COMMENT = `
   mutation( $userName: String!, $message: String!, $postId: ID!){
@@ -16,22 +16,22 @@ const CREATE_COMMENT = `
   }
 `;
 
-exports.handler = async event => {
+exports.handler = async (event) => {
   const { userName, message, postId } = JSON.parse(event.body);
   const { data, errors } = await query(
-          CREATE_COMMENT, { 
-  userName, message, postId });
+    CREATE_COMMENT, { userName, message, postId },
+  );
 
   if (errors) {
-    console.log(errors)
+    console.log(errors);
     return {
       statusCode: 500,
-      body: JSON.stringify(errors)
+      body: JSON.stringify(errors),
     };
   }
 
   return {
     statusCode: 200,
-    body: JSON.stringify({ Comment: data.createComment })
+    body: JSON.stringify({ Comment: data.createComment }),
   };
 };

@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react"
-import StreamFilter from './StreamFilter';
-import PostList from './PostList';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
+import StreamFilter from './StreamFilter';
+import PostList from './PostList';
 
 const Content = () => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
-  
+
   // Handles liking posts
   const [liked, setLiked] = useState(false);
   const dispatch = useDispatch();
@@ -16,41 +16,41 @@ const Content = () => {
       return;
     }
     if (arr.likes.includes(user)) {
-      likes = arr.likes.filter(like => like !== user);
+      likes = arr.likes.filter((like) => like !== user);
     } else {
-     likes = [...arr.likes, user]; 
+      likes = [...arr.likes, user];
     }
-    const body = {id: arr._id, likes} 
+    const body = { id: arr._id, likes };
     await axios.post('/api/update-post-likes', body);
-    setLiked(!liked)
-  }
+    setLiked(!liked);
+  };
 
   // Generates the "Your streams" section
   const [str, updateStreams] = useState([]);
   const streams = useSelector((state) => state.user.streams);
-  
+
   const getUserTags = async () => {
-    const res = await axios.post('/api/get-tags-user', { userName: user })
-    return res.data.userTags
+    const res = await axios.post('/api/get-tags-user', { userName: user });
+    return res.data.userTags;
   };
 
   useEffect(async () => {
     if (user) {
       const response = await axios.post('/api/get-tags-user', { userName: user });
       const load = await getUserTags();
-      dispatch({type: 'USER_GET_STREAMS', payload: load});
+      dispatch({ type: 'USER_GET_STREAMS', payload: load });
       updateStreams(response.data.userTags);
     }
   }, []);
 
   return (
-      <main className={'main'}>
-        {user
+    <main className="main">
+      {user
         ? <StreamFilter />
         : <></>}
-        <PostList likePost={likePost} liked={liked} setLiked={setLiked} streams={streams} updateStreams={updateStreams}/>
-      </main>
-  )
-}
+      <PostList likePost={likePost} liked={liked} setLiked={setLiked} streams={streams} updateStreams={updateStreams} />
+    </main>
+  );
+};
 
-export default Content
+export default Content;

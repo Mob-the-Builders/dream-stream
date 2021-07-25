@@ -1,6 +1,5 @@
 // delete-post.js
-
-const query = require("./utils/query");
+const query = require('./utils/query');
 
 const DELETE_POST = `
   mutation($id: ID!) {
@@ -10,21 +9,21 @@ const DELETE_POST = `
   }
 `;
 
-exports.handler = async event => {
+exports.handler = async (event) => {
   const { id } = JSON.parse(event.body);
   const { data, errors } = await query(
-        DELETE_POST, { id });
+    DELETE_POST, { id },
+  );
 
   if (errors) {
     return {
       statusCode: 500,
-      body: JSON.stringify(errors)
+      body: JSON.stringify(errors),
     };
   }
 
   return {
     statusCode: 200,
-    body: JSON.stringify({ deletedPost: data.deletePost 
-   })
+    body: JSON.stringify({ deletedPost: data.deletePost }),
   };
 };

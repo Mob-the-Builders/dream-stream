@@ -1,8 +1,7 @@
- // get-posts-by-tag.js
+// get-posts-by-tag.js
+const query = require('./utils/query');
 
- const query = require("./utils/query");
-
- const GET_BY_TAG = `
+const GET_BY_TAG = `
      query getByTag($tags: String){
         getByTag(tags: $tags){ 
           data{
@@ -26,21 +25,19 @@
          }
  `;
 
-  exports.handler = async event => {
-    const { tags } = JSON.parse(event.body);
-    console.log('Hello Mob from serverless!')
-    console.log(tags)
-    const { data, errors } = await query(GET_BY_TAG, {tags} );
+exports.handler = async (event) => {
+  const { tags } = JSON.parse(event.body);
+  const { data, errors } = await query(GET_BY_TAG, { tags });
 
-     if (errors) {
-        return {
-          statusCode: 500,
-          body: JSON.stringify(errors)
-        };
-     }
+  if (errors) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify(errors),
+    };
+  }
 
-     return {
-       statusCode: 200,
-       body: JSON.stringify({ messages: data.getByTag.data })
-     };
-   };
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ messages: data.getByTag.data }),
+  };
+};

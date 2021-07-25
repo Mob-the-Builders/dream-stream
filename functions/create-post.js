@@ -1,21 +1,5 @@
 // create-post.js
-
-const query = require("./utils/query");
-
-/*
-const CREATE_POST = `
-  mutation($userName: String!, $image: String!, $imageDelete: String!, $description: String!, $tags: [String!], $likes: [String!]){
-    createPost(data: {userName: $userName, image: $image, imageDelete: $imageDelete, description: $description, tags: $tags, likes: $likes}){
-      _id
-      userName
-      image
-      description
-      tags
-      likes
-    }
-  }
-`;
-*/
+const query = require('./utils/query');
 
 const CREATE_POST = `
   mutation($image: String!, $imageDelete: String!, $description: String!, $tags: [String!],$userName: String!){
@@ -41,37 +25,40 @@ mutation ($likes: [String!] $postId: ID!) {
 }
 `;
 
-exports.handler = async event => {
-  const { userName, image, imageDelete, description, tags} = JSON.parse(event.body);
+exports.handler = async (event) => {
+  const {
+    userName, image, imageDelete, description, tags,
+  } = JSON.parse(event.body);
   const { data, errors } = await query(
-          CREATE_POST, { 
-  userName, image, imageDelete, description, tags});
+    CREATE_POST, {
+      userName, image, imageDelete, description, tags,
+    },
+  );
 
   if (errors) {
-    console.log("FIRST")
+    console.log('FIRST');
     return {
       statusCode: 500,
-      body: JSON.stringify(errors)
+      body: JSON.stringify(errors),
     };
   }
 
   const postId = data.createPost._id;
   const likes = [];
   const { data: dataLike, errors: errorsLike } = await query(
-    CREATE_POST_LIKE, { 
-     likes, postId }); 
-     if (errorsLike) {
-      console.log("SECOND")
-      return {
+    CREATE_POST_LIKE, { likes, postId },
+  );
+  if (errorsLike) {
+    console.log('SECOND');
+    return {
       statusCode: 500,
-      body: JSON.stringify(errorsLike)
+      body: JSON.stringify(errorsLike),
     };
   }
   console.log(dataLike);
 
-
   return {
     statusCode: 200,
-    body: JSON.stringify({ Post: data.createPost, likesId: dataLike.createLikes._id})
+    body: JSON.stringify({ Post: data.createPost, likesId: dataLike.createLikes._id }),
   };
 };
