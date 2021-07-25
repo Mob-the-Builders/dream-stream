@@ -2,12 +2,12 @@ import React from 'react';
 import './post.scss';
 import CommentSection from './CommentSection';
 import AddStream from './AddStream';
+import Likes from './Likes';
 
 const Post = ({
-  post, likePost, streams, updateStreams,
+  post
 }) => (
   <article className="post">
-
     <div className="post__descriptionArea">
       <span className="post__description">{post.description}</span>
       <div className="post__user">
@@ -19,11 +19,11 @@ const Post = ({
     <div className="post__infoBar">
       <span className="post__streams">
         Streams:
-        {post.tags.map((t) => <AddStream currentStream={t} followedStreams={streams} updateStreams={updateStreams} />)}
+        {post.tags.map((tag) => <AddStream currentStream={tag} />)}
       </span>
       <span className="post__posted">Posted 2 hours ago</span>
     </div>
-    <CommentSection post={post} likePost={likePost} />
+    <CommentSection post={post} />
   </article>
 );
 export default Post;

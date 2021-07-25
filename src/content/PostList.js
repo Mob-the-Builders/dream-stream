@@ -4,9 +4,7 @@ import axios from 'axios';
 import './PostList.scss';
 import { useSelector, useDispatch } from 'react-redux';
 
-const PostList = ({
-  likePost, streams, updateStreams
-}) => {
+const PostList = () => {
   // THIS STATE VVVVVV needs to be replaced for the redux store state
 
   const { posts, tags } = useSelector((state) => state.postList);
@@ -39,7 +37,7 @@ const PostList = ({
 
   return (
     <div className="post-list-container-flex">
-      {posts.map((post, index) => <Post key={index} post={post} likePost={likePost} streams={streams} updateStreams={updateStreams} />)}
+      {posts.map((post, index) => <Post key={index} post={post} />)}
     </div>
   );
 };

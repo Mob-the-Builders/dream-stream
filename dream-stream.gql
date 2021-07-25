@@ -11,9 +11,11 @@ type Likes {
 
 type Post {
     userName: String!
+    title: String!
     description: String
     image: String!
     imageDelete: String!
+    date: String!
     tags: [String!]
     likes: Likes @relation
     comments: [Comment] @relation
@@ -35,6 +37,7 @@ type Query {
   allComments: [Comment!]
   allUsers: [User!]
   getUserByName(userName: String): User
+  getLikeByName(userName: String): [Post!]!
   getPostByName(userName: String): [Post!]!
   getByTag(tags: String): [Post]
 }

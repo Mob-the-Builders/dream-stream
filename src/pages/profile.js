@@ -30,17 +30,6 @@ const Profile = () => {
     setLiked(!liked);
   };
 
-  // Handles filtering feed by tags
-  const [tag, setTag] = useState(null);
-
-  // const updateTag = (text) => {
-  //   if (tag === text) {
-  //     setTag(null);
-  //   } else {
-  //     setTag(text);
-  //   }
-  // };
-
   // Generates the "Your streams" section
   const [streams, updateStreams] = useState([]);
 

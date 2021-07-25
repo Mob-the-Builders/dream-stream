@@ -1,5 +1,6 @@
 // create-post.js
 const query = require('./utils/query');
+const { DateTime } = require('luxon');
 
 const CREATE_POST = `
   mutation($image: String!, $imageDelete: String!, $description: String!, $tags: [String!],$userName: String!){
@@ -27,6 +28,7 @@ mutation ($likes: [String!] $postId: ID!) {
 
 exports.handler = async (event) => {
   const {
+  //const date = DateTime.now().toFormat('f');
     userName, image, imageDelete, description, tags,
   } = JSON.parse(event.body);
   const { data, errors } = await query(
