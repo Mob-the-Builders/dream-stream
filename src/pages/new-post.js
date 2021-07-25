@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { navigate } from '@reach/router';
+import React, { useState, useEffect } from 'react';
+import { navigate } from 'gatsby';
 
 import axios from 'axios';
 import Menubar from '../components/Menubar';
@@ -7,9 +7,14 @@ import './new-post.scss';
 
 const NewPost = () => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
-  if (!user) {
-    navigate('/login');
-  }
+
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  },[])
+
 
   const [tagsState, setTags] = useState('');
   const [descriptionState, setDescription] = useState('');
