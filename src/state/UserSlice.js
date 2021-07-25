@@ -12,8 +12,15 @@ function userReducer(state = initialState, action) {
         userName: action.payload
       };
 
+      case 'USER_GET_STREAMS':
+        console.log('hello from user slice', action)
+        return {
+          ...state,
+          streams: action.payload
+        };
+
       case 'USER_ADD_STREAM':
-        console.log('hello from user slice', action.type)
+        console.log('hello from user slice', action)
         return {
           ...state,
           streams: [...state.streams, action.payload]
