@@ -23,7 +23,6 @@ const Content = () => {
       const load = await getUserTags();
       dispatch({ type: 'USER_GET_STREAMS', payload: load });
       console.log(response.data.userTags);
-      //updateStreams(response.data.userTags);
     }
   }, []);
 

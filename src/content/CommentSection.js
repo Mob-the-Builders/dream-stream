@@ -7,6 +7,8 @@ const CommentSection = ({ post }) => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
 
   const [hide, updateHide] = useState(true);
+  const [comment, setComment] = useState('');
+  const [commentList, updateCommentList] = useState([]);
 
   // Creates JSX object for commentList
   const createJSX = (comments) => comments.map((comment) => (
@@ -20,9 +22,6 @@ const CommentSection = ({ post }) => {
   ));
 
   // Updates comment list when post loads
-  const [comment, setComment] = useState('');
-  const [commentList, updateCommentList] = useState([]);
-
   useEffect(() => {
     if (post.comments.data.length > 0) {
       updateCommentList(createJSX(post.comments.data));
