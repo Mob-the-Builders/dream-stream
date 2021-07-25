@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { navigate } from '@reach/router';
+
 import axios from 'axios';
-import { navigate } from 'gatsby';
 import Menubar from '../components/Menubar';
 import './new-post.scss';
 
