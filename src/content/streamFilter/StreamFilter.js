@@ -1,7 +1,7 @@
 import React from 'react';
-import TagButton from './TagButton';
+import FilterButton from './FilterButton';
 import './StreamFilter.scss';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const StreamFilter = () => {
   const { streams } = useSelector((state) => state.user);
@@ -11,10 +11,8 @@ const StreamFilter = () => {
 
       <div className="streamfilter__buttonlist">
         {/* <button id={'tagbutton--selected'}>puppy</button> */}
-        {streams.map((stream) => <TagButton currentStream={stream} />)}
+        {streams.map((stream) => <FilterButton currentStream={stream} />)}
       </div>
-      {
-      }
 
     </aside>
   );

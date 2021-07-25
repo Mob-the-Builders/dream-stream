@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import Post from './Post';
-import axios from 'axios';
-import './PostList.scss';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
+import Post from './post/Post';
+import './PostList.scss';
 
 const PostList = () => {
   // THIS STATE VVVVVV needs to be replaced for the redux store state
@@ -31,7 +31,7 @@ const PostList = () => {
       load = await getAllPosts();
     }
     dispatch({
-      type: 'POSTS_GET_ALL', payload: load,
+      type: 'POSTS_LOADED', payload: load,
     });
   }, [tags]); // LIKED var här
 

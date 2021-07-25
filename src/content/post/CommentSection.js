@@ -11,13 +11,13 @@ const CommentSection = ({ post }) => {
   const [commentList, updateCommentList] = useState([]);
 
   // Creates JSX object for commentList
-  const createJSX = (comments) => comments.map((comment) => (
+  const createJSX = (comments) => comments.map((currentComment) => (
     <li>
       {' '}
-      <b>{comment.userName}</b>
+      <b>{currentComment.userName}</b>
       :
       {' '}
-      {comment.message}
+      {currentComment.message}
     </li>
   ));
 
@@ -79,7 +79,7 @@ const CommentSection = ({ post }) => {
             : commentList}
         </ul>
 
-        <Likes post={post}/>
+        <Likes post={post} />
 
       </div>
 

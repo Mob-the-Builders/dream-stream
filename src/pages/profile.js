@@ -1,7 +1,7 @@
 import { navigate } from '@reach/router';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import StreamFilter from '../content/StreamFilter';
+import StreamFilter from '../content/streamFilter/StreamFilter';
 import PostList from '../content/PostList';
 import Menubar from '../components/Menubar';
 import './profile.scss';

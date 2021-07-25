@@ -20,6 +20,7 @@ type Post {
     date: String!
     tags: [String!]
     likes: Likes @relation
+    #remove the one on top
     # add this -> likes: [Likes] @relation
     comments: [Comment] @relation
 }

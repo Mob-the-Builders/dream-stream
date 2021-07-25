@@ -12,15 +12,15 @@ const postsInitialState = {
  - remove tag === Show all posts
  */
 
-const postsSlice = (state = postsInitialState, action) => {
+const postsReducer = (state = postsInitialState, action) => {
   switch (action.type) {
-    case 'POSTS_GET_ALL':
+    case 'POSTS_LOADED':
       return {
         ...state,
         posts: action.payload,
       };
 
-    case 'POSTS_GET_TAG':
+    case 'POSTS_FILTERED_TAG':
       return {
         ...state,
         tags: action.payload,
@@ -31,14 +31,4 @@ const postsSlice = (state = postsInitialState, action) => {
   }
 };
 
-/*
-API call get commentList for ALL posts
-commentList stored as local state
-Post comment?
-API call get comment for specific post
-Append new comment to commentList
-commentList gets saved as local state
-commentList gets posted to database
-*/
-
-export default postsSlice;
+export default postsReducer;

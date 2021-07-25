@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
-import postSlice from './app';
-import reducer from './AddSlice';
-import userReducer from './UserSlice';
+import postsReducer from './postsSlice';
+import userReducer from './userSlice';
 
-export default combineReducers({ postList: postSlice, add: reducer, user: userReducer });
+export default combineReducers({ postList: postsReducer, user: userReducer });

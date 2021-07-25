@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-const TagButton = ({ currentStream }) => {
+const FilterButton = ({ currentStream }) => {
   const { tags } = useSelector((state) => state.postList);
   const dispatch = useDispatch();
   let selected = false;
@@ -18,7 +18,7 @@ const TagButton = ({ currentStream }) => {
       payload = [];
     }
     dispatch({
-      type: 'POSTS_GET_TAG', payload: payload,
+      type: 'POSTS_FILTERED_TAG', payload,
     });
   };
 
@@ -27,4 +27,4 @@ const TagButton = ({ currentStream }) => {
   );
 };
 
-export default TagButton;
+export default FilterButton;

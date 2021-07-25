@@ -1,22 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
-import StreamFilter from './StreamFilter';
+import { useDispatch } from 'react-redux';
+import StreamFilter from './streamFilter/StreamFilter';
 import PostList from './PostList';
 
 const Content = () => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
-  
-  // Generates the "Your streams" section
-  const [str, updateStreams] = useState([]);
-  const streams = useSelector((state) => state.user.streams);
   const dispatch = useDispatch();
 
+  // Get followed tags server call
   const getUserTags = async () => {
     const res = await axios.post('/api/get-tags-user', { userName: user });
     return res.data.userTags;
   };
 
+  // Updates followed tags after server call is made
   useEffect(async () => {
     if (user) {
       const response = await axios.post('/api/get-tags-user', { userName: user });
