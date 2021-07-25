@@ -18,8 +18,7 @@
               comments {
                 data {
                   userName
-                  message
-                
+                  message    
                }
              }
             }

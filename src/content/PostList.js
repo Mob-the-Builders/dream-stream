@@ -1,36 +1,45 @@
-import React, {useState , useEffect } from 'react'
+import React, { useState , useEffect } from 'react'
 import Post from './Post'
 import axios from 'axios'
 import './PostList.scss';
+import { useSelector, useDispatch } from 'react-redux';
 
-const PostList = ({ tag, likePost, streams, updateStreams, liked }) => {
-  const [posts, setPosts] = useState([]);
+const PostList = ({ likePost, streams, updateStreams, liked }) => {
+  // THIS STATE VVVVVV needs to be replaced for the redux store state
+
+  const { posts, tags } = useSelector((state) => state.postList)
+  const dispatch = useDispatch()
+
+  // Handles server calls
+  const getPostsByTag = async () => {
+    const res = await axios.post("/api/get-posts-by-tag", { tags: tags[0] });
+    console.log(res);
+    return res.data.messages.reverse();
+  }
 
   const getAllPosts = async () => {
     const res = await axios("/api/get-post");
-    setPosts(res.data.messages.reverse());
+    return res.data.messages.reverse();
   }
 
-  const getPostsByTag = async () => {
-    const res = await axios.post("/api/get-posts-by-tag", { tags: tag });
-    console.log(res);
-    setPosts(res.data.messages.reverse());
-  }
-
-  // Updates post list when filtering by tags or liking post
-  useEffect(() => {
-    if (tag) {  
-      getPostsByTag();
+  // Updates displayed posts when filtering by tags
+  useEffect(async () => {
+    let load = posts;
+    if (tags[0]) {  
+      load = await getPostsByTag();
     } else {
-      getAllPosts();
+      load = await getAllPosts();
     }
-  }, [tag, liked]);
+    dispatch({
+      type:'POSTS_GET_ALL', payload: load
+    });
+  }, [tags]);  // LIKED var här
 
   return (
     <div className="post-list-container-flex">
-      {posts.map((item , index)  => <Post key={index} item={item} likePost={likePost} streams={streams} updateStreams={updateStreams}/>)}
+      {posts.map((post, index)  => <Post key={index} post={post} likePost={likePost} streams={streams} updateStreams={updateStreams}/>)}
     </div>
   )
 }
 
-export default PostList
+export default PostList;

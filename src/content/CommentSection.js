@@ -6,28 +6,32 @@ const CommentSection = ({ post, likePost }) => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
 
   const [hide, updateHide] = useState(true);
+
+  // Creates JSX object for commentList
+  const createJSX = comments => comments.map((comment) => <li> <b>{comment.userName}</b>: {comment.message}</li>);
+
+  // Updates comment list when post loads
   const [comment, setComment] = useState('');
-  const [commentList, updateComments] = useState([]);
+  const [commentList, updateCommentList] = useState([]);
 
   useEffect(() => {
     if (post.comments.data.length > 0) {
-      updateComments(post.comments.data.map(t => <li> <b>{t.userName}</b>: {t.message}</li>));
+      updateCommentList(createJSX(post.comments.data));
     } else {
-      updateComments([]);
+      updateCommentList([]);
     }
   }, [post]);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    postComments();
-    updateComments([...commentList, <li><b>{user}</b>: {comment}</li>]);
-    setComment('');
+  // Handles server calls
+  const getComments = async () => {
+    const res = await axios.post("/api/get-comments-by-post-id", {id: post._id});
+    return res.data.messages;
   }
 
-  const postComments = async () => {
+  const postComment= async (userName, message) => {
     await axios.post("/api/create-comment", {
-      "userName": user,
-      "message": comment,
+      "userName": userName,
+      "message": message,
       "postId": post._id
       },
       { 
@@ -37,13 +41,23 @@ const CommentSection = ({ post, likePost }) => {
       });
   }
 
-  const getComments = async () => {
-    // Make API call in here later...
+  // Handles submitting comment
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const userName = user; const message = comment; 
+    const commentJSX = <li><b>{userName}</b>: {message}</li>;
+    setComment('');
+    updateCommentList([...commentList, commentJSX]);
+    
+    await postComment(userName, message);
+
+    const allComments = await getComments();
+    updateCommentList([...createJSX(allComments)]);
   }
+
 
   return (
     <div className={'post__commentSection'}>
-
         <div className={'post__commentsAndHeart'}>
           <ul>
             {hide && commentList.length >= 3

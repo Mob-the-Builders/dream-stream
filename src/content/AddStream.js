@@ -26,7 +26,6 @@ const AddStream = ({ currentStream, followedStreams, updateStreams }) => {
     const response = await axios.post('/api/update-user-tags', { id: localStorage.getItem('userId'), tags: streams});
     console.log(response);
   }
-   
     return (
       <>
       {user

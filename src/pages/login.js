@@ -4,13 +4,10 @@ import axios from 'axios';
 import Menubar from '../components/Menubar';
 import './login.scss';
 
-
 const LoginPage = () => {
   const [userName, setName] = useState('');
   const [password, setPass] = useState('');
-
-    const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
-
+  const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
 
   const onSubmit = async e => {
     e.preventDefault();
@@ -21,7 +18,6 @@ const LoginPage = () => {
       localStorage.setItem('userId', response.data.userTags)
       console.log(localStorage.getItem('userId'));
       console.log(localStorage.getItem('user'));
-
       navigate('/');
       
     } catch (error) {
@@ -34,18 +30,10 @@ const LoginPage = () => {
   };
 
   return (
-
-
-
     <div className='top-container'>
       <Menubar page={'streams'}/>
       <main className={'main'}>
-
-
       {/* <button onClick={() => navigate('/')}>Proceed without logging in</button> */}
-
-
-
       <form className="card card--register" onSubmit={onSubmit}>
         <p className='card__register-title'>Login</p>
 
