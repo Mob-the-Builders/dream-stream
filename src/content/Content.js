@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react"
 import StreamFilter from './StreamFilter';
 import PostList from './PostList';
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
 
 const Content = () => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
   
   // Handles liking posts
   const [liked, setLiked] = useState(false);
-
+  const dispatch = useDispatch();
   const likePost = async (arr) => {
     let likes;
     if (!user) {
@@ -25,12 +26,19 @@ const Content = () => {
   }
 
   // Generates the "Your streams" section
-  const [streams, updateStreams] = useState([]);
+  const [str, updateStreams] = useState([]);
+  const streams = useSelector((state) => state.user.streams);
+  
+  const getUserTags = async () => {
+    const res = await axios.post('/api/get-tags-user', { userName: user })
+    return res.data.userTags
+  };
 
   useEffect(async () => {
     if (user) {
       const response = await axios.post('/api/get-tags-user', { userName: user });
-      console.log(response.data.userTags);
+      const load = await getUserTags();
+      dispatch({type: 'USER_GET_STREAMS', payload: load});
       updateStreams(response.data.userTags);
     }
   }, []);
@@ -38,7 +46,7 @@ const Content = () => {
   return (
       <main className={'main'}>
         {user
-        ? <StreamFilter streams={streams}/>
+        ? <StreamFilter />
         : <></>}
         <PostList likePost={likePost} liked={liked} setLiked={setLiked} streams={streams} updateStreams={updateStreams}/>
       </main>

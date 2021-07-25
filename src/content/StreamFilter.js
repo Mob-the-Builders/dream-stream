@@ -3,7 +3,8 @@ import TagButton from './TagButton';
 import './StreamFilter.scss';
 import { useSelector, useDispatch } from 'react-redux';
 
-const StreamFilter = ({ streams }) => {
+const StreamFilter = () => {
+  const streams = useSelector((state) => state.user.streams);
   return (
     <aside className={'streamfilter'}>
       <h3>YOUR STREAMS</h3>
