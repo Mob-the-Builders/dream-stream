@@ -6,28 +6,29 @@ const CommentSection = ({ post, likePost }) => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
 
   const [hide, updateHide] = useState(true);
-  const [comment, setComment] = useState('');
-  const [commentList, updateComments] = useState([]);
 
   // Creates JSX object for commentList
-  const createJSX = comments => comments.map(comment => <li> <b>{comment.userName}</b>: {comment.message}</li>);
+  const createJSX = comments => comments.map((comment) => <li> <b>{comment.userName}</b>: {comment.message}</li>);
 
-  // Updates commentList when post loads
+  // Updates comment list when post loads
+  const [comment, setComment] = useState('');
+  const [commentList, updateCommentList] = useState([]);
+
   useEffect(() => {
     if (post.comments.data.length > 0) {
-      updateComments(createJSX(post.comments.data));
+      updateCommentList(createJSX(post.comments.data));
     } else {
-      updateComments([]);
+      updateCommentList([]);
     }
   }, [post]);
 
-
+  // Handles server calls
   const getComments = async () => {
     const res = await axios.post("/api/get-comments-by-post-id", {id: post._id});
     return res.data.messages;
   }
 
-  const postComment = async (userName, message) => {
+  const postComment= async (userName, message) => {
     await axios.post("/api/create-comment", {
       "userName": userName,
       "message": message,
@@ -40,17 +41,18 @@ const CommentSection = ({ post, likePost }) => {
       });
   }
 
+  // Handles submitting comment
   const onSubmit = async (e) => {
     e.preventDefault();
-    const userName = user; 
-    const message = comment; 
+    const userName = user; const message = comment; 
     const commentJSX = <li><b>{userName}</b>: {message}</li>;
     setComment('');
-    updateComments([...commentList, commentJSX]);
-    await postComment(userName, message);
+    updateCommentList([...commentList, commentJSX]);
     
+    await postComment(userName, message);
+
     const allComments = await getComments();
-    updateComments([...createJSX(allComments)]);
+    updateCommentList([...createJSX(allComments)]);
   }
 
 

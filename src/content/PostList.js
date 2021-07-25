@@ -10,6 +10,7 @@ const PostList = ({ likePost, streams, updateStreams, liked }) => {
   const { posts, tags } = useSelector((state) => state.postList)
   const dispatch = useDispatch()
 
+  // Handles server calls
   const getPostsByTag = async () => {
     const res = await axios.post("/api/get-posts-by-tag", { tags: tags[0] });
     console.log(res);
