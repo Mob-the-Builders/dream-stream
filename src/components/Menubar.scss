@@ -54,6 +54,7 @@
     display: flex;
     align-items: center;
     text-decoration: none;
+    color: #423F62;
 
     &:visited {
       color: #423F62;
@@ -71,7 +72,7 @@
 
   &__svg {
     fill: #423F62;  
-    margin-right: 30px;
+    margin-right: 22px;
 
     &--selected {
       fill: #59AFED;

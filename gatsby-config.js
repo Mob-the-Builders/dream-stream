@@ -3,6 +3,5 @@ module.exports = {
     siteUrl: "https://www.yourdomain.tld",
     title: "dream-stream",
   },
-  plugins: [
-    'gatsby-plugin-sass'],
+  plugins: ['gatsby-plugin-sass'],
 };

@@ -1,4 +1,4 @@
-.post{
+.post {
   display:flex;
   flex-direction: column;
   margin-bottom: 3%;
@@ -15,7 +15,7 @@
   }
 
   &__descriptionArea{
-    background: #59AFED;
+    background: #259bfce0;
     color: white;
     height: 60px;
     display: flex;
@@ -27,6 +27,8 @@
   &__description{
     margin-left: 37px;
     font-size: 20px;
+    text-shadow: 1px 1px #1f85d8;
+
   }
 
   &__user {
@@ -34,6 +36,7 @@
     display: flex;
     align-items: center;
     margin-right: 37px;
+    text-shadow: 1px 1px #1f85d8;
   }
 
   &__profilePic {
@@ -47,14 +50,6 @@
     text-align: center;
     vertical-align: middle;
   }
-
-  &__streams{
-    margin-left: 37px;
-
-    & button {
-      margin-left: 10px;
-    }
-  }
   
   &__infoBar{
     background: #D8EEFE;
@@ -64,9 +59,35 @@
     justify-content: space-between;
     border-bottom: 0.1px solid rgba(120, 120, 141, 0.5);
   }
+
+  &__streams{
+    margin-left: 37px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    color: #2a6b99;
+
+    & button {
+      background: #e8f5ff60;
+      padding: 1px;
+      padding-left: 5px;
+      padding-right: 5px;
+      border-radius: 7px;
+      border: 1.5px solid #868692;
+      font-size: 13px;
+      text-transform: capitalize;
+
+      &:hover {
+        background: #a2c3de;
+      }
+    }
+  }
   
   &__posted{
     margin-right: 37px;
+    font-size: 14px;
+    color: #2a6b99;
   }
 
   &__commentSection{
@@ -74,41 +95,63 @@
     border-radius: 0 0 10px 10px;
     display: flex;
     flex-direction: column;
-
-    & button {
-      // background: green;
-      width: 140px;
-    }
+    min-height: 80px;
   }
 
   &__commentsAndHeart{
     display: flex;
     justify-content: space-between;
     padding-left: 40px;
+    // align-items: center;
+    // height: 100%;
+    min-height: 55px;
+    padding-top: 14px;
+    padding-bottom: 10px;
+    color: #3f4058;
 
     & ul {
       font-size: 16px;
+      list-style-type: none;
     }
   }
 
-  &__heartContainer{
+  &__heartAlignment{
+    height: 100%;
     order: 2;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  &__heartContainer{
+
+    margin-bottom: 15px;
     margin-right: 50px;
+    border-radius: 10px;
     display: grid;
     place-items: center;
+    // align-self: center;
+    height: 33px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    background: #EA3D67;
 
     // background: blue;
   }
 
   &__likes-container-flex{
     display: flex;
-    border: 1px solid #F31E52 ;
     border-radius: 10px;
     max-width: 3rem;
     min-width: 2rem;
     justify-content: space-around;
+    font-size: 18px;
+    align-items: center;
+    color: white;
 
-    // background: green;
+    & svg {
+      fill: white;
+    }
   }
 
   &__likes__nr{
@@ -116,12 +159,28 @@
 
   }
 
+  &__allComments {
+    height: 30px;
+    width: fit-content;
+    border-style: hidden;
+    background: #d8eefe00;
+    color: #4C4D66;
+    font-size: 16px;
+    margin: 10px;
+    margin-left: 20px;
+
+    &:hover {
+      color: #666784;
+    }
+  }
+
 
   &__inputArea{
     background: #D8EEFE;
     border-radius: 0 0 10px 10px;
-    height: 37px;
+    height: 40px;
     border-top: 0.1px solid rgba(120, 120, 141, 0.5);
+    margin-top: auto;
 
     & form {
       width: 100%;
@@ -139,7 +198,7 @@
       border-style: hidden;
       background: #D8EEFE;
       color: #6F6F6F;
-      font-size: 18px;
+      font-size: 16px;
 
       &::placeholder{
         color: #6F6F6F;
@@ -148,6 +207,15 @@
 
     &-btn {
       height: 50%;
+      height: 2rem;
+      border-style: hidden;
+      background: #D8EEFE;
+      color: #4C4D66;
+      font-size: 17px;
+
+      &:hover {
+        color: #666784;
+      }
     }
   }
 
