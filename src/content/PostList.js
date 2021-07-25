@@ -7,8 +7,8 @@ import { useSelector, useDispatch } from 'react-redux';
 const PostList = ({ likePost, streams, updateStreams, liked }) => {
   // THIS STATE VVVVVV needs to be replaced for the redux store state
 
-  const { posts, tags } = useSelector((state) => state.postList)
-  const dispatch = useDispatch()
+  const { posts, tags } = useSelector((state) => state.postList);
+  const dispatch = useDispatch();
 
   // Handles server calls
   const getPostsByTag = async () => {

@@ -28,5 +28,8 @@
     "redux": "^4.1.0",
     "redux-devtools-extension": "^2.13.9",
     "sass": "^1.35.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.31.0"
   }
 }
