@@ -39,6 +39,7 @@ body {
   border: 0.1px solid rgba(120, 120, 141, 0.5);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 10px;
+  margin-bottom: 60px;
 }
 
 .description-area {
@@ -95,12 +96,12 @@ textarea:focus, input:focus{
 
 .image-area {
   width: 100%;
-  height: 22rem;
+  min-height: 22rem;
   background: rgba(216, 238, 254, 0.2);
-  // border-bottom: 0.5px solid #78788D;
   border-bottom: 0.1px solid rgba(120, 120, 141, 0.5);
   display: grid;
   place-items: center;
+  background-size: auto;
 }
 
 .file-input-wrapper{
@@ -110,6 +111,10 @@ textarea:focus, input:focus{
   place-items: center;
   border: 2px dotted rgba(120, 120, 141, 0.3);
   border-radius: 10px;
+
+  &--hide {
+    display: none;
+  }
 }
 
 
@@ -174,4 +179,19 @@ textarea:focus, input:focus{
   }
 }
 
+.testingAreaPreview {
+  width: 50%;
+  height: 200px;
+  border: 3px solid green;
+  margin-top: 30px;
+  background-size: cover;
+}
+
+.imagePreview {
+  width: 100%;
+
+  &--hide {
+    display: none;
+  }
+}
 

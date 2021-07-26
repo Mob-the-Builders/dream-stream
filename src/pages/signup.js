@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { navigate } from 'gatsby';
 import axios from 'axios';
 import Menubar from '../components/Menubar';
+import {navToHomeClick, navToLoginClick} from '../components/utils/navigation';
 import './login.scss';
 
 const SignupPage = () => {
@@ -13,7 +13,7 @@ const SignupPage = () => {
 
   useEffect(() => {
     if(redirect){
-      navigate('/');
+      navToHomeClick();
     }
   }, [redirect])
   
@@ -26,7 +26,6 @@ const SignupPage = () => {
 
   const loginUser = async (pair) => {
     const res = await axios.post('/api/login-user', pair)
-    console.log('login res:', res);
     return res
   };
 
@@ -93,12 +92,13 @@ const SignupPage = () => {
 
           <input type="submit" className="card__btn" value="Sign Up" />
 
-          <button className="proceed" onClick={() => navigate('/')}>Proceed without logging in</button>
         </form>
+        <button className="proceed" onClick={navToLoginClick}>Already have an account?</button>
+
+        <button className="proceed" onClick={navToHomeClick}>Proceed without logging in</button>
 
       </main>
     </div>
-
   );
 };
 

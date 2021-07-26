@@ -10,7 +10,9 @@ const Post = ({ post }) => {
 
   const [postTags, setPostTags] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
+    console.log(post);
+    console.log(post.tags);
     setPostTags(post.tags);
   }, [post])
 

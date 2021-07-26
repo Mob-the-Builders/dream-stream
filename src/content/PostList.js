@@ -33,11 +33,11 @@ const PostList = () => {
     dispatch({
       type: 'POSTS_LOADED', payload: load,
     });
-  }, [tags]); // LIKED var här
-
+  }, [tags]);
+  
   return (
     <div className="post-list-container-flex">
-      {posts.map((post, index) => <Post key={index} post={post} />)}
+      {posts.map((post) => <Post post={post} key={post._id}/>)}
     </div>
   );
 };

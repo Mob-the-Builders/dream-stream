@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { navigate } from 'gatsby';
 import axios from 'axios';
 import Menubar from '../components/Menubar';
 import './login.scss';
+import {navToHomeClick, navToSignupClick, navTest} from '../components/utils/navigation';
 
 const LoginPage = () => {
   const [userName, setName] = useState('');
@@ -16,7 +16,7 @@ const LoginPage = () => {
       const response = await axios.post('/api/login-user', login);
       localStorage.setItem('user', userName);
       localStorage.setItem('userId', response.data.userTags);
-      navigate('/');
+      navTest();
     } catch (error) {
       console.log(error);
     }
@@ -28,8 +28,7 @@ const LoginPage = () => {
     <div className="top-container">
       <Menubar />
       <main className="main">
-        <div className="card card--register" >
-          <form onSubmit={onSubmit}>
+          <form className="card card--register" onSubmit={onSubmit}>
             <p className="card__register-title">Login</p>
 
             <input
@@ -57,11 +56,9 @@ const LoginPage = () => {
               onBlur={(e) => e.target.placeholder = 'Password'}
             />
             <input type="submit" className="card__btn" value="LOGIN" />
-
+            <button className="proceed" onClick={navToHomeClick}>Proceed without logging in</button>
+            <button className="proceed" onClick={navToSignupClick}>Sign up for a free account</button>
           </form>
-            <button className="proceed" onClick={() => navigate('/')}>Proceed without logging in</button>
-            <button className="proceed" onClick={() => navigate('/signup')}>Sign up for a free account</button>
-        </div>
 
       </main>
     </div>

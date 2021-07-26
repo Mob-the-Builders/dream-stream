@@ -11,7 +11,7 @@ const StreamFilter = () => {
 
       <div className="streamfilter__buttonlist">
         {/* <button id={'tagbutton--selected'}>puppy</button> */}
-        {streams.map((stream) => <FilterButton currentStream={stream} />)}
+        {streams.map((stream, index) => <FilterButton currentStream={stream} key={index}/>)}
       </div>
 
     </aside>

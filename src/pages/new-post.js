@@ -17,7 +17,7 @@ const NewPost = () => {
   const [tagsState, setTags] = useState('');
   const [descriptionState, setDescription] = useState('');
   const [uploadedImageState, setUploadImage] = useState('');
-  const [imagePreview, setImagePreview] = useState('');
+  const [imagePreview, setImagePreview] = useState(null);
   const [isLoading, updateLoading] = useState(false);
 
 
@@ -25,9 +25,10 @@ const NewPost = () => {
     const setImage = async (imageFile) => {
     
       setUploadImage(imageFile);
-      console.log('heeere', imageFile);
-    
-      console.log('again', URL.createObjectURL(imageFile));
+
+      setImagePreview(URL.createObjectURL(imageFile));
+
+
     };
 
 
@@ -123,8 +124,14 @@ const NewPost = () => {
                   </div>
                 </div>
 
+                {/* <div className="image-area" style={{backgroundImage: `url(${imagePreview})`}}> */}
                 <div className="image-area">
-                  <div className="file-input-wrapper">
+
+                  {/* <img className={'imagePreview'} src={imagePreview} /> */}
+                  <img className={`imagePreview ${imagePreview ? "" : "imagePreview--hide"}`} src={imagePreview} />
+
+                  {/* <div className="file-input-wrapper"> */}
+                  <div className={`file-input-wrapper ${imagePreview ? "file-input-wrapper--hide" : ""}`}>
                     <div className="file-input">
                       <input
                         required
@@ -164,6 +171,14 @@ const NewPost = () => {
               </section>
             </form>
           )}
+
+        {/* <div>Testing{imagePreview}</div> */}
+      {/* <img src={imagePreview}> */}
+      {/* <img src={require(imagePreview)} /> */}
+      {/* <img src={imagePreview} /> */}
+
+
+      {/* <div className={'testingAreaPreview'} style={{backgroundImage: `url(${imagePreview})`}} > testingAreaPreview</div> */}
 
       </main>
     </div>

@@ -4,6 +4,19 @@ import './post.scss';
 
 const Likes = ({ post }) => {
 
+
+  /*
+  Bugs/problems:
+    - Likes will not update properly when several users are logged into the same account
+
+    - Too much logic happens in the client. Iterating over all likes will not be scalable.
+      A better alterative would be off loading it to the serverless functions and do comparisions instead of iteration.
+
+      Make another API call that gets all liked posts by the user.
+      Compare the liked posts to the feed.
+      Update liked boolean accordingly.
+  */
+
   const [loading, updateLoading] = useState(true);
 
   const [liked, setLiked] = useState(false);
@@ -14,7 +27,7 @@ const Likes = ({ post }) => {
 
   const getPropKey = (obj) => {
     for (const prop in obj) {
-      if (obj[prop].userName === user){
+      if (obj[prop].userName === user) {
         return prop
       } 
     }
@@ -24,27 +37,29 @@ const Likes = ({ post }) => {
   // Initialize likes and like status
   useEffect(() => {
     
-    const likes = post.likes.data;    
+    try {
+      const likes = post.likes.data;    
+  
+      updateLikesDisplay(likes.length);
+      const propKey = getPropKey(likes);
+      if (propKey) {
+        setLiked(true);
+      }
 
-    updateLikesDisplay(likes.length);
-    const propKey = getPropKey(likes);
-    console.log(propKey);
-    if (propKey) {
-      console.log("liked");
-      setLiked(true);
+      updateLoading(false)
+      
+    } catch (error) {
+      console.log(error);
     }
-    updateLoading(false)
       
   }, [post])
 
-
- // Server call
- const getAllLikesFromServer = async () => {
-   const res = await axios.post('/api/get-likes-by-post-id', {id: post._id });
-   console.log(res);
-   return res.data.likes;
- }
-
+  // Server call
+  const getAllLikesFromServer = async () => {
+    const res = await axios.post('/api/get-likes-by-post-id', {id: post._id });
+    console.log(res);
+    return res.data.likes;
+  }
 
   // Helper functions
   const handleUnlike = async () => {
@@ -56,6 +71,8 @@ const Likes = ({ post }) => {
     const id = post.likes.data[propKey]._id
 
     const res = await axios.post('/api/delete-post-likes', { id: id });
+    console.log("unlike res");
+    console.log(res);
   }
 
   const handleLike = async () => {
@@ -83,10 +100,9 @@ const Likes = ({ post }) => {
       await handleLike();
     }
     
-    const res = await getAllLikesFromServer();
-    console.log(res.data.likes);
+    const allLikes = await getAllLikesFromServer();
 
-    updateLikesDisplay(res.data.likes.length);
+    updateLikesDisplay(allLikes.length);
 
     updateLoading(false);
   };
