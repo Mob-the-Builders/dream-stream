@@ -49,18 +49,20 @@ const LoginPage = () => {
               onFocus={(e) => e.target.placeholder = ''}
               onBlur={(e) => e.target.placeholder = 'Username'}
             />
-
-            <input
-              required
-              className="card__input"
-              type="password"
-              id="description"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPass(e.target.value.toLowerCase())}
-              onFocus={(e) => e.target.placeholder = ''}
-              onBlur={(e) => e.target.placeholder = 'Password'}
-            />
+            {/* <label> */}
+              <input
+                required
+                className="card__input"
+                type="password"
+                id="description"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPass(e.target.value.toLowerCase())}
+                onFocus={(e) => e.target.placeholder = ''}
+                onBlur={(e) => e.target.placeholder = 'Password'}
+              />
+            {/* <div className="label-text">Password</div>
+            </label> */}
             <input type="submit" className="card__btn" value="LOGIN" />
           </form>
           <button className="proceed" onClick={navToHomeClick}>Proceed without logging in</button>

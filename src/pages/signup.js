@@ -11,6 +11,7 @@ const SignupPage = () => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
   const [redirect, setRedirect] = useState(false);
   const [isLoading, setLoading] = useState(false); 
+  const [isTaken, setTaken] = useState(false);
 
   useEffect(() => {
     if(redirect){
@@ -48,6 +49,7 @@ const SignupPage = () => {
       setRedirect(true);
 
     } catch (err) {
+      setTaken(true);
       console.error(err);
     }
 
@@ -68,7 +70,7 @@ const SignupPage = () => {
 
           <input
             required
-            className="card__input"
+            className={`card__input ${isTaken ? 'warning' : ''}`}
             type="text"
             id="title"
             autoComplete="off"

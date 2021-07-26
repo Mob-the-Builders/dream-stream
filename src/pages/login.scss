@@ -49,6 +49,31 @@
 
 }
 
+/* button styling */
+button {
+  background: transparent;
+  color: #F0F0F0;
+  border: 2px solid #F0F0F0;
+  font-size: 15px;
+  letter-spacing: 2px;
+  padding: 20px 75px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-block;
+
+  -webkit-transition: all 0.4s;
+ -moz-transition: all 0.4s;
+ transition: all 0.4s;
+}
+button:hover, button:focus {
+  background-color: white;
+  color: #333333;
+}
+
+.warning {
+  border: 2px solid red;
+}
+
 /*
 this entire file was the code below: using this comment for safe copying
 .card--register {
