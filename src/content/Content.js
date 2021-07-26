@@ -17,10 +17,9 @@ const Content = () => {
   // Updates followed tags after server call is made
   useEffect(async () => {
     if (user) {
-      const response = await axios.post('/api/get-tags-user', { userName: user });
+      await axios.post('/api/get-tags-user', { userName: user });
       const load = await getUserTags();
       dispatch({ type: 'USER_GET_STREAMS', payload: load });
-      console.log(response.data.userTags);
     }
   }, []);
 

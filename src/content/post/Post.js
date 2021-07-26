@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './post.scss';
 import CommentSection from './CommentSection';
 import FollowUnfollowStream from '../FollowUnfollowStream';
@@ -7,7 +7,13 @@ import TimeAgo from 'react-timeago'
 
 
 const Post = ({ post }) => {
-  console.log(post.date);
+
+  const [postTags, setPostTags] = useState([]);
+
+  useEffect(()=>{
+    setPostTags(post.tags);
+  }, [post])
+
   return(
     <article className="post">
 
@@ -19,11 +25,11 @@ const Post = ({ post }) => {
         </div>
       </div>
 
-      <img src={post.image} alt="Dummy text" className="post__image" />
+      <img src={post.image} alt="Loading..." className="post__image" />
       <div className="post__infoBar">
         <span className="post__streams">
           Streams:
-          {post.tags.map((tag) => <FollowUnfollowStream currentStream={tag} />)}
+          {postTags.map((tag) => <FollowUnfollowStream currentStream={tag} />)}
         </span>
         <span className="post__posted"><TimeAgo date={post.date} /></span>
       </div>

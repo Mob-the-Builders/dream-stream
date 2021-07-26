@@ -17,8 +17,20 @@ const NewPost = () => {
   const [tagsState, setTags] = useState('');
   const [descriptionState, setDescription] = useState('');
   const [uploadedImageState, setUploadImage] = useState('');
-
+  const [imagePreview, setImagePreview] = useState('');
   const [isLoading, updateLoading] = useState(false);
+
+
+
+    const setImage = async (imageFile) => {
+    
+      setUploadImage(imageFile);
+      console.log('heeere', imageFile);
+    
+      console.log('again', URL.createObjectURL(imageFile));
+    };
+
+
 
   // Uploads post data to database
   const uploadPost = async (image, description, tags) => {
@@ -117,7 +129,8 @@ const NewPost = () => {
                       <input
                         required
                         type="file"
-                        onChange={(e) => setUploadImage(e.target.files[0])}
+                        // onChange={(e) => setUploadImage(e.target.files[0])}
+                        onChange={(e) => setImage(e.target.files[0])}
                         name="file-input"
                         id="file-input"
                         className="file-input__input"

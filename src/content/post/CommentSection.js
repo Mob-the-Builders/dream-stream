@@ -23,10 +23,15 @@ const CommentSection = ({ post }) => {
 
   // Updates comment list when post loads
   useEffect(() => {
-    if (post.comments.data.length > 0) {
-      updateCommentList(createJSX(post.comments.data));
-    } else {
-      updateCommentList([]);
+    try {
+      if (post.comments.data.length > 0) {
+        updateCommentList(createJSX(post.comments.data));
+      } else {
+        updateCommentList([]);
+      }
+      
+    } catch (error) {
+      console.log(error);
     }
   }, [post]);
 

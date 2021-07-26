@@ -4,6 +4,7 @@ const query = require('./utils/query');
 const CREATE_POST_LIKES = `
   mutation( $userName: String!, $postId: ID!){
     createLikes(data: {userName: $userName, post: {connect: $postId} }){
+      _id
       userName
     }
   }
@@ -22,6 +23,6 @@ exports.handler = async (event) => {
   }
   return {
     statusCode: 200,
-    body: JSON.stringify({ updatedLikes: data.createLikes }),
+    body: JSON.stringify({ like: data.createLikes }),
   };
 };

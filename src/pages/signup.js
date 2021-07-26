@@ -63,7 +63,6 @@ const SignupPage = () => {
     <div className="top-container">
       <Menubar />
       <main className="main">
-        {/* <button onClick={() => navigate('/')}>Proceed without logging in</button> */}
         <form className="card card--register" onSubmit={onSubmit}>
           <p className="card__register-title">Create your account</p>
 
