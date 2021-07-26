@@ -1,31 +1,62 @@
 import React, { useState, useEffect } from 'react';
-import { navigate } from '@reach/router';
+import { navigate } from 'gatsby';
 import axios from 'axios';
 import Menubar from '../components/Menubar';
 import './login.scss';
 
-const LoginPage = () => {
+const SignupPage = () => {
   const [userName, setName] = useState('');
   const [password, setPass] = useState('');
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
 
+  const [redirect, setRedirect] = useState(false);
+
+  useEffect(() => {
+    if(redirect){
+      navigate('/');
+    }
+  }, [redirect])
+  
+  const createUser = async (pair) => {
+    console.log('creating...', pair)
+    const res = await axios.post('/api/create-user', pair)
+    console.log(res);
+    return res.status
+  };
+
+  const loginUser = async (pair) => {
+    const res = await axios.post('/api/login-user', pair)
+    console.log('login res:', res);
+    return res
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    const login = { userName, password };
     try {
-      const response = await axios.post('/api/login-user', login);
+      const newUser = { userName, password };
+
+      const createUserStatus = await createUser(newUser);
+      console.log('past login seq', createUserStatus)
+      if(createUserStatus !== 200) {
+        return; 
+      }
+
+      const loginStatus = await loginUser(newUser);
+      if(loginStatus.status !== 200){
+        return;
+      }
+      console.log('past the login seq',loginStatus)
+
       localStorage.setItem('user', userName);
-      localStorage.setItem('userId', response.data.userTags);
-      console.log(localStorage.getItem('userId'));
-      console.log(localStorage.getItem('user'));
-      navigate('/');
+      localStorage.setItem('userId', loginStatus.data.userTags);
+      setRedirect(true);
     } catch (error) {
       console.log(error);
     }
     // const data = await axios.post('/api/login-user', login)
-    console.log('login');
     setName('');
     setPass('');
+    setRedirect(false);
   };
 
   return (
@@ -34,7 +65,7 @@ const LoginPage = () => {
       <main className="main">
         {/* <button onClick={() => navigate('/')}>Proceed without logging in</button> */}
         <form className="card card--register" onSubmit={onSubmit}>
-          <p className="card__register-title">Login</p>
+          <p className="card__register-title">Create your account</p>
 
           <input
             required
@@ -61,7 +92,7 @@ const LoginPage = () => {
             onBlur={(e) => e.target.placeholder = 'Password'}
           />
 
-          <input type="submit" className="card__btn" value="LOGIN" />
+          <input type="submit" className="card__btn" value="Sign Up" />
 
           <button className="proceed" onClick={() => navigate('/')}>Proceed without logging in</button>
         </form>
@@ -72,4 +103,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignupPage;

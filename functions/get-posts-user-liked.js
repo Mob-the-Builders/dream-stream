@@ -1,10 +1,12 @@
-// get-posts-by-tag.js
+// get-posts-user-liked.js
+
 const query = require('./utils/query');
 
-const GET_BY_TAG = `
-     query getByTag($tags: String){
-        getByTag(tags: $tags){ 
+const GET_POSTS_LIKE_BY_NAME = `
+     query getPostLikeByName($userName: String){
+      getPostLikeByName(userName: $userName){ 
           data{
+            post{
               _id
               userName
               image
@@ -24,12 +26,13 @@ const GET_BY_TAG = `
              }
             }
            }
+          }
          }
  `;
 
 exports.handler = async (event) => {
-  const { tags } = JSON.parse(event.body);
-  const { data, errors } = await query(GET_BY_TAG, { tags });
+  const { userName } = JSON.parse(event.body);
+  const { data, errors } = await query(GET_POSTS_LIKE_BY_NAME, { userName });
 
   if (errors) {
     return {
@@ -40,6 +43,6 @@ exports.handler = async (event) => {
 
   return {
     statusCode: 200,
-    body: JSON.stringify({ messages: data.getByTag.data }),
+    body: JSON.stringify({ messages: data.getPostLikeByName.data }),
   };
 };

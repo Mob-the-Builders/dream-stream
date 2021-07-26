@@ -52,7 +52,8 @@ const CommentSection = ({ post }) => {
   // Handles submitting comment
   const onSubmit = async (e) => {
     e.preventDefault();
-    const userName = user; const message = comment;
+    const userName = user;
+    const message = comment;
     const commentJSX = (
       <li>
         <b>{userName}</b>
@@ -61,6 +62,7 @@ const CommentSection = ({ post }) => {
         {message}
       </li>
     );
+
     setComment('');
     updateCommentList([...commentList, commentJSX]);
 

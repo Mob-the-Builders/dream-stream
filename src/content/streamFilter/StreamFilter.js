@@ -1,7 +1,7 @@
 import React from 'react';
-import FilterButton from './FilterButton';
 import './StreamFilter.scss';
 import { useSelector } from 'react-redux';
+import FilterButton from './FilterButton';
 
 const StreamFilter = () => {
   const { streams } = useSelector((state) => state.user);

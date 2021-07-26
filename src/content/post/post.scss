@@ -130,15 +130,55 @@
     border-radius: 10px;
     display: grid;
     place-items: center;
-    // align-self: center;
     height: 33px;
     padding-left: 10px;
     padding-right: 10px;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-    background: #EA3D67;
+    // background: #EA3D67;
+    background: rgba(255, 255, 255, 0);
+    border: 1.5px solid #EA3D67;
 
-    // background: blue;
+
+    & svg {
+      fill: #EA3D67;
+    }
+
+    & span {
+      height: 20px;
+      text-align: center;
+      vertical-align: middle;
+      color: #EA3D67;
+    }
+
+    &--liked{
+      margin-bottom: 15px;
+      margin-right: 50px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      height: 33px;
+      padding-left: 10px;
+      padding-right: 10px;
+      box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+      background: rgba(236, 68, 110, 0.902);
+      // border: 1.7px solid white;
+  
+  
+      & svg {
+        fill: white;
+        margin-right: 2px;
+      }
+  
+      & span {
+        height: 20px;
+        text-align: center;
+        vertical-align: middle;
+        color: white;
+      }
+    }
   }
+
+  
 
   &__likes-container-flex{
     display: flex;
@@ -149,10 +189,9 @@
     font-size: 18px;
     align-items: center;
     color: white;
+    align-items: center;
 
-    & svg {
-      fill: white;
-    }
+    
   }
 
   &__likes__nr{

@@ -5,23 +5,19 @@ type Comment {
 }
 
 type Likes {
-    likes: [String!]
-    #remove the one on top
-    #userName: String!
+    userName: String!
     post: Post
 }
 
 type Post {
     userName: String!
-    title: String!
+    title: String
     description: String
     image: String!
     imageDelete: String!
     date: String!
     tags: [String!]
-    likes: Likes @relation
-    #remove the one on top
-    # add this -> likes: [Likes] @relation
+    likes: [Likes] @relation
     comments: [Comment] @relation
 }
 
@@ -41,7 +37,7 @@ type Query {
   allComments: [Comment!]
   allUsers: [User!]
   getUserByName(userName: String): User
-  getLikeByName(userName: String): [Post!]!
+  getPostLikeByName(userName: String): [Likes!]!
   getPostByName(userName: String): [Post!]!
   getByTag(tags: String): [Post]
 }

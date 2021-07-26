@@ -7,12 +7,16 @@ const GET_POSTS = `
            data {
               _id
               userName
+              title
+              date
               image
               description
               tags
               likes {
-                _id
-                likes
+                data{
+                  _id
+                  userName
+                }
               }
               comments {
                 data {

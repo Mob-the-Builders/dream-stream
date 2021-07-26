@@ -8,13 +8,11 @@ import './new-post.scss';
 const NewPost = () => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
 
-
   useEffect(() => {
     if (!user) {
       navigate('/login');
     }
   },[])
-
 
   const [tagsState, setTags] = useState('');
   const [descriptionState, setDescription] = useState('');
@@ -22,7 +20,7 @@ const NewPost = () => {
 
   const [isLoading, updateLoading] = useState(false);
 
-  // Uploads image poster data to database
+  // Uploads post data to database
   const uploadPost = async (image, description, tags) => {
     console.log('in upload to database');
     await axios.post('/api/create-post', {
@@ -79,7 +77,6 @@ const NewPost = () => {
       updateLoading(true);
 
       const image = await uploadCloudinary(uploadedImage);
-      console.log(`cloudinary upload finished ${image}`);
       await uploadPost(image, description, tagsParsed);
 
       navigate('/');
@@ -105,6 +102,8 @@ const NewPost = () => {
                     value={descriptionState}
                     autoComplete="off"
                     onChange={(e) => setDescription(e.target.value)}
+                    onFocus={(e) => e.target.placeholder = ''}
+                    onBlur={(e) => e.target.placeholder = 'Add a description...'}
                   />
                   <div className="newpost_user">
                     <div className="newpost_user__pic">🐤</div>
@@ -144,6 +143,8 @@ const NewPost = () => {
                     value={tagsState}
                     autoComplete="off"
                     onChange={(e) => setTags(e.target.value)}
+                    onFocus={(e) => e.target.placeholder = ''}
+                    onBlur={(e) => e.target.placeholder = 'Select streams...'}
                   />
                   <input type="submit" value="Post" />
                 </div>

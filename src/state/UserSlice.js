@@ -12,21 +12,18 @@ function userReducer(state = initialState, action) {
       };
 
     case 'USER_GET_STREAMS':
-      console.log('hello from user slice', action);
       return {
         ...state,
         streams: action.payload,
       };
 
     case 'USER_ADD_STREAM':
-      console.log('hello from user slice', action);
       return {
         ...state,
         streams: [...state.streams, action.payload],
       };
 
     case 'USER_REMOVE_STREAM':
-      console.log('hello from user remove', action.type);
       return {
         ...state,
         streams: state.streams.filter((stream) => stream !== action.payload),

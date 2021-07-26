@@ -1,27 +1,27 @@
-// get-comments-by-post-id.js
+// get-likes-by-post-id.js
 const query = require('./utils/query');
 
-const GET_COMMENTS_BY_ID = `
+const GET_LIKES_BY_ID = `
      query findPostByID($id: ID!){
       findPostByID(id: $id){
-        comments {
-          data {
+        likes {
+          data{
+            _id
             userName
-            message
           }
         }
-        }
       }
+    }
  `;
 
 exports.handler = async (event) => {
-  console.log('GET COMMENTS BY POST ID!!!!!!!!! ');
+  console.log('GET LIKES BY POST ID!!!!!!!!! ');
 
   const { id } = JSON.parse(event.body);
   console.log(id);
-  const { data, errors } = await query(GET_COMMENTS_BY_ID, { id });
+  const { data, errors } = await query(GET_LIKES_BY_ID, { id });
   console.log(data);
-  console.log(data.findPostByID.comments.data);
+  console.log(data.findPostByID.likes.data);
   if (errors) {
     return {
       statusCode: 500,
@@ -31,6 +31,6 @@ exports.handler = async (event) => {
 
   return {
     statusCode: 200,
-    body: JSON.stringify({ messages: data.findPostByID.comments.data }),
+    body: JSON.stringify({ likes: data.findPostByID.likes.data }),
   };
 };

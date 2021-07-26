@@ -1,0 +1,1 @@
+//getPostByName.js function to build

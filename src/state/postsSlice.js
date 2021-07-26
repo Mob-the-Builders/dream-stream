@@ -1,16 +1,8 @@
 const postsInitialState = {
   posts: [],
   tags: [],
+  liked: [],
 };
-/*
- - add tag
- - remove tag
- - remove all
- - add all
-
- - add ONE tag => deselect all other tags
- - remove tag === Show all posts
- */
 
 const postsReducer = (state = postsInitialState, action) => {
   switch (action.type) {
@@ -24,6 +16,12 @@ const postsReducer = (state = postsInitialState, action) => {
       return {
         ...state,
         tags: action.payload,
+      };
+
+    case 'POSTS_FILTERED_LIKED':
+      return {
+        ...state,
+        liked: action.payload,
       };
 
     default:
