@@ -2,7 +2,8 @@ import React from 'react';
 import { navigate } from '@reach/router';
 import Menubar from '../components/Menubar';
 import './streams.scss';
-import FilterButton from '../content/streamFilter/FilterButton';
+import { useSelector } from 'react-redux';
+import FollowUnfollowStream from '../content/streams/FollowUnfollowStream';
 
 
 const Streams = () => {
@@ -10,6 +11,10 @@ const Streams = () => {
   if (!user) {
     navigate('/login');
   }
+
+  const { streams } = useSelector((state) => state.user);
+
+  console.log(streams);
   // if (!localStorage.getItem('user')) navigate('/login');
 
   return (
@@ -23,114 +28,19 @@ const Streams = () => {
             <div className={'streams__buttonList'}>
             <button className={'tagbutton tagbutton--selected'}>Selected</button>
             <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <FilterButton currentStream={'testing1'} />
-              <FilterButton currentStream={'testing2'} />
-              <FilterButton currentStream={'testing3'} />
+              {/* <FilterButton currentStream={'testing1'} /> */}
+
+
               <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <FilterButton currentStream={'testing4'} />
-              <FilterButton currentStream={'testing5'} />
-              <FilterButton currentStream={'testing6'} />
-              <FilterButton currentStream={'testing7'} />
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <FilterButton currentStream={'testing8'} />
-              <FilterButton currentStream={'testing9'} />
-              <FilterButton currentStream={'testing10'} />
-              <FilterButton currentStream={'testing11'} />
-              <FilterButton currentStream={'testing12'} />
+
+   
             </div>
           </div>
           <div className="streams__container">
             <h3>Your Streams</h3>
             <div className={'streams__buttonList'}>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
-              <button className={'tagbutton tagbutton--selected'}>Selected</button>
+              {/* <button className={'tagbutton tagbutton--selected'}>Selected</button> */}
+              {streams.map((tag) => <FollowUnfollowStream currentStream={tag} />)}
             </div>
             
           </div>
