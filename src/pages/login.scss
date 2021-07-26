@@ -1,16 +1,10 @@
 .card--register {
-  width: 600px;
-  height: 350px;
-  margin-top: 8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  border: 1px solid rgba(120, 120, 141, 0.5);
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border-radius: 10px;
-  background: #b6daf9;
-
+  width: 600px;
+  height: 350px;
   & input {
 
     width: 82%;
@@ -42,6 +36,18 @@
   &:hover {
     color: #35343b;
   }
+}
+
+.register-container-flex{
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 8rem;
+  border: 1px solid rgba(120, 120, 141, 0.5);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 10px;
+  background: #b6daf9;
+
 }
 
 /*

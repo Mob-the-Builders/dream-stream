@@ -62,6 +62,7 @@ const SignupPage = () => {
     <div className="top-container">
       <Menubar />
       <main className="main">
+      <section className="register-container-flex">
         <form className="card card--register" onSubmit={onSubmit}>
           <p className="card__register-title">Create your account</p>
 
@@ -96,7 +97,7 @@ const SignupPage = () => {
         <button className="proceed" onClick={navToLoginClick}>Already have an account?</button>
 
         <button className="proceed" onClick={navToHomeClick}>Proceed without logging in</button>
-
+      </section>
       </main>
     </div>
   );
