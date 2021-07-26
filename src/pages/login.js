@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Menubar from '../components/Menubar';
 import './login.scss';
@@ -28,6 +28,7 @@ const LoginPage = () => {
     <div className="top-container">
       <Menubar />
       <main className="main">
+        <section className="form-container-flex">
           <form className="card card--register" onSubmit={onSubmit}>
             <p className="card__register-title">Login</p>
 
@@ -56,10 +57,10 @@ const LoginPage = () => {
               onBlur={(e) => e.target.placeholder = 'Password'}
             />
             <input type="submit" className="card__btn" value="LOGIN" />
-            <button className="proceed" onClick={navToHomeClick}>Proceed without logging in</button>
-            <button className="proceed" onClick={navToSignupClick}>Sign up for a free account</button>
           </form>
-
+          <button className="proceed" onClick={navToHomeClick}>Proceed without logging in</button>
+          <button className="proceed" onClick={navToSignupClick}>Sign up for a free account</button>
+        </section>
       </main>
     </div>
 
