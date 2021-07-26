@@ -20,8 +20,6 @@ const NewPost = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [isLoading, updateLoading] = useState(false);
 
-
-
     const setImage = async (imageFile) => {
     
       setUploadImage(imageFile);

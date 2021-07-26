@@ -33,9 +33,7 @@ const SignupPage = () => {
     e.preventDefault();
     try {
       const newUser = { userName, password };
-
       const createUserStatus = await createUser(newUser);
-      console.log('past login seq', createUserStatus)
       if(createUserStatus !== 200) {
         return; 
       }
@@ -44,7 +42,6 @@ const SignupPage = () => {
       if(loginStatus.status !== 200){
         return;
       }
-      console.log('past the login seq',loginStatus)
 
       localStorage.setItem('user', userName);
       localStorage.setItem('userId', loginStatus.data.userTags);
@@ -52,7 +49,6 @@ const SignupPage = () => {
     } catch (error) {
       console.log(error);
     }
-    // const data = await axios.post('/api/login-user', login)
     setName('');
     setPass('');
     setRedirect(false);
@@ -62,6 +58,7 @@ const SignupPage = () => {
     <div className="top-container">
       <Menubar />
       <main className="main">
+      <section className="form-container-flex">
         <form className="card card--register" onSubmit={onSubmit}>
           <p className="card__register-title">Create your account</p>
 
@@ -94,9 +91,8 @@ const SignupPage = () => {
 
         </form>
         <button className="proceed" onClick={navToLoginClick}>Already have an account?</button>
-
         <button className="proceed" onClick={navToHomeClick}>Proceed without logging in</button>
-
+      </section>
       </main>
     </div>
   );
