@@ -3,13 +3,14 @@ import axios from 'axios';
 import Menubar from '../components/Menubar';
 import {navToHomeClick, navToLoginClick} from '../components/utils/navigation';
 import './login.scss';
+import Loader from '../components/Loader/Loader';
 
 const SignupPage = () => {
   const [userName, setName] = useState('');
   const [password, setPass] = useState('');
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
-
   const [redirect, setRedirect] = useState(false);
+  const [isLoading, setLoading] = useState(false); 
 
   useEffect(() => {
     if(redirect){
@@ -18,10 +19,8 @@ const SignupPage = () => {
   }, [redirect])
   
   const createUser = async (pair) => {
-    console.log('creating...', pair)
     const res = await axios.post('/api/create-user', pair)
-    console.log(res);
-    return res.status
+    return res
   };
 
   const loginUser = async (pair) => {
@@ -32,9 +31,10 @@ const SignupPage = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const newUser = { userName, password };
       const createUserStatus = await createUser(newUser);
-      if(createUserStatus !== 200) {
+      if(createUserStatus.status !== 200) {
         return; 
       }
 
@@ -42,16 +42,19 @@ const SignupPage = () => {
       if(loginStatus.status !== 200){
         return;
       }
-
+      
       localStorage.setItem('user', userName);
       localStorage.setItem('userId', loginStatus.data.userTags);
       setRedirect(true);
-    } catch (error) {
-      console.log(error);
+
+    } catch (err) {
+      console.error(err);
     }
+
     setName('');
     setPass('');
     setRedirect(false);
+    setLoading(false);
   };
 
   return (
@@ -59,6 +62,7 @@ const SignupPage = () => {
       <Menubar />
       <main className="main">
       <section className="form-container-flex">
+        {isLoading ? <Loader /> : <></>}
         <form className="card card--register" onSubmit={onSubmit}>
           <p className="card__register-title">Create your account</p>
 
