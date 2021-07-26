@@ -95,7 +95,6 @@ const SignupPage = () => {
 
         </form>
         <button className="proceed" onClick={navToLoginClick}>Already have an account?</button>
-
         <button className="proceed" onClick={navToHomeClick}>Proceed without logging in</button>
       </section>
       </main>
