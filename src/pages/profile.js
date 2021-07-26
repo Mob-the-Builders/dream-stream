@@ -16,7 +16,7 @@ const Profile = () => {
     navigate('/login');
   }
 
-  const [buttonChoice, setButtonChoice] = useState("liked")
+  const [buttonChoice, setButtonChoice] = useState("posted")
 
   const [jsx, setJSX] = useState(<></>)
 
@@ -89,8 +89,9 @@ const Profile = () => {
         <aside className="streamfilter">
           {/* <h3>YOUR STREAMS</h3> */}
           <div className="profile__buttonlist">
-            <button onClick={clickPosted} className="profile__button--selected">Posts Made By You</button>
-            <button onClick={clickLiked} className="profile__button profile__button">Posts You Liked</button>
+            {/* <button onClick={clickLiked} className="profile__button">Posts You Liked</button> */}
+            <button onClick={clickPosted} className={`profile__button ${buttonChoice == 'posted' ? 'profile__button--selected' : ''}`}>Posts Made By You</button>
+            <button onClick={clickLiked} className={`profile__button ${buttonChoice == 'posted' ? '' : 'profile__button--selected'}`}>Posts You Liked</button>
 
             {/* {streams.map((a) => <TagButton buttonText={a} tag={tag} setTag={setTag}/>)} */}
           </div>

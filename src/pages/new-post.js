@@ -66,9 +66,11 @@ const NewPost = () => {
 
   // Helper functions
   const tagParser = (tags) => {
-    const multipleSpacesRegex = /\s\s+/g;
-    tags.replace(multipleSpacesRegex, ' ');
-    return tags.split(' ', 3);
+
+    // const regex = /\S+/g; [\w\d]+
+    const regex = /\w+/g;
+    const tagsArray = tags.match(regex);  // array with words without spaces
+    return tagsArray;
   };
 
   const clearStates = () => {
@@ -81,11 +83,13 @@ const NewPost = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (!isLoading) {
+
       const tagsParsed = tagParser(tagsState);
       const description = descriptionState;
       const uploadedImage = uploadedImageState;
-      console.log(tagsParsed + description);
 
+      console.log("right under here should just work");
+      console.log(tagsParsed);
       clearStates();
       updateLoading(true);
 
@@ -102,7 +106,7 @@ const NewPost = () => {
       <main className="main">
 
         {isLoading
-          ? <section>Loading...</section>
+          ? <section className={'loading'}>Loading...</section>
           : (
             <form onSubmit={onSubmit}>
               <section className="newpost-card">
@@ -124,19 +128,15 @@ const NewPost = () => {
                   </div>
                 </div>
 
-                {/* <div className="image-area" style={{backgroundImage: `url(${imagePreview})`}}> */}
                 <div className="image-area">
 
-                  {/* <img className={'imagePreview'} src={imagePreview} /> */}
                   <img className={`imagePreview ${imagePreview ? "" : "imagePreview--hide"}`} src={imagePreview} />
 
-                  {/* <div className="file-input-wrapper"> */}
                   <div className={`file-input-wrapper ${imagePreview ? "file-input-wrapper--hide" : ""}`}>
                     <div className="file-input">
                       <input
                         required
                         type="file"
-                        // onChange={(e) => setUploadImage(e.target.files[0])}
                         onChange={(e) => setImage(e.target.files[0])}
                         name="file-input"
                         id="file-input"
@@ -171,14 +171,6 @@ const NewPost = () => {
               </section>
             </form>
           )}
-
-        {/* <div>Testing{imagePreview}</div> */}
-      {/* <img src={imagePreview}> */}
-      {/* <img src={require(imagePreview)} /> */}
-      {/* <img src={imagePreview} /> */}
-
-
-      {/* <div className={'testingAreaPreview'} style={{backgroundImage: `url(${imagePreview})`}} > testingAreaPreview</div> */}
 
       </main>
     </div>
