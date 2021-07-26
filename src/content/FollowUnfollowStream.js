@@ -9,9 +9,15 @@ const FollowUnfollowStream = ({ currentStream }) => {
   const followedStreams = useSelector((state) => state.user.streams);
   const dispatch = useDispatch();
 
+  console.log("in body");
+  console.log(followedStreams);
+
   // Posts followed streams to database
   const updateDatabase = async () => {
+    console.log("update database");
+    console.log(followedStreams);
     await axios.post('/api/update-user-tags', { id: localStorage.getItem('userId'), tags: followedStreams });
+    console.log(followedStreams);
   };
 
   // Handles following and unfollowing streams
@@ -23,6 +29,9 @@ const FollowUnfollowStream = ({ currentStream }) => {
     dispatch({
       type: action, payload: currentStream,
     });
+
+    console.log("on click");
+    console.log(followedStreams);
 
     updateDatabase();
   };

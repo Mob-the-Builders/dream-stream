@@ -3,7 +3,7 @@ import { navigate } from '@reach/router';
 import Menubar from '../components/Menubar';
 import './streams.scss';
 import { useSelector } from 'react-redux';
-import FollowUnfollowStream from '../content/streams/FollowUnfollowStream';
+import FollowUnfollowStream from '../content/streams/ProfileUnfollow';
 
 
 const Streams = () => {
