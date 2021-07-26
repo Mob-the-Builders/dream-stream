@@ -2,15 +2,18 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Menubar from '../components/Menubar';
 import './login.scss';
+import Loader from '../components/Loader/Loader';
 import {navToHomeClick, navToSignupClick, navTest} from '../components/utils/navigation';
 
 const LoginPage = () => {
   const [userName, setName] = useState('');
   const [password, setPass] = useState('');
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
+  const [isLoading, setLoading] = useState(false); 
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const login = { userName, password };
     try {
       const response = await axios.post('/api/login-user', login);
@@ -22,6 +25,7 @@ const LoginPage = () => {
     }
     setName('');
     setPass('');
+    setLoading(true);
   };
 
   return (
@@ -29,6 +33,7 @@ const LoginPage = () => {
       <Menubar />
       <main className="main">
         <section className="form-container-flex">
+          {isLoading ? <Loader /> : <></>}
           <form className="card card--register" onSubmit={onSubmit}>
             <p className="card__register-title">Login</p>
 
