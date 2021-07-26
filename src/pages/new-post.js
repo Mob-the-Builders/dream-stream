@@ -36,6 +36,9 @@ const NewPost = () => {
   // Uploads post data to database
   const uploadPost = async (image, description, tags) => {
     console.log('in upload to database');
+    console.log(image);
+    console.log(description);
+    console.log(tags);
     await axios.post('/api/create-post', {
       userName: user,
       image: image.url,
@@ -66,10 +69,13 @@ const NewPost = () => {
 
   // Helper functions
   const tagParser = (tags) => {
-
-    // const regex = /\S+/g; [\w\d]+
     const regex = /\w+/g;
     const tagsArray = tags.match(regex);  // array with words without spaces
+
+    if (tagsArray.length >= 3) {
+      return [tagsArray[0], tagsArray[1], tagsArray[2]];
+    }
+    
     return tagsArray;
   };
 

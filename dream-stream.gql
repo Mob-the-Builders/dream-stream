@@ -37,6 +37,8 @@ type Query {
   allComments: [Comment!]
   allUsers: [User!]
   getUserByName(userName: String): User
+  getTopStreams(tags: [String!]): [UserTags!]!
+  getUserTags(tags: [String!]): [UserTags!]!
   getPostLikeByName(userName: String): [Likes!]!
   getPostByName(userName: String): [Post!]!
   getByTag(tags: String): [Post]

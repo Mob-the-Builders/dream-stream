@@ -19,6 +19,7 @@ const PostList = () => {
 
   const getAllPosts = async () => {
     const res = await axios('/api/get-post');
+    console.log(res);
     return res.data.messages.reverse();
   };
 
@@ -34,7 +35,7 @@ const PostList = () => {
       type: 'POSTS_LOADED', payload: load,
     });
   }, [tags]);
-  
+
   return (
     <div className="post-list-container-flex">
       {posts.map((post) => <Post post={post} key={post._id}/>)}
