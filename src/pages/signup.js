@@ -4,6 +4,7 @@ import Menubar from '../components/Menubar';
 import {navToHomeClick, navToLoginClick} from '../components/utils/navigation';
 import './login.scss';
 import Loader from '../components/Loader/Loader';
+import { Link } from 'gatsby';
 
 const SignupPage = () => {
   const [userName, setName] = useState('');
@@ -49,9 +50,9 @@ const SignupPage = () => {
       setRedirect(true);
 
     } catch (err) {
-      setTaken(true);
       console.log('adadad', err.body)
       console.error(err);
+      setTaken(true);
     }
 
     setName('');
@@ -64,6 +65,8 @@ const SignupPage = () => {
     <div className="top-container">
       <Menubar />
       <main className="main">
+      {isTaken ? 'USERNAME TAKEN' : <></>}
+
       <section className="form-container-flex">
         {isLoading ? <Loader /> : <></>}
         <form className="card card--register" onSubmit={onSubmit}>
@@ -97,8 +100,10 @@ const SignupPage = () => {
           <input type="submit" className="card__btn" value="Sign Up" />
 
         </form>
-        <button className="proceed" onClick={navToLoginClick}>Already have an account?</button>
-        <button className="proceed" onClick={navToHomeClick}>Proceed without logging in</button>
+        <span className="card__nav-container">
+            <Link to="/login" className="card__link">Log in to Dream Stream</Link>
+            <Link to="/" className="card__link">Proceed without logging in</Link>
+          </span>
       </section>
       </main>
     </div>

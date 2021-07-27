@@ -11,9 +11,10 @@
     border-radius: 7px;
     text-align: center;
     font-size: 18px;
+    border: transparent;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   }
 }
-
 .card__register-title {
   font-size: 32px;
   color: #4C4B66;
@@ -25,6 +26,16 @@
   color: white;
   background: #116ebb;
   margin-bottom: 10px;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  border: transparent;
+}
+
+.card__btn:hover {
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
 }
 
 .proceed {
@@ -41,7 +52,7 @@
 .form-container-flex{
   display: flex;
   flex-direction: column;
-
+  align-items: center;
   margin-top: 8rem;
   border: 1px solid rgba(120, 120, 141, 0.5);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -50,23 +61,6 @@
 
 }
 
-/* button styling */
-.something {
-  background: transparent;
-  color: #F0F0F0;
-  border-top: none;
-  border: 1px solid #F0F0F0;
-  font-size: 15px;
-  letter-spacing: 2px;
-  padding: 20px 75px;
-  text-transform: uppercase;
-  cursor: pointer;
-  display: inline-block;
-
-  -webkit-transition: all 0.4s;
- -moz-transition: all 0.4s;
- transition: all 0.4s;
-}
 .something:hover, .something:focus {
   background-color: white;
   color: #333333;
@@ -76,52 +70,28 @@
   border: 2px solid red;
 }
 
-/*
-this entire file was the code below: using this comment for safe copying
-.card--register {
-  width: 600px;
-  height: 350px;
-  margin-top: 8rem;
+
+
+.card__nav-container{
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: space-around;
-  border: 1px solid rgba(120, 120, 141, 0.5);
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border-radius: 10px;
-  background: #b6daf9;
+  margin-bottom: 4%;
+  width: 82%;
 
-  & input {
+}
 
-    width: 82%;
-    height: 50px;
-    border-radius: 7px;
-    text-align: center;
-    font-size: 18px;
+.card__link{
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
+  text-decoration: none;
+  color: #116ebb;
+  &:visited {
+    color: #116ebb;
+    text-decoration: underline;
   }
-}
-
-.card__register-title {
-  font-size: 32px;
-  color: #4C4B66;
-  margin-top: 10px;
-}
-
-.card__btn {
-  font-size: 18px;
-  color: white;
-  background: #116ebb;
-}
-
-.proceed {
-  color: rgba(86, 84, 84, 0.848);
-  background: rgba(255, 255, 255, 0);
-  border: none;
-  font-size: 15px;
-
   &:hover {
-    color: #35343b;
+    color: white;
+    text-decoration: underline;
   }
 }
-
-*/

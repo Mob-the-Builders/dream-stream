@@ -4,6 +4,7 @@ import Menubar from '../components/Menubar';
 import './login.scss';
 import Loader from '../components/Loader/Loader';
 import {navToHomeClick, navToSignupClick, navTest} from '../components/utils/navigation';
+import {Link} from 'gatsby';
 
 const LoginPage = () => {
   const [userName, setName] = useState('');
@@ -64,8 +65,10 @@ const LoginPage = () => {
 
             <input type="submit" className="card__btn" value="LOGIN" />
           </form>
-          <button className="proceed something" onClick={navToHomeClick}>Proceed without logging in</button>
-          <button className="proceed something" onClick={navToSignupClick}>Sign up for a free account</button>
+          <span className="card__nav-container">
+            <Link to="/signup" className="card__link">Sign up for Dream Stream</Link>
+            <Link to="/" className="card__link">Proceed without logging in</Link>
+          </span>
         </section>
       </main>
     </div>
