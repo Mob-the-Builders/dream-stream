@@ -18,34 +18,20 @@ const FollowUnfollowStream = ({ currentStream }) => {
 
   // Handles following and unfollowing streams
   const onClick = async () => {
-    const streamForDatabase = isFollowed 
-    ? followedStreams.filter((stream) => stream !== currentStream) 
-    : [...followedStreams, currentStream];
+
+    const streams = isFollowed
+      ? followedStreams.filter((stream) => stream !== currentStream)
+      : [...followedStreams, currentStream];
 
     const action = isFollowed
-    ? 'USER_REMOVE_STREAM'
-    : 'USER_ADD_STREAM';
-
-    // if (isFollowed) {
-    //   dispatch({
-    //     type: 'USER_REMOVE_STREAM', payload: currentStream,
-    //   });
-
-    //   updateDatabase(followedStreams.filter((stream) => stream !== currentStream));
-    // } else {
-    //   dispatch({
-    //     type: 'USER_ADD_STREAM', payload: currentStream,
-    //   });
-
-    //   updateDatabase([...followedStreams, currentStream]);
-    // }
+      ? 'USER_REMOVE_STREAM'
+      : 'USER_ADD_STREAM';
 
     dispatch({
       type: action, payload: currentStream,
     });
 
-    updateDatabase(streamForDatabase);
-
+    updateDatabase(streams);
   };
 
   return (

@@ -36,7 +36,7 @@ const Content = () => {
       if (value.post !== null) {
         cleanPosts.push(value.post);
       }
-    })
+    });
     return cleanPosts;
   };
 
