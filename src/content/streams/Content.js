@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { navigate } from '@reach/router';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import FollowStreams from './StreamsFollow';
@@ -26,7 +25,6 @@ const Content = () => {
   useEffect(async () => {
     if (user) {
       const payload = await getUserTags();
-      console.log(payload);
       dispatch({ type: 'USER_GET_STREAMS', payload });
     }
   }, []);

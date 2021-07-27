@@ -3,9 +3,11 @@ import './post.scss';
 import TimeAgo from 'react-timeago';
 import CommentSection from './CommentSection';
 import FollowUnfollowStream from './FollowUnfollowStream';
+import DeletePost from './DeletePost';
 
 const Post = ({ post }) => {
   const [postTags, setPostTags] = useState([]);
+  const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
 
   useEffect(() => {
     setPostTags(post.tags);
@@ -21,6 +23,10 @@ const Post = ({ post }) => {
           {post.userName}
         </div>
       </div>
+
+      {user === post.userName 
+      ? <DeletePost currentPost={post} />
+      : <></> }
 
       <img src={post.image} alt="Loading..." className="post__image" />
       <div className="post__infoBar">

@@ -62,10 +62,10 @@ const LoginPage = () => {
               onBlur={(e) => e.target.placeholder = 'Password'}
             />
 
-            <input type="submit" className="card__btn" value="LOGIN" />
+            <input type="submit" className="card__btn login-btn" value="LOGIN" />
           </form>
           <button className="proceed something" onClick={navToHomeClick}>Proceed without logging in</button>
-          <button className="proceed something" onClick={navToSignupClick}>Sign up for a free account</button>
+          <button className="proceed something signup" onClick={navToSignupClick}>Sign up for a free account</button>
         </section>
       </main>
     </div>

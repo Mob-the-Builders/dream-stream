@@ -5,6 +5,7 @@
   justify-content: space-around;
   width: 600px;
   height: 350px;
+  
   & input {
     width: 82%;
     height: 50px;
@@ -24,7 +25,7 @@
   font-size: 18px;
   color: white;
   background: #116ebb;
-  margin-bottom: 10px;
+  // margin-bottom: 10px;
 }
 
 .proceed {
@@ -46,7 +47,7 @@
   border: 1px solid rgba(120, 120, 141, 0.5);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 10px;
-  background: #b6daf9;
+  background: #4FACFA;
 
 }
 
@@ -62,10 +63,9 @@
   text-transform: uppercase;
   cursor: pointer;
   display: inline-block;
-
   -webkit-transition: all 0.4s;
- -moz-transition: all 0.4s;
- transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
 }
 .something:hover, .something:focus {
   background-color: white;
@@ -74,6 +74,15 @@
 
 .warning {
   border: 2px solid red;
+}
+
+.signup {
+  border-radius: 0 0 10px 10px;
+  border-top: none;
+}
+
+.login-btn {
+  margin-bottom: 25px;
 }
 
 /*

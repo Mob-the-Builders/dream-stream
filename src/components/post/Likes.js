@@ -8,7 +8,7 @@ const Likes = ({ post }) => {
     - Likes will not update properly when several users are logged into the same account
 
     - Too much logic happens in the client. Iterating over all likes will not be scalable.
-      A better alterative would be off loading it to the serverless functions 
+      A better alterative would be off loading it to the serverless functions
       and do comparisions instead of iteration.
 
       Make another API call that gets all liked posts by the user.

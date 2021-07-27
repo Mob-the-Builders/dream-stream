@@ -13,14 +13,13 @@ const FollowStreams = ({ currentStream }) => {
   const [isFollowed, setFollowed] = useState(false);
 
   // Updates --selected class
-  useEffect(()=>{
+  useEffect(() => {
     setFollowed(followedStreams.includes(currentStream));
-  },[followedStreams]);
+  }, [followedStreams]);
 
   // Posts followed streams to database
   const updateDatabase = async (tags) => {
     const res = await axios.post('/api/update-user-tags', { id: localStorage.getItem('userId'), tags });
-    console.log(res);
   };
 
   // Handles following and unfollowing streams
@@ -38,8 +37,6 @@ const FollowStreams = ({ currentStream }) => {
 
       updateDatabase([...followedStreams, currentStream]);
     }
-
-    console.log(currentStream);
   };
 
   return (

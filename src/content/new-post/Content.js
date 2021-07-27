@@ -43,7 +43,6 @@ const Content = () => {
 
   // Uploads image to cloudinary
   const uploadCloudinary = async (imageTemp) => {
-    console.log('in upload cloudinary');
     const formData = new FormData();
     formData.append('file', imageTemp);
     formData.append('upload_preset', 'qxmdpdn1');
@@ -79,9 +78,6 @@ const Content = () => {
       const tagsParsed = tagParser(tagsState);
       const description = descriptionState;
       const uploadedImage = uploadedImageState;
-
-      console.log('right under here should just work');
-      console.log(tagsParsed);
       clearStates();
       updateLoading(true);
 
@@ -108,9 +104,9 @@ const Content = () => {
                   placeholder="Add a description..."
                   value={descriptionState}
                   autoComplete="off"
-                  onChange={(e) => setDescription(e.target.value)}
-                  onFocus={(e) => e.target.placeholder = ''}
-                  onBlur={(e) => e.target.placeholder = 'Add a description...'}
+                  onChange={(e) => { setDescription(e.target.value); }}
+                  onFocus={(e) => { e.target.placeholder = ''; }}
+                  onBlur={(e) => { e.target.placeholder = 'Add a description...'; }}
                 />
                 <div className="newpost_user">
                   <div className="newpost_user__pic">🐤</div>
@@ -120,7 +116,7 @@ const Content = () => {
 
               <div className="image-area">
 
-                <img className={`imagePreview ${imagePreview ? '' : 'imagePreview--hide'}`} src={imagePreview} />
+                <img className={`imagePreview ${imagePreview ? '' : 'imagePreview--hide'}`} src={imagePreview} alt="Preview" />
 
                 <div className={`file-input-wrapper ${imagePreview ? 'file-input-wrapper--hide' : ''}`}>
                   <div className="file-input">
@@ -152,9 +148,9 @@ const Content = () => {
                   placeholder="Select streams..."
                   value={tagsState}
                   autoComplete="off"
-                  onChange={(e) => setTags(e.target.value)}
-                  onFocus={(e) => e.target.placeholder = ''}
-                  onBlur={(e) => e.target.placeholder = 'Select streams...'}
+                  onChange={(e) => { setTags(e.target.value); }}
+                  onFocus={(e) => { e.target.placeholder = ''; }}
+                  onBlur={(e) => { e.target.placeholder = 'Select streams...'; }}
                 />
                 <input type="submit" value="Post" />
               </div>
