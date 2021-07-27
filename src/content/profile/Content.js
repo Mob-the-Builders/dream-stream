@@ -1,9 +1,9 @@
 import { navigate } from '@reach/router';
-import Post from '../../components/post/Post';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './profile.scss';
 import { useSelector, useDispatch } from 'react-redux';
+import Post from '../../components/post/Post';
 
 const Content = () => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
@@ -30,7 +30,8 @@ const Content = () => {
     return res.data.messages.reverse();
   };
 
-  const createJSX = (p, a) => (a ? (p.map((post) => <Post post={post.post} />)) : (p.map((post) => <Post post={post} />)));
+  const createJSX = (p, a) => (a ? (p.map((post) => <Post post={post.post} />))
+    : (p.map((post) => <Post post={post} />)));
 
   // Load posts
   useEffect(async () => {
@@ -68,8 +69,8 @@ const Content = () => {
 
       <aside className="streamfilter">
         <div className="profile__buttonlist">
-          <button onClick={clickPosted} className={`profile__button ${buttonChoice === 'posted' ? 'profile__button--selected' : ''}`}>Posts Made By You</button>
-          <button onClick={clickLiked} className={`profile__button ${buttonChoice === 'posted' ? '' : 'profile__button--selected'}`}>Posts You Liked</button>
+          <button onClick={clickPosted} className={`profile__button ${buttonChoice === 'posted' ? 'profile__button--selected' : ''}`} type="button">Posts Made By You</button>
+          <button onClick={clickLiked} className={`profile__button ${buttonChoice === 'posted' ? '' : 'profile__button--selected'}`} type="button">Posts You Liked</button>
         </div>
       </aside>
 

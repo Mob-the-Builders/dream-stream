@@ -49,8 +49,6 @@ const SignupPage = () => {
       setRedirect(true);
     } catch (err) {
       setTaken(true);
-      console.log('adadad', err.body);
-      console.error(err);
     }
 
     setName('');
@@ -76,9 +74,9 @@ const SignupPage = () => {
               autoComplete="off"
               placeholder="Username"
               value={userName}
-              onChange={(e) => setName(e.target.value.toLowerCase())}
-              onFocus={(e) => e.target.placeholder = ''}
-              onBlur={(e) => e.target.placeholder = 'Username'}
+              onChange={(e) => { setName(e.target.value.toLowerCase()); }}
+              onFocus={(e) => { e.target.placeholder = ''; }}
+              onBlur={(e) => { e.target.placeholder = 'Username'; }}
             />
 
             <input
@@ -88,16 +86,16 @@ const SignupPage = () => {
               id="description"
               placeholder="Password"
               value={password}
-              onChange={(e) => setPass(e.target.value.toLowerCase())}
-              onFocus={(e) => e.target.placeholder = ''}
-              onBlur={(e) => e.target.placeholder = 'Password'}
+              onChange={(e) => { setPass(e.target.value.toLowerCase()); }}
+              onFocus={(e) => { e.target.placeholder = ''; }}
+              onBlur={(e) => { e.target.placeholder = 'Password'; }}
             />
 
             <input type="submit" className="card__btn" value="Sign Up" />
 
           </form>
-          <button className="proceed" onClick={navToLoginClick}>Already have an account?</button>
-          <button className="proceed" onClick={navToHomeClick}>Proceed without logging in</button>
+          <button className="proceed" onClick={navToLoginClick} type="button">Already have an account?</button>
+          <button className="proceed" onClick={navToHomeClick} type="button">Proceed without logging in</button>
         </section>
       </main>
     </div>

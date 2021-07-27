@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
+import { navigate } from '@reach/router';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import FollowStreams from './StreamsFollow';
+import FollowUnfollowStream from '../../components/FollowUnfollowStream'
 import './streams.scss';
 
 const Content = () => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
 
-  const popularStreams = ['Cats', 'Dogs', 'Art', 'Programming', 'Ossian'];
+  const popularStreams = ['Cats', 'Dogs', 'Art', 'Programming', 'Os'];
 
   if (!user) {
     navigate('/login');
@@ -25,6 +26,7 @@ const Content = () => {
   useEffect(async () => {
     if (user) {
       const payload = await getUserTags();
+      console.log(payload);
       dispatch({ type: 'USER_GET_STREAMS', payload });
     }
   }, []);
@@ -40,15 +42,7 @@ const Content = () => {
           <h3>Top Streams</h3>
           <div className="streams__buttonList">
 
-            {popularStreams.map((tag) => <FollowStreams currentStream={tag} />)}
-            {/* <button className={'tagbutton tagbutton--selected'}>testDogs</button>
-            <button className={'tagbutton'}>test</button>
-            <button className={'tagbutton tagbutton--selected'}>testCats</button>
-            <button className={'tagbutton tagbutton--selected'}>testCats</button>
-            <button className={'tagbutton'}>testFunny</button>
-            <button className={'tagbutton'}>testNature</button>
-            <button className={'tagbutton tagbutton--selected'}>testCats</button>
-            <button className={'tagbutton tagbutton--selected'}>testCats</button> */}
+            {popularStreams.map((tag) => <FollowUnfollowStream currentStream={tag} />)}
 
           </div>
         </div>
@@ -56,7 +50,7 @@ const Content = () => {
           <h3>Your Streams</h3>
           <div className="streams__buttonList">
             {/* <button className={'tagbutton tagbutton--selected'}>Selected</button> */}
-            {streams.map((tag) => <FollowStreams currentStream={tag} />)}
+            {streams.map((tag) => <FollowUnfollowStream currentStream={tag} />)}
 
             {/* dummy content: */}
             {/* <button className={'tagbutton tagbutton--selected'}>testDogs</button>

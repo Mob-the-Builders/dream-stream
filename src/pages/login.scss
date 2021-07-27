@@ -25,7 +25,6 @@
   font-size: 18px;
   color: white;
   background: #116ebb;
-  // margin-bottom: 10px;
 }
 
 .proceed {
@@ -39,6 +38,10 @@
   }
 }
 
+.card__input {
+  border: 1.5px solid #2468a8c5;
+}
+
 .form-container-flex{
   display: flex;
   flex-direction: column;
@@ -47,7 +50,7 @@
   border: 1px solid rgba(120, 120, 141, 0.5);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 10px;
-  background: #4FACFA;
+  background: #99cef9;
 
 }
 
@@ -83,6 +86,11 @@
 
 .login-btn {
   margin-bottom: 25px;
+  border: 1.5px solid #1c5489c5;
+
+  &:hover {
+    background: #135ca1;
+  }
 }
 
 /*

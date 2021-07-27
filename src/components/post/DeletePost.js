@@ -7,31 +7,25 @@ const DeletePost = ({ currentPost }) => {
 
   const { posts } = useSelector((state) => state.postList);
   const dispatch = useDispatch();
-  
 
   const serverCall = async () => {
     const res = await axios.post('/api/delete-post', { id: currentPost._id });
-    console.log(res);
   };
 
   const onClick = async () => {
-    console.log(posts);
-    console.log();
-
     if (user === currentPost.userName) {
       await serverCall();
       const payload = posts.filter((post) => post !== currentPost);
       dispatch({
-        type: 'POSTS_LOADED', payload
+        type: 'POSTS_LOADED', payload,
       });
-
     } else {
-      console.log('not your post');
+      console.log('not your post'); // NEEDS TO CHANGE
     }
   };
 
   return (
-    <button onClick={onClick}>X</button>
+    <button className="deleteButton" onClick={onClick} type="button">X</button>
   );
 };
 

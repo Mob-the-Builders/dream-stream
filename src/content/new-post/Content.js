@@ -99,6 +99,7 @@ const Content = () => {
 
               <div className="description-area">
                 <input
+                  required
                   type="text"
                   id="Name"
                   placeholder="Add a description..."
@@ -120,15 +121,15 @@ const Content = () => {
 
                 <div className={`file-input-wrapper ${imagePreview ? 'file-input-wrapper--hide' : ''}`}>
                   <div className="file-input">
-                    <input
-                      required
-                      type="file"
-                      onChange={(e) => setImage(e.target.files[0])}
-                      name="file-input"
-                      id="file-input"
-                      className="file-input__input"
-                    />
                     <label className="file-input__label" htmlFor="file-input">
+                      <input
+                        required
+                        type="file"
+                        onChange={(e) => setImage(e.target.files[0])}
+                        name="file-input"
+                        id="file-input"
+                        className="file-input__input"
+                      />
                       <svg width="134" height="88" viewBox="0 0 134 88" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M54.906 9.40171H79.3504V22.5641H83.1111V9.40171C83.1111 7.32769 81.4244 5.64102 79.3504 5.64102H54.906C52.832 5.64102 51.1453 7.32769 51.1453 9.40171V31.9658C51.1453 34.0398 52.832 35.7265 54.906 35.7265H69.9487V31.9658H54.906V9.40171Z" fill="#28628C" fillOpacity="0.85" />
                         <path d="M62.4274 20.6838L56.7863 28.2051H77.4701L69.9487 16.9231L64.3077 24.4444L62.4274 20.6838Z" fill="#59AFED" />

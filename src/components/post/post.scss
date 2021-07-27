@@ -6,6 +6,7 @@
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border: 0.1px solid rgba(120, 120, 141, 0.5);
+  position: relative;
 
   &__image {
     max-width: 100%;
@@ -208,6 +209,22 @@
     &:hover {
       color: #666784;
     }
+  }
+
+  .deleteButton {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    vertical-align: middle;
+    text-align: center;
+    position: absolute;
+    top: 68px;
+    left: 680px;
+    border-radius: 6px;
+    color: white;
+    border: 0.7px solid rgba(255, 255, 255, 0.553);
+    background: rgba(137, 134, 134, 0.361);
+    // line-height: 10px;
   }
 
 

@@ -45,9 +45,9 @@ const LoginPage = () => {
               autoComplete="off"
               placeholder="Username"
               value={userName}
-              onChange={(e) => setName(e.target.value.toLowerCase())}
-              onFocus={(e) => e.target.placeholder = ''}
-              onBlur={(e) => e.target.placeholder = 'Username'}
+              onChange={(e) => { setName(e.target.value.toLowerCase()); }}
+              onFocus={(e) => { e.target.placeholder = ''; }}
+              onBlur={(e) => { e.target.placeholder = 'Username'; }}
             />
 
             <input
@@ -57,15 +57,15 @@ const LoginPage = () => {
               id="description"
               placeholder="Password"
               value={password}
-              onChange={(e) => setPass(e.target.value.toLowerCase())}
-              onFocus={(e) => e.target.placeholder = ''}
-              onBlur={(e) => e.target.placeholder = 'Password'}
+              onChange={(e) => { setPass(e.target.value.toLowerCase()); }}
+              onFocus={(e) => { e.target.placeholder = ''; }}
+              onBlur={(e) => { e.target.placeholder = 'Password'; }}
             />
 
             <input type="submit" className="card__btn login-btn" value="LOGIN" />
           </form>
-          <button className="proceed something" onClick={navToHomeClick}>Proceed without logging in</button>
-          <button className="proceed something signup" onClick={navToSignupClick}>Sign up for a free account</button>
+          <button className="proceed something" onClick={navToHomeClick} type="button">Proceed without logging in</button>
+          <button className="proceed something signup" onClick={navToSignupClick} type="button">Sign up for a free account</button>
         </section>
       </main>
     </div>

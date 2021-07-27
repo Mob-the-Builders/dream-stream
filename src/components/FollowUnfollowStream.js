@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 
-const FollowStreams = ({ currentStream }) => {
-  const user = typeof window !== 'undefined'
-    ? localStorage.getItem('user')
-    : null;
-
+const FollowUnfollowStream = ({ currentStream }) => {
   const followedStreams = useSelector((state) => state.user.streams);
   const dispatch = useDispatch();
 
@@ -19,12 +15,12 @@ const FollowStreams = ({ currentStream }) => {
 
   // Posts followed streams to database
   const updateDatabase = async (tags) => {
-    const res = await axios.post('/api/update-user-tags', { id: localStorage.getItem('userId'), tags });
+    await axios.post('/api/update-user-tags', { id: localStorage.getItem('userId'), tags });
   };
 
   // Handles following and unfollowing streams
-  const onClick = () => {
-    if (isFollowed) {
+  const onClick = async () => {
+   if (isFollowed) {
       dispatch({
         type: 'USER_REMOVE_STREAM', payload: currentStream,
       });
@@ -42,10 +38,10 @@ const FollowStreams = ({ currentStream }) => {
   return (
     <>
       {isFollowed
-        ? <button className="tagbutton tagbutton--selected" onClick={onClick}>{currentStream}</button>
-        : <button className="tagbutton" onClick={onClick}>{currentStream}</button>}
+        ? <button className="tagbutton tagbutton--selected" onClick={onClick} type="button">{currentStream}</button>
+        : <button className="tagbutton" onClick={onClick} type="button">{currentStream}</button>}
     </>
   );
 };
 
-export default FollowStreams;
+export default FollowUnfollowStream;

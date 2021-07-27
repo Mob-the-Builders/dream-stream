@@ -46,7 +46,7 @@ const Likes = ({ post }) => {
 
       updateLoading(false);
     } catch (error) {
-      console.log(error);
+      console.log(error); // NEED TO CHANGE
     }
   }, [post]);
 

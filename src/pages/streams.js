@@ -1,5 +1,4 @@
 import React from 'react';
-import { navigate } from '@reach/router';
 import Menubar from '../components/Menubar';
 import Content from '../content/streams/Content';
 
