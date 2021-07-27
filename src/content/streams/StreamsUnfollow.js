@@ -1,16 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 
-const FollowUnfollowStream = ({ currentStream }) => {
+const UnfollowStreams = ({ currentStream }) => {
   const user = typeof window !== 'undefined'
     ? localStorage.getItem('user')
     : null;
+
   const followedStreams = useSelector((state) => state.user.streams);
   const dispatch = useDispatch();
-
-
-  console.log(localStorage.getItem('userId'));
 
   // Posts followed streams to database
   const updateDatabase = async (tags) => {
@@ -18,12 +16,12 @@ const FollowUnfollowStream = ({ currentStream }) => {
     console.log(res);
   };
 
-
   // Handles following and unfollowing streams
   const onClick = async () => {
     const action =  'USER_REMOVE_STREAM';
     
     console.log(currentStream);
+
     dispatch({
       type: action, payload: currentStream,
     });
@@ -34,10 +32,10 @@ const FollowUnfollowStream = ({ currentStream }) => {
   return (
     <>
       {user
-        ? <button onClick={onClick}>{currentStream}</button>
-        : <button>{currentStream}</button>}
+        ? <button className={'tagbutton'} onClick={onClick}>{currentStream}</button>
+        : <button className={'tagbutton'}>{currentStream}</button>}
     </>
   );
 };
 
-export default FollowUnfollowStream;
+export default UnfollowStreams;

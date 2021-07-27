@@ -4,7 +4,7 @@ const query = require('./utils/query');
 
 const GET_POSTS_LIKE_BY_NAME = `
      query getPostLikeByName($userName: String){
-      getPostLikeByName(userName: $userName){ 
+      getPostLikeByName(_size: 1000, userName: $userName){ 
           data{
             post{
               _id

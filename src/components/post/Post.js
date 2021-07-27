@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './post.scss';
 import CommentSection from './CommentSection';
-import FollowUnfollowStream from '../FollowUnfollowStream';
+import FollowUnfollowStream from './FollowUnfollowStream';
 import Likes from './Likes';
 import TimeAgo from 'react-timeago'
 import { useSelector } from 'react-redux';

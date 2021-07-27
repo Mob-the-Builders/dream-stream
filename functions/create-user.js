@@ -27,7 +27,7 @@ exports.handler = async (event) => {
 
   if (errors) {
     return {
-      statusCode: 500,
+      statusCode: 409,
       body: JSON.stringify(errors),
     };
   }

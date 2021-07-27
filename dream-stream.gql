@@ -33,7 +33,7 @@ type User {
 }
 
 type Query {
-  allPosts: [Post!]! 
+  allPosts: [Post!]!
   allComments: [Comment!]
   allUsers: [User!]
   getUserByName(userName: String): User

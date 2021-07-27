@@ -50,6 +50,7 @@ const SignupPage = () => {
 
     } catch (err) {
       setTaken(true);
+      console.log('adadad', err.body)
       console.error(err);
     }
 

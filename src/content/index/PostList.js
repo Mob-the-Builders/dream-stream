@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import Post from './post/Post';
+import Post from '../../components/post/Post';
 import './PostList.scss';
 
 const PostList = () => {

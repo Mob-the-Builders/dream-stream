@@ -24,6 +24,7 @@
   font-size: 18px;
   color: white;
   background: #116ebb;
+  margin-bottom: 10px;
 }
 
 .proceed {
@@ -50,10 +51,11 @@
 }
 
 /* button styling */
-button {
+.something {
   background: transparent;
   color: #F0F0F0;
-  border: 2px solid #F0F0F0;
+  border-top: none;
+  border: 1px solid #F0F0F0;
   font-size: 15px;
   letter-spacing: 2px;
   padding: 20px 75px;
@@ -65,7 +67,7 @@ button {
  -moz-transition: all 0.4s;
  transition: all 0.4s;
 }
-button:hover, button:focus {
+.something:hover, .something:focus {
   background-color: white;
   color: #333333;
 }

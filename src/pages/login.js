@@ -49,7 +49,7 @@ const LoginPage = () => {
               onFocus={(e) => e.target.placeholder = ''}
               onBlur={(e) => e.target.placeholder = 'Username'}
             />
-            {/* <label> */}
+
               <input
                 required
                 className="card__input"
@@ -61,12 +61,11 @@ const LoginPage = () => {
                 onFocus={(e) => e.target.placeholder = ''}
                 onBlur={(e) => e.target.placeholder = 'Password'}
               />
-            {/* <div className="label-text">Password</div>
-            </label> */}
+
             <input type="submit" className="card__btn" value="LOGIN" />
           </form>
-          <button className="proceed" onClick={navToHomeClick}>Proceed without logging in</button>
-          <button className="proceed" onClick={navToSignupClick}>Sign up for a free account</button>
+          <button className="proceed something" onClick={navToHomeClick}>Proceed without logging in</button>
+          <button className="proceed something" onClick={navToSignupClick}>Sign up for a free account</button>
         </section>
       </main>
     </div>

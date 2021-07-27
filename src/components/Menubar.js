@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'gatsby';
 import Logo from './Logo';
 import './Menubar.scss';
-import Logout from '../content/Logout';
-import Login from '../content/Login';
+import Logout from './LogoutButton';
+import Login from './LoginButton';
 
 const Menubar = ({ page }) => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;

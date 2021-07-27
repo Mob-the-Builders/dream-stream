@@ -4,7 +4,7 @@ const query = require('./utils/query');
 
 const GET_BY_NAME = `
      query getPostByName($userName: String){
-      getPostByName(userName: $userName){ 
+      getPostByName(_size: 1000, userName: $userName){ 
           data{
               _id
               userName
