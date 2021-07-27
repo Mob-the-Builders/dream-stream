@@ -91,7 +91,6 @@ const Content = () => {
   return (
     <main className="main">
       {isLoading ? <Loader /> : <></>}
-      <Loader />
       <form onSubmit={onSubmit}>
         <section className="newpost-card">
 
