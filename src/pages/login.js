@@ -3,13 +3,13 @@ import axios from 'axios';
 import Menubar from '../components/Menubar';
 import './login.scss';
 import Loader from '../components/Loader/Loader';
-import {navToHomeClick, navToSignupClick, navTest} from '../components/utils/navigation';
+import { navToHomeClick, navToSignupClick, navTest } from '../components/utils/navigation';
 
 const LoginPage = () => {
   const [userName, setName] = useState('');
   const [password, setPass] = useState('');
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
-  const [isLoading, setLoading] = useState(false); 
+  const [isLoading, setLoading] = useState(false);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -50,17 +50,17 @@ const LoginPage = () => {
               onBlur={(e) => e.target.placeholder = 'Username'}
             />
 
-              <input
-                required
-                className="card__input"
-                type="password"
-                id="description"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPass(e.target.value.toLowerCase())}
-                onFocus={(e) => e.target.placeholder = ''}
-                onBlur={(e) => e.target.placeholder = 'Password'}
-              />
+            <input
+              required
+              className="card__input"
+              type="password"
+              id="description"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPass(e.target.value.toLowerCase())}
+              onFocus={(e) => e.target.placeholder = ''}
+              onBlur={(e) => e.target.placeholder = 'Password'}
+            />
 
             <input type="submit" className="card__btn" value="LOGIN" />
           </form>

@@ -23,7 +23,7 @@ const FilterButton = ({ currentStream }) => {
   };
 
   return (
-    <button onClick={onClick} className={`tagbutton ${selected ? 'tagbutton--selected' : ''}`}>{currentStream}</button>
+    <button onClick={onClick} className={`tagbutton ${selected ? 'tagbutton--selected' : ''}`} type="button">{currentStream}</button>
   );
 };
 

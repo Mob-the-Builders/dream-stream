@@ -2,9 +2,7 @@
   display:flex;
   flex-direction: column;
   margin-bottom: 3%;
-  // max-width: 50%;
   width: 710px;
-  // padding: 1rem;
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border: 0.1px solid rgba(120, 120, 141, 0.5);
@@ -22,13 +20,14 @@
     align-items: center;
     justify-content: space-between;
     border-radius: 10px 10px 0 0;
+    border-bottom: 0.1px solid rgba(120, 120, 141, 0.5);
   }
 
   &__description{
     margin-left: 37px;
     font-size: 20px;
     text-shadow: 1px 1px #1f85d8;
-
+    text-transform: capitalize;
   }
 
   &__user {
@@ -42,7 +41,7 @@
   &__profilePic {
     background: ghostwhite;
     font-size: 20px;
-    margin-right: 10px;
+    margin-right: 7px;
     border: 2px solid rgba(43, 114, 165, 0.82);
     height: 32px;
     width: 32px;
@@ -102,8 +101,6 @@
     display: flex;
     justify-content: space-between;
     padding-left: 40px;
-    // align-items: center;
-    // height: 100%;
     min-height: 55px;
     padding-top: 14px;
     padding-bottom: 10px;
@@ -135,7 +132,6 @@
     padding-left: 10px;
     padding-right: 10px;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-    // background: #EA3D67;
     background: rgba(255, 255, 255, 0);
     border: 1.5px solid #EA3D67;
 
@@ -162,7 +158,6 @@
       padding-right: 10px;
       box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
       background: rgba(236, 68, 110, 0.902);
-      // border: 1.7px solid white;
   
   
       & svg {
@@ -230,8 +225,6 @@
       height: 100%;
       padding-left: 37px;
       padding-right: 37px;
-
-      // background: pink;
     }
 
     &-field {

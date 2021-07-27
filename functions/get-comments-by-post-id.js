@@ -15,13 +15,8 @@ const GET_COMMENTS_BY_ID = `
  `;
 
 exports.handler = async (event) => {
-  console.log('GET COMMENTS BY POST ID!!!!!!!!! ');
-
   const { id } = JSON.parse(event.body);
-  console.log(id);
   const { data, errors } = await query(GET_COMMENTS_BY_ID, { id });
-  console.log(data);
-  console.log(data.findPostByID.comments.data);
   if (errors) {
     return {
       statusCode: 500,

@@ -1,4 +1,3 @@
-
 // getPostByName(userName: String): [Post!]!
 const query = require('./utils/query');
 
@@ -28,12 +27,9 @@ const GET_BY_NAME = `
          }
  `;
 
-
 exports.handler = async (event) => {
-  console.log("hello serverless");
   const { userName } = JSON.parse(event.body);
   const { data, errors } = await query(GET_BY_NAME, { userName });
-  console.log(data);
 
   if (errors) {
     return {

@@ -29,9 +29,8 @@ const CommentSection = ({ post }) => {
       } else {
         updateCommentList([]);
       }
-      
     } catch (error) {
-      console.log(error);
+      console.log(error); // NEEDS TO CHANGE
     }
   }, [post]);
 
@@ -82,7 +81,9 @@ const CommentSection = ({ post }) => {
       <div className="post__commentsAndHeart">
         <ul>
           {hide && commentList.length >= 3
-            ? [commentList[commentList.length - 3], commentList[commentList.length - 2], commentList[commentList.length - 1]]
+            ? [commentList[commentList.length - 3],
+              commentList[commentList.length - 2],
+              commentList[commentList.length - 1]]
             : commentList}
         </ul>
 
@@ -92,7 +93,7 @@ const CommentSection = ({ post }) => {
 
       {commentList.length >= 4
         ? (
-          <button className="post__allComments" onClick={() => updateHide(!hide)}>
+          <button className="post__allComments" onClick={() => updateHide(!hide)} type="button">
             View
             {hide ? ' all comments' : ' less'}
           </button>
@@ -111,9 +112,9 @@ const CommentSection = ({ post }) => {
                 placeholder="Add a comment..."
                 autoComplete="off"
                 value={comment}
-                onChange={(e) => setComment(e.target.value)}
-                onFocus={(e) => e.target.placeholder = ''}
-                onBlur={(e) => e.target.placeholder = 'Add a comment...'}
+                onChange={(e) => { setComment(e.target.value); }}
+                onFocus={(e) => { e.target.placeholder = ''; }}
+                onBlur={(e) => { e.target.placeholder = 'Add a comment...'; }}
               />
               <input className="post__inputArea-btn" type="submit" value="Post" />
             </form>

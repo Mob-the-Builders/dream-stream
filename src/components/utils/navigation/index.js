@@ -1,16 +1,16 @@
 import { navigate } from 'gatsby';
 
-const navToSignupClick = () => navigate('/signup')
+const navToSignupClick = () => navigate('/signup');
 
-const navToHomeClick = () => navigate('/')
+const navToHomeClick = () => navigate('/');
 
 const navToLoginClick = () => navigate('/login');
 
 const navTest = () => navigate('/');
 
 export {
-  navToSignupClick, 
+  navToSignupClick,
   navToHomeClick,
   navToLoginClick,
-  navTest
+  navTest,
 };

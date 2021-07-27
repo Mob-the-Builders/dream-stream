@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import './post.scss';
 import TimeAgo from 'react-timeago';
 import CommentSection from './CommentSection';
 import FollowUnfollowStream from './FollowUnfollowStream';
+import Likes from './Likes';
 
 const Post = ({ post }) => {
   const [postTags, setPostTags] = useState([]);
@@ -17,7 +17,7 @@ const Post = ({ post }) => {
       <div className="post__descriptionArea">
         <span className="post__description">{post.description}</span>
         <div className="post__user">
-          <div className="post__profilePic">😊</div>
+          <div className="post__profilePic">🐤</div>
           {post.userName}
         </div>
       </div>

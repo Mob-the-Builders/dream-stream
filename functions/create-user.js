@@ -33,7 +33,7 @@ exports.handler = async (event) => {
   }
   const userId = data.createUser._id;
   const tags = [];
-  const { data: dataTag, errors: errorsTag } = await query(
+  const { errors: errorsTag } = await query(
     CREATE_USER_TAGS, { tags, userId },
   );
   if (errorsTag) {

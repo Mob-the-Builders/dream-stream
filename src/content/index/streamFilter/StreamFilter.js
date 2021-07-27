@@ -10,7 +10,7 @@ const StreamFilter = () => {
       <h3>YOUR STREAMS</h3>
 
       <div className="streamfilter__buttonlist">
-        {streams.map((stream, index) => <FilterButton currentStream={stream} key={index}/>)}
+        {streams.map((stream, index) => <FilterButton currentStream={stream} key={index} />)}
       </div>
 
     </aside>

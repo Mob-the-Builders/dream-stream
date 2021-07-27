@@ -10,6 +10,13 @@ const FollowStreams = ({ currentStream }) => {
   const followedStreams = useSelector((state) => state.user.streams);
   const dispatch = useDispatch();
 
+  const [isFollowed, setFollowed] = useState(false);
+
+  // Updates --selected class
+  useEffect(()=>{
+    setFollowed(followedStreams.includes(currentStream));
+  },[followedStreams]);
+
   // Posts followed streams to database
   const updateDatabase = async (tags) => {
     const res = await axios.post('/api/update-user-tags', { id: localStorage.getItem('userId'), tags });
@@ -18,30 +25,28 @@ const FollowStreams = ({ currentStream }) => {
 
   // Handles following and unfollowing streams
   const onClick = () => {
-
-    if (followedStreams.includes(currentStream)) {
+    if (isFollowed) {
       dispatch({
         type: 'USER_REMOVE_STREAM', payload: currentStream,
       });
 
-     updateDatabase(followedStreams.filter((stream) => stream !== currentStream));
-
+      updateDatabase(followedStreams.filter((stream) => stream !== currentStream));
     } else {
       dispatch({
         type: 'USER_ADD_STREAM', payload: currentStream,
       });
-     updateDatabase([...followedStreams, currentStream]);
+
+      updateDatabase([...followedStreams, currentStream]);
     }
 
     console.log(currentStream);
-    
   };
 
   return (
     <>
-      {user
-        ? <button className={'tagbutton'} onClick={onClick}>{currentStream}</button>
-        : <button className={'tagbutton'}>{currentStream}</button>}
+      {isFollowed
+        ? <button className="tagbutton tagbutton--selected" onClick={onClick}>{currentStream}</button>
+        : <button className="tagbutton" onClick={onClick}>{currentStream}</button>}
     </>
   );
 };

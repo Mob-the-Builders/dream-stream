@@ -4,15 +4,11 @@ import Content from '../content/profile/Content';
 
 import './profile.scss';
 
-
-const Profile = () => {
-
-  return (
-    <div className="top-container">
-      <Menubar page="profile" />
-      <Content />
-    </div>
-  );
-};
+const Profile = () => (
+  <div className="top-container">
+    <Menubar page="profile" />
+    <Content />
+  </div>
+);
 
 export default Profile;
