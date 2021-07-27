@@ -20,7 +20,7 @@ const FollowUnfollowStream = ({ currentStream }) => {
 
   // Handles following and unfollowing streams
   const onClick = async () => {
-   if (isFollowed) {
+    if (isFollowed) {
       dispatch({
         type: 'USER_REMOVE_STREAM', payload: currentStream,
       });

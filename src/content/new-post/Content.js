@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { navigate } from 'gatsby';
+import Loader from '../Loader/Loader';
 
 import axios from 'axios';
-import './new-post.scss';
+import './content.scss';
 
 const Content = () => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
@@ -147,7 +148,7 @@ const Content = () => {
                   type="text"
                   id="Name"
                   placeholder="Select streams..."
-                  value={tagsState}
+                  value={tagsState.toLocaleLowerCase()}
                   autoComplete="off"
                   onChange={(e) => { setTags(e.target.value); }}
                   onFocus={(e) => { e.target.placeholder = ''; }}

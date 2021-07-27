@@ -23,10 +23,9 @@ const SignupPage = () => {
   const displayUserNameTaken = () => {
     setTimeout(() => {
       setTaken(false);
-      console.log(isTaken)
+      console.log(isTaken);
     }, 3000);
-
-  }
+  };
 
   const createUser = async (pair) => {
     const res = await axios.post('/api/create-user', pair);
@@ -59,8 +58,7 @@ const SignupPage = () => {
     } catch (err) {
       setTaken(true);
       displayUserNameTaken();
-      console.log(isTaken)
-
+      console.log(isTaken);
     }
 
     setName('');
@@ -73,13 +71,11 @@ const SignupPage = () => {
     <div className="top-container">
       <Menubar />
       <main className="main">
-        {isTaken
-         ? 
-          <div className="modal-test">
-            <p>Username taken</p>
-          </div>
-          :<></>
-        }
+
+        <div className={`modal-test ${1 === 1}`}>
+          <p>Username taken</p>
+        </div>
+
         <section className="form-container-flex">
           {isLoading ? <Loader /> : <></>}
           <form className="card card--register" onSubmit={onSubmit}>

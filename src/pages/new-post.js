@@ -1,6 +1,6 @@
 import React from 'react';
 import Menubar from '../components/Menubar';
-import Content from '../content/new-post/Content';
+// import Content from '../content/new-post/Content';
 import './new-post.scss';
 
 const NewPost = () => (

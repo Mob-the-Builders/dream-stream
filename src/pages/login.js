@@ -3,14 +3,14 @@ import axios from 'axios';
 import Menubar from '../components/Menubar';
 import './login.scss';
 import Loader from '../components/Loader/Loader';
-import {navToHomeClick, navToSignupClick, navTest} from '../components/utils/navigation';
-import {Link} from 'gatsby';
+import { navToHomeClick, navToSignupClick, navTest } from '../components/utils/navigation';
+import { Link } from 'gatsby';
 
 const LoginPage = () => {
   const [userName, setName] = useState('');
   const [password, setPass] = useState('');
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
-  const [isLoading, setLoading] = useState(false); 
+  const [isLoading, setLoading] = useState(false);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -33,6 +33,7 @@ const LoginPage = () => {
     <div className="top-container">
       <Menubar />
       <main className="main">
+        {isLoading ? <Loader /> : <></>}
         <section className="form-container-flex">
           {isLoading ? <Loader /> : <></>}
           <form className="card card--register" onSubmit={onSubmit}>
@@ -46,22 +47,22 @@ const LoginPage = () => {
               autoComplete="off"
               placeholder="Username"
               value={userName}
-              onChange={(e) => setName(e.target.value.toLowerCase())}
-              onFocus={(e) => e.target.placeholder = ''}
-              onBlur={(e) => e.target.placeholder = 'Username'}
+              onChange={(e) => { setName(e.target.value.toLowerCase()); }}
+              onFocus={(e) => { e.target.placeholder = ''; }}
+              onBlur={(e) => { e.target.placeholder = 'Username'; }}
             />
 
-              <input
-                required
-                className="card__input"
-                type="password"
-                id="description"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPass(e.target.value.toLowerCase())}
-                onFocus={(e) => e.target.placeholder = ''}
-                onBlur={(e) => e.target.placeholder = 'Password'}
-              />
+            <input
+              required
+              className="card__input"
+              type="password"
+              id="description"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => { setPass(e.target.value.toLowerCase()); }}
+              onFocus={(e) => { e.target.placeholder = ''; }}
+              onBlur={(e) => { e.target.placeholder = 'Password'; }}
+            />
 
             <input type="submit" className="card__btn" value="LOGIN" />
           </form>

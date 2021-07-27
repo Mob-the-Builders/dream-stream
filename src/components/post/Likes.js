@@ -22,9 +22,12 @@ const Likes = ({ post }) => {
 
   const [likesDisplay, updateLikesDisplay] = useState(0);
 
+  const [allLikes, setLikes] = useState([]);
+
   const user = localStorage.getItem('user');
 
   const getPropKey = (obj) => {
+    console.log(obj);
     for (const prop in obj) {
       if (obj[prop].userName === user) {
         return prop;
@@ -38,6 +41,7 @@ const Likes = ({ post }) => {
     try {
       const likes = post.likes.data;
 
+      setLikes(likes);
       updateLikesDisplay(likes.length);
       const propKey = getPropKey(likes);
       if (propKey) {
@@ -48,27 +52,33 @@ const Likes = ({ post }) => {
     } catch (error) {
       console.log(error); // NEED TO CHANGE
     }
-  }, [post]);
+  }, []);
 
   // Server call
   const getAllLikesFromServer = async () => {
     const res = await axios.post('/api/get-likes-by-post-id', { id: post._id });
+    console.log('server call res');
     console.log(res);
+
     return res.data.likes;
   };
 
   // Helper functions
   const handleUnlike = async () => {
-    setLiked(!liked);
+    const propKey = getPropKey(allLikes);
+    console.log(propKey);
+
+    if (!propKey) return;
+
     updateLikesDisplay(likesDisplay - 1);
-    const propKey = getPropKey(post.likes.data);
-    const id = post.likes.data[propKey]._id;
+    setLiked(false);
+    const id = allLikes[propKey]._id;
 
     const res = await axios.post('/api/delete-post-likes', { id });
   };
 
   const handleLike = async () => {
-    setLiked(!liked);
+    setLiked(true);
     updateLikesDisplay(likesDisplay + 1);
     const res = await axios.post('/api/create-post-likes', { userName: user, postId: post._id });
   };
@@ -86,10 +96,12 @@ const Likes = ({ post }) => {
       await handleLike();
     }
 
-    const allLikes = await getAllLikesFromServer();
+    const likes = await getAllLikesFromServer();
 
-    updateLikesDisplay(allLikes.length);
+    setLikes(likes);
+    updateLikesDisplay(likes.length);
 
+    console.log('update loading');
     updateLoading(false);
   };
 
@@ -98,7 +110,7 @@ const Likes = ({ post }) => {
     <div className="post__heartAlignment">
       {/* <div className="post__heartContainer"> */}
       <div className={`post__heartContainer ${liked ? 'post__heartContainer--liked' : ''}`}>
-        <span className="post__likes-container-flex" onClick={() => likePost()}>
+        <span className="post__likes-container-flex" onClick={likePost}>
 
           {liked
             ? <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M20.205,4.791c-1.137-1.131-2.631-1.754-4.209-1.754c-1.483,0-2.892,0.552-3.996,1.558 c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412L12,21.414 l8.207-8.207C22.561,10.854,22.562,7.158,20.205,4.791z" /></svg>

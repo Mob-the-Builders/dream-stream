@@ -4,6 +4,8 @@ import axios from 'axios';
 import './profile.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import Post from '../../components/post/Post';
+const [isLoading, setLoading] = useState(false);
+
 
 const Content = () => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
@@ -31,17 +33,17 @@ const Content = () => {
   };
 
   const removeNull = (pay) => {
-    const cleanPosts = []
-    console.log("remmove null");
+    const cleanPosts = [];
+    console.log('remmove null');
     for (const prop in pay) {
       if (pay[prop].post !== null) {
-        cleanPosts.push(pay[prop].post)
+        cleanPosts.push(pay[prop].post);
       }
     }
     return cleanPosts;
-  }
+  };
 
-  const createJSX = (postsJ) => postsJ.map((post) => <Post post={post} />)
+  const createJSX = (postsJ) => postsJ.map((post) => <Post post={post} />);
 
   const init = async () => {
     const payload = await getPostUserMade();
@@ -49,11 +51,11 @@ const Content = () => {
     dispatch({
       type: 'POSTS_LOADED', payload,
     });
-  }
+  };
 
-  useEffect( () => {
+  useEffect(() => {
     if (posts !== [] && postsSelected) {
-      console.log("init useeffect");
+      console.log('init useeffect');
       init();
     }
   }, []);
@@ -61,14 +63,14 @@ const Content = () => {
   // might use this I WAS HERE
   useEffect(() => {
     console.log(posts);
-    console.log('Hello we are almost there!')
+    console.log('Hello we are almost there!');
     const jsx = createJSX(posts);
     console.log(jsx);
     setJSX(jsx);
   }, [posts]); // posts
 
   const clickLiked = async () => {
-    console.log('I clicked liked!')
+    console.log('I clicked liked!');
     const res = await getPostsUserLiked();
 
     const payload = removeNull(res);

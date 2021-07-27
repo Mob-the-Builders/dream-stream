@@ -43,7 +43,6 @@ body {
   background: #59AFED;
   border-radius: 10px 10px 0 0;
   border-bottom: 0.1px solid rgba(120, 120, 141, 0.5);
-
   color: white;
   display: flex;
   justify-content: space-between;
@@ -57,6 +56,7 @@ body {
     background: #59AFED;
     color: white;
     font-size: 18px;
+    width: 450px;
 
     &::placeholder{
       color: white;

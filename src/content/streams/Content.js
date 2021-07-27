@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { navigate } from '@reach/router';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import FollowUnfollowStream from '../../components/FollowUnfollowStream'
+import FollowUnfollowStream from '../../components/FollowUnfollowStream';
 import './streams.scss';
 
 const Content = () => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
 
-  const popularStreams = ['Cats', 'Dogs', 'Art', 'Programming', 'Os'];
+  const popularStreams = ['cats', 'dogs', 'art', 'programming', 'ossian'];
 
   if (!user) {
     navigate('/login');
@@ -31,7 +31,7 @@ const Content = () => {
     }
   }, []);
 
-  // if (!localStorage.getItem('user')) navigate('/login');
+
 
   return (
 
@@ -49,17 +49,8 @@ const Content = () => {
         <div className="streams__container">
           <h3>Your Streams</h3>
           <div className="streams__buttonList">
-            {/* <button className={'tagbutton tagbutton--selected'}>Selected</button> */}
-            {streams.map((tag) => <FollowUnfollowStream currentStream={tag} />)}
 
-            {/* dummy content: */}
-            {/* <button className={'tagbutton tagbutton--selected'}>testDogs</button>
-              <button className={'tagbutton'}>test</button>
-              <button className={'tagbutton tagbutton--selected'}>testCats</button>
-              <button className={'tagbutton'}>testFunny</button>
-              <button className={'tagbutton'}>testNature</button>
-              <button className={'tagbutton tagbutton--selected'}>testCats</button>
-              <button className={'tagbutton tagbutton--selected'}>testCats</button> */}
+            {streams.map((tag) => <FollowUnfollowStream currentStream={tag} />)}
 
           </div>
 

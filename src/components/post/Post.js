@@ -4,25 +4,19 @@ import TimeAgo from 'react-timeago';
 import CommentSection from './CommentSection';
 import FollowUnfollowStream from '../FollowUnfollowStream';
 import DeletePost from './DeletePost';
-import { useSelector, useDispatch } from 'react-redux';
 
 const Post = ({ post }) => {
   const [postTags, setPostTags] = useState([]);
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
 
   useEffect(() => {
-    console.log('1' , post);
-    if (post.post ) {
-
-      setPostTags(post.post.tags)
-     } else {
-
-      setPostTags(post.tags)
+    if (post.post) {
+      setPostTags(post.post.tags);
+    } else {
+      setPostTags(post.tags);
     }
   }, [post]);
- 
 
-  
   return (
     <article className="post">
 
@@ -42,9 +36,15 @@ const Post = ({ post }) => {
       <div className="post__infoBar">
         <span className="post__streams">
           Streams:
-          {user 
-          ? postTags.map((tag) => <FollowUnfollowStream currentStream={tag} />) 
-          : postTags.map((tag) => <button className="tagbutton" type="button"> {tag} </button>)}
+          {user
+            ? postTags.map((tag) => <FollowUnfollowStream currentStream={tag} />)
+            : postTags.map((tag) => (
+              <button className="tagbutton" type="button">
+                {' '}
+                {tag}
+                {' '}
+              </button>
+            ))}
 
         </span>
         <span className="post__posted"><TimeAgo date={post.date} /></span>
@@ -53,7 +53,7 @@ const Post = ({ post }) => {
       <CommentSection post={post} />
 
     </article>
-  )
+  );
 };
 
 export default Post;
