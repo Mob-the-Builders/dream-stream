@@ -35,28 +35,3 @@ h2 {
     gap: 30px;
   }
 }
-
-.tagbutton {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-  background: #E8F5FF;
-  padding: 4px;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 7px;
-  border: 1.5px solid #868692;
-  font-size: 15px;
-  text-transform: capitalize;
-
-  &:hover {
-    background: #a2c3de;
-  }
-
-  &--selected{
-    background: #45A9F2;
-    color: white;
-  
-    &:hover {
-      background: #3d94d2;
-    }
-  }
-}

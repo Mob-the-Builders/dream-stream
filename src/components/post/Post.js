@@ -6,14 +6,21 @@ import FollowUnfollowStream from '../FollowUnfollowStream';
 import DeletePost from './DeletePost';
 import { useSelector, useDispatch } from 'react-redux';
 
-
 const Post = ({ post }) => {
   const [postTags, setPostTags] = useState([]);
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
 
   useEffect(() => {
-    setPostTags(post.tags);
+    console.log('1' , post);
+    if (post.post ) {
+
+      setPostTags(post.post.tags)
+     } else {
+
+      setPostTags(post.tags)
+    }
   }, [post]);
+ 
 
   
   return (
@@ -36,7 +43,7 @@ const Post = ({ post }) => {
         <span className="post__streams">
           Streams:
           {user 
-          ? postTags.map((tag) => <FollowUnfollowStream currentStream={tag} />)
+          ? postTags.map((tag) => <FollowUnfollowStream currentStream={tag} />) 
           : postTags.map((tag) => <button className="tagbutton" type="button"> {tag} </button>)}
 
         </span>

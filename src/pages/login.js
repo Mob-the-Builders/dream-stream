@@ -3,13 +3,14 @@ import axios from 'axios';
 import Menubar from '../components/Menubar';
 import './login.scss';
 import Loader from '../components/Loader/Loader';
-import { navToHomeClick, navToSignupClick, navTest } from '../components/utils/navigation';
+import {navToHomeClick, navToSignupClick, navTest} from '../components/utils/navigation';
+import {Link} from 'gatsby';
 
 const LoginPage = () => {
   const [userName, setName] = useState('');
   const [password, setPass] = useState('');
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false); 
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -45,27 +46,29 @@ const LoginPage = () => {
               autoComplete="off"
               placeholder="Username"
               value={userName}
-              onChange={(e) => { setName(e.target.value.toLowerCase()); }}
-              onFocus={(e) => { e.target.placeholder = ''; }}
-              onBlur={(e) => { e.target.placeholder = 'Username'; }}
+              onChange={(e) => setName(e.target.value.toLowerCase())}
+              onFocus={(e) => e.target.placeholder = ''}
+              onBlur={(e) => e.target.placeholder = 'Username'}
             />
 
-            <input
-              required
-              className="card__input"
-              type="password"
-              id="description"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => { setPass(e.target.value.toLowerCase()); }}
-              onFocus={(e) => { e.target.placeholder = ''; }}
-              onBlur={(e) => { e.target.placeholder = 'Password'; }}
-            />
+              <input
+                required
+                className="card__input"
+                type="password"
+                id="description"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPass(e.target.value.toLowerCase())}
+                onFocus={(e) => e.target.placeholder = ''}
+                onBlur={(e) => e.target.placeholder = 'Password'}
+              />
 
-            <input type="submit" className="card__btn login-btn" value="LOGIN" />
+            <input type="submit" className="card__btn" value="LOGIN" />
           </form>
-          <button className="proceed something" onClick={navToHomeClick} type="button">Proceed without logging in</button>
-          <button className="proceed something signup" onClick={navToSignupClick} type="button">Sign up for a free account</button>
+          <span className="card__nav-container">
+            <Link to="/signup" className="card__link">Sign up for DreamStream</Link>
+            <Link to="/" className="card__link">Proceed without logging in</Link>
+          </span>
         </section>
       </main>
     </div>

@@ -4,6 +4,7 @@ import Menubar from '../components/Menubar';
 import { navToHomeClick, navToLoginClick } from '../components/utils/navigation';
 import './login.scss';
 import Loader from '../components/Loader/Loader';
+import { Link } from 'gatsby';
 
 const SignupPage = () => {
   const [userName, setName] = useState('');
@@ -18,6 +19,14 @@ const SignupPage = () => {
       navToHomeClick();
     }
   }, [redirect]);
+
+  const displayUserNameTaken = () => {
+    setTimeout(() => {
+      setTaken(false);
+      console.log(isTaken)
+    }, 3000);
+
+  }
 
   const createUser = async (pair) => {
     const res = await axios.post('/api/create-user', pair);
@@ -49,6 +58,9 @@ const SignupPage = () => {
       setRedirect(true);
     } catch (err) {
       setTaken(true);
+      displayUserNameTaken();
+      console.log(isTaken)
+
     }
 
     setName('');
@@ -61,6 +73,13 @@ const SignupPage = () => {
     <div className="top-container">
       <Menubar />
       <main className="main">
+        {isTaken
+         ? 
+          <div className="modal-test">
+            <p>Username taken</p>
+          </div>
+          :<></>
+        }
         <section className="form-container-flex">
           {isLoading ? <Loader /> : <></>}
           <form className="card card--register" onSubmit={onSubmit}>
@@ -94,8 +113,10 @@ const SignupPage = () => {
             <input type="submit" className="card__btn" value="Sign Up" />
 
           </form>
-          <button className="proceed" onClick={navToLoginClick} type="button">Already have an account?</button>
-          <button className="proceed" onClick={navToHomeClick} type="button">Proceed without logging in</button>
+          <span className="card__nav-container">
+            <Link to="/login" className="card__link">Log in to DreamStream</Link>
+            <Link to="/" className="card__link">Proceed without logging in</Link>
+          </span>
         </section>
       </main>
     </div>

@@ -11,7 +11,7 @@ const Content = () => {
     navigate('/login');
   }
 
-  const [buttonChoice, setButtonChoice] = useState('posted');
+  const [postsSelected, setPostsSelected] = useState(true);
 
   const [jsx, setJSX] = useState(<></>);
 
@@ -30,28 +30,54 @@ const Content = () => {
     return res.data.messages.reverse();
   };
 
-  const createJSX = (p, a) => (a ? (p.map((post) => <Post post={post.post} />))
-    : (p.map((post) => <Post post={post} />)));
+  const removeNull = (pay) => {
+    const cleanPosts = []
+    console.log("remmove null");
+    for (const prop in pay) {
+      if (pay[prop].post !== null) {
+        cleanPosts.push(pay[prop].post)
+      }
+    }
+    return cleanPosts;
+  }
 
-  // Load posts
-  useEffect(async () => {
+  const createJSX = (postsJ) => postsJ.map((post) => <Post post={post} />)
+
+  const init = async () => {
     const payload = await getPostUserMade();
-
+    removeNull(payload);
     dispatch({
       type: 'POSTS_LOADED', payload,
     });
-    const jsx = createJSX(payload, false);
-    setJSX(jsx);
+  }
+
+  useEffect( () => {
+    if (posts !== [] && postsSelected) {
+      console.log("init useeffect");
+      init();
+    }
   }, []);
 
+  // might use this I WAS HERE
+  useEffect(() => {
+    console.log(posts);
+    console.log('Hello we are almost there!')
+    const jsx = createJSX(posts);
+    console.log(jsx);
+    setJSX(jsx);
+  }, [posts]); // posts
+
   const clickLiked = async () => {
-    const payload = await getPostsUserLiked();
+    console.log('I clicked liked!')
+    const res = await getPostsUserLiked();
+
+    const payload = removeNull(res);
+    console.log(payload);
+
     dispatch({
       type: 'POSTS_LOADED', payload,
     });
-    setButtonChoice('liked');
-    const jsx = createJSX(payload, true);
-    setJSX(jsx);
+    setPostsSelected(false);
   };
 
   const clickPosted = async () => {
@@ -59,9 +85,7 @@ const Content = () => {
     dispatch({
       type: 'POSTS_LOADED', payload,
     });
-    setButtonChoice('posted');
-    const jsx = createJSX(payload, false);
-    setJSX(jsx);
+    setPostsSelected(true);
   };
 
   return (
@@ -69,8 +93,8 @@ const Content = () => {
 
       <aside className="streamfilter">
         <div className="profile__buttonlist">
-          <button onClick={clickPosted} className={`profile__button ${buttonChoice === 'posted' ? 'profile__button--selected' : ''}`} type="button">Posts Made By You</button>
-          <button onClick={clickLiked} className={`profile__button ${buttonChoice === 'posted' ? '' : 'profile__button--selected'}`} type="button">Posts You Liked</button>
+          <button onClick={clickPosted} className={`profile__button ${postsSelected ? 'profile__button--selected' : ''}`} type="button">Posts Made By You</button>
+          <button onClick={clickLiked} className={`profile__button ${postsSelected ? '' : 'profile__button--selected'}`} type="button">Posts You Liked</button>
         </div>
       </aside>
 
