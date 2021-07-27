@@ -5,9 +5,9 @@
 > Serverless Full Stack App
 
 - Written in: 
- - - Gatsby with React 
- - - Netlify for the serverless functions 
- - - Fauna as a serverless database
+  - Gatsby with React 
+  - Netlify for the serverless functions 
+  - Fauna as a serverless database
 
 
 ![Main view](/assets/dream-stream.png "Main View") 
