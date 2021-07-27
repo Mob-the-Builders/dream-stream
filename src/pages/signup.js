@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'gatsby';
 import axios from 'axios';
 import Menubar from '../components/Menubar';
-import { navToHomeClick, navToLoginClick } from '../components/utils/navigation';
+import { navToHomeClick } from '../components/utils/navigation';
 import './login.scss';
 import Loader from '../components/Loader/Loader';
-import { Link } from 'gatsby';
 
 const SignupPage = () => {
   const [userName, setName] = useState('');
   const [password, setPass] = useState('');
-  const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
   const [redirect, setRedirect] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [isTaken, setTaken] = useState(false);

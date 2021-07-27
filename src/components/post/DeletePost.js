@@ -9,7 +9,7 @@ const DeletePost = ({ currentPost }) => {
   const dispatch = useDispatch();
 
   const serverCall = async () => {
-    const res = await axios.post('/api/delete-post', { id: currentPost._id });
+    await axios.post('/api/delete-post', { id: currentPost._id });
   };
 
   const onClick = async () => {
@@ -19,8 +19,6 @@ const DeletePost = ({ currentPost }) => {
       dispatch({
         type: 'POSTS_LOADED', payload,
       });
-    } else {
-      console.log('not your post'); // NEEDS TO CHANGE
     }
   };
 

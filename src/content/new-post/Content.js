@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { navigate } from 'gatsby';
-import Loader from '../Loader/Loader';
-
 import axios from 'axios';
+import Loader from '../../components/Loader/Loader';
 import './content.scss';
 
 const Content = () => {
@@ -91,10 +90,8 @@ const Content = () => {
 
   return (
     <main className="main">
+      {isLoading ? <Loader /> : <></>}
 
-      {isLoading
-        ? <section className="loading">Loading...</section>
-        : (
           <form onSubmit={onSubmit}>
             <section className="newpost-card">
 
@@ -158,8 +155,6 @@ const Content = () => {
               </div>
             </section>
           </form>
-        )}
-
     </main>
   );
 };

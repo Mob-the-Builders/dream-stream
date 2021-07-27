@@ -1,7 +1,6 @@
 import React from 'react';
 import Menubar from '../components/Menubar';
-// import Content from '../content/new-post/Content';
-import './new-post.scss';
+import Content from '../content/new-post/Content'
 
 const NewPost = () => (
   <div className="top-container">

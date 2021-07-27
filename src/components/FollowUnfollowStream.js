@@ -3,10 +3,10 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 
 const FollowUnfollowStream = ({ currentStream }) => {
+  const [isFollowed, setFollowed] = useState(false);
+
   const followedStreams = useSelector((state) => state.user.streams);
   const dispatch = useDispatch();
-
-  const [isFollowed, setFollowed] = useState(false);
 
   // Updates --selected class
   useEffect(() => {
@@ -14,25 +14,38 @@ const FollowUnfollowStream = ({ currentStream }) => {
   }, [followedStreams]);
 
   // Posts followed streams to database
-  const updateDatabase = async (tags) => {
-    await axios.post('/api/update-user-tags', { id: localStorage.getItem('userId'), tags });
-  };
+  const updateDatabase = async (tags) => await axios.post('/api/update-user-tags', { id: localStorage.getItem('userId'), tags });
 
   // Handles following and unfollowing streams
   const onClick = async () => {
-    if (isFollowed) {
-      dispatch({
-        type: 'USER_REMOVE_STREAM', payload: currentStream,
-      });
+    const streamForDatabase = isFollowed 
+    ? followedStreams.filter((stream) => stream !== currentStream) 
+    : [...followedStreams, currentStream];
 
-      updateDatabase(followedStreams.filter((stream) => stream !== currentStream));
-    } else {
-      dispatch({
-        type: 'USER_ADD_STREAM', payload: currentStream,
-      });
+    const action = isFollowed
+    ? 'USER_REMOVE_STREAM'
+    : 'USER_ADD_STREAM';
 
-      updateDatabase([...followedStreams, currentStream]);
-    }
+    // if (isFollowed) {
+    //   dispatch({
+    //     type: 'USER_REMOVE_STREAM', payload: currentStream,
+    //   });
+
+    //   updateDatabase(followedStreams.filter((stream) => stream !== currentStream));
+    // } else {
+    //   dispatch({
+    //     type: 'USER_ADD_STREAM', payload: currentStream,
+    //   });
+
+    //   updateDatabase([...followedStreams, currentStream]);
+    // }
+
+    dispatch({
+      type: action, payload: currentStream,
+    });
+
+    updateDatabase(streamForDatabase);
+
   };
 
   return (

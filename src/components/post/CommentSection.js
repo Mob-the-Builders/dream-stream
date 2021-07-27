@@ -30,7 +30,7 @@ const CommentSection = ({ post }) => {
         updateCommentList([]);
       }
     } catch (error) {
-      console.log(error); // NEEDS TO CHANGE
+      updateCommentList([]);
     }
   }, [post]);
 

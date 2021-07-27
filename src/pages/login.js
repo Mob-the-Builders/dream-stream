@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'gatsby';
 import Menubar from '../components/Menubar';
 import './login.scss';
 import Loader from '../components/Loader/Loader';
-import { navToHomeClick, navToSignupClick, navTest } from '../components/utils/navigation';
-import { Link } from 'gatsby';
+import { navToHomeClick } from '../components/utils/navigation';
 
 const LoginPage = () => {
   const [userName, setName] = useState('');
   const [password, setPass] = useState('');
-  const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
   const [isLoading, setLoading] = useState(false);
 
   const onSubmit = async (e) => {
@@ -20,9 +19,9 @@ const LoginPage = () => {
       const response = await axios.post('/api/login-user', login);
       localStorage.setItem('user', userName);
       localStorage.setItem('userId', response.data.userTags);
-      navTest();
+      navToHomeClick();
     } catch (error) {
-      console.log(error);
+      return;
     }
     setName('');
     setPass('');

@@ -7,12 +7,11 @@ import './streams.scss';
 
 const Content = () => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
-
-  const popularStreams = ['cats', 'dogs', 'art', 'programming', 'ossian'];
-
   if (!user) {
     navigate('/login');
   }
+
+  const popularStreams = ['cats', 'dogs', 'art', 'programming', 'ossian'];
 
   const { streams } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -23,6 +22,7 @@ const Content = () => {
     return res.data.userTags;
   };
 
+  // Initialize followed tags state
   useEffect(async () => {
     if (user) {
       const payload = await getUserTags();
@@ -30,8 +30,6 @@ const Content = () => {
       dispatch({ type: 'USER_GET_STREAMS', payload });
     }
   }, []);
-
-
 
   return (
 

@@ -4,8 +4,6 @@ import axios from 'axios';
 import './profile.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import Post from '../../components/post/Post';
-const [isLoading, setLoading] = useState(false);
-
 
 const Content = () => {
   const user = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
@@ -14,11 +12,9 @@ const Content = () => {
   }
 
   const [postsSelected, setPostsSelected] = useState(true);
-
-  const [jsx, setJSX] = useState(<></>);
+  const [postList, updatePostList] = useState(<></>);
 
   const { posts } = useSelector((state) => state.postList);
-
   const dispatch = useDispatch();
 
   // Get liked posts from server
@@ -27,27 +23,28 @@ const Content = () => {
     return res.data.messages.reverse();
   };
 
+  // Get user made posts from server
   const getPostUserMade = async () => {
     const res = await axios.post('/api/get-post-by-name', { userName: user });
     return res.data.messages.reverse();
   };
 
-  const removeNull = (pay) => {
+  // Helper functions
+  const dataCleaner = (postData) => {
     const cleanPosts = [];
-    console.log('remmove null');
-    for (const prop in pay) {
-      if (pay[prop].post !== null) {
-        cleanPosts.push(pay[prop].post);
+    Object.values(postData).forEach((value) => {
+      if (value.post !== null) {
+        cleanPosts.push(value.post);
       }
-    }
+    })
     return cleanPosts;
   };
 
-  const createJSX = (postsJ) => postsJ.map((post) => <Post post={post} />);
+  const createJSX = () => posts.map((post) => <Post post={post} />);
 
+  // Initialize posts
   const init = async () => {
     const payload = await getPostUserMade();
-    removeNull(payload);
     dispatch({
       type: 'POSTS_LOADED', payload,
     });
@@ -55,26 +52,20 @@ const Content = () => {
 
   useEffect(() => {
     if (posts !== [] && postsSelected) {
-      console.log('init useeffect');
       init();
     }
   }, []);
 
-  // might use this I WAS HERE
+  // Update posts
   useEffect(() => {
-    console.log(posts);
-    console.log('Hello we are almost there!');
     const jsx = createJSX(posts);
-    console.log(jsx);
-    setJSX(jsx);
-  }, [posts]); // posts
+    updatePostList(jsx);
+  }, [posts]);
 
+  // Hande onClick
   const clickLiked = async () => {
-    console.log('I clicked liked!');
     const res = await getPostsUserLiked();
-
-    const payload = removeNull(res);
-    console.log(payload);
+    const payload = dataCleaner(res);
 
     dispatch({
       type: 'POSTS_LOADED', payload,
@@ -101,7 +92,7 @@ const Content = () => {
       </aside>
 
       <div className="post-list-container-flex">
-        {jsx}
+        {postList}
       </div>
     </main>
   );

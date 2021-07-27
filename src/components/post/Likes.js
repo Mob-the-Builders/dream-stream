@@ -21,18 +21,20 @@ const Likes = ({ post }) => {
   const [liked, setLiked] = useState(false);
 
   const [likesDisplay, updateLikesDisplay] = useState(0);
-
   const [allLikes, setLikes] = useState([]);
 
   const user = localStorage.getItem('user');
 
-  const getPropKey = (obj) => {
-    console.log(obj);
-    for (const prop in obj) {
-      if (obj[prop].userName === user) {
+  // Get key for deleting like
+  const getPropKey = (likes) => {
+    console.log(likes);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const prop in Object.keys(likes)) {
+      if (likes[prop].userName === user) {
         return prop;
       }
     }
+
     return null;
   };
 
@@ -66,21 +68,19 @@ const Likes = ({ post }) => {
   // Helper functions
   const handleUnlike = async () => {
     const propKey = getPropKey(allLikes);
-    console.log(propKey);
-
     if (!propKey) return;
 
     updateLikesDisplay(likesDisplay - 1);
     setLiked(false);
-    const id = allLikes[propKey]._id;
 
-    const res = await axios.post('/api/delete-post-likes', { id });
+    const id = allLikes[propKey]._id;
+    await axios.post('/api/delete-post-likes', { id });
   };
 
   const handleLike = async () => {
     setLiked(true);
     updateLikesDisplay(likesDisplay + 1);
-    const res = await axios.post('/api/create-post-likes', { userName: user, postId: post._id });
+    await axios.post('/api/create-post-likes', { userName: user, postId: post._id });
   };
 
   // onClick
@@ -101,7 +101,6 @@ const Likes = ({ post }) => {
     setLikes(likes);
     updateLikesDisplay(likes.length);
 
-    console.log('update loading');
     updateLoading(false);
   };
 
