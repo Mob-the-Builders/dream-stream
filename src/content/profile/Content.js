@@ -75,6 +75,7 @@ const Content = () => {
 
   const clickPosted = async () => {
     const payload = await getPostUserMade();
+
     dispatch({
       type: 'POSTS_LOADED', payload,
     });

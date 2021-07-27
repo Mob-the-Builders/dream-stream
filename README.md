@@ -29,6 +29,7 @@
 #### Install Dependencies
 
 ```
+- npm install netlify-cli -g
 - yarn install
 - Add Fauna key to .env
 ```
