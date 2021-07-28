@@ -5,6 +5,7 @@ import Menubar from '../components/Menubar';
 import { navToHomeClick } from '../components/utils/navigation';
 import './login.scss';
 import Loader from '../components/Loader/Loader';
+import Popup from '../components/Popup/Popup' 
 
 const SignupPage = () => {
   const [userName, setName] = useState('');
@@ -20,10 +21,10 @@ const SignupPage = () => {
   }, [redirect]);
 
   const displayUserNameTaken = () => {
-    setTimeout(() => {
-      setTaken(false);
-      console.log(isTaken);
-    }, 3000);
+    // setTimeout(() => {
+    //   setTaken(false);
+    //   console.log(isTaken);
+    // }, 3000);
   };
 
   const createUser = async (pair) => {
@@ -71,12 +72,8 @@ const SignupPage = () => {
       <Menubar />
       <main className="main">
 
-        <div className={`modal-test ${1 === 1}`}>
-          <p>Username taken</p>
-        </div>
-
         <section className="form-container-flex">
-          {isLoading ? <Loader /> : <></>}
+          {isLoading ? <Popup /> : <></>}
           <form className="card card--register" onSubmit={onSubmit}>
             <p className="card__register-title">Create your account</p>
 
