@@ -11,7 +11,7 @@ const Content = () => {
     navigate('/login');
   }
 
-  const popularStreams = ['cats', 'dogs', 'art', 'programming', 'ossian'];
+  const popularStreams = ['cats', 'dogs', 'art', 'programming'];
 
   const { streams } = useSelector((state) => state.user);
   const dispatch = useDispatch();
