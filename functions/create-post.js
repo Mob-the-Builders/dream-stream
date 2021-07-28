@@ -20,7 +20,7 @@ exports.handler = async (event) => {
   const {
     userName, title, image, imageDelete, description, tags,
   } = JSON.parse(event.body);
-  const date = DateTime.now().toFormat('f');
+  const date = DateTime.utc();
   const { data, errors } = await query(
     CREATE_POST, {
       userName, title, date, image, imageDelete, description, tags,
