@@ -12,21 +12,13 @@ const SignupPage = () => {
   const [password, setPass] = useState('');
   const [redirect, setRedirect] = useState(false);
   const [isLoading, setLoading] = useState(false);
-  const [isTaken, setTaken] = useState(false);
 
   useEffect(() => {
     if (redirect) {
       navToHomeClick();
     }
   }, [redirect]);
-
-  const displayUserNameTaken = () => {
-    // setTimeout(() => {
-    //   setTaken(false);
-    //   console.log(isTaken);
-    // }, 3000);
-  };
-
+  
   const createUser = async (pair) => {
     const res = await axios.post('/api/create-user', pair);
     return res;
@@ -51,14 +43,11 @@ const SignupPage = () => {
       if (loginStatus.status !== 200) {
         return;
       }
-
       localStorage.setItem('user', userName);
       localStorage.setItem('userId', loginStatus.data.userTags);
       setRedirect(true);
     } catch (err) {
-      setTaken(true);
-      displayUserNameTaken();
-      console.log(isTaken);
+      return;
     }
 
     setName('');
@@ -72,14 +61,15 @@ const SignupPage = () => {
       <Menubar />
       <main className="main">
 
+        {isLoading ? <Loader /> : <></>}
+        
         <section className="form-container-flex">
-          {isLoading ? <Popup /> : <></>}
+
           <form className="card card--register" onSubmit={onSubmit}>
             <p className="card__register-title">Create your account</p>
 
             <input
               required
-              className={`card__input ${isTaken ? 'warning' : ''}`}
               type="text"
               id="title"
               autoComplete="off"
