@@ -135,6 +135,7 @@
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     background: rgba(255, 255, 255, 0);
     border: 1.5px solid #EA3D67;
+    cursor: pointer;
 
 
     & svg {
@@ -263,7 +264,7 @@
       background: #D8EEFE;
       color: #4C4D66;
       font-size: 17px;
-
+      cursor: pointer;
       &:hover {
         color: #666784;
       }

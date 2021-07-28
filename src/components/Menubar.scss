@@ -90,12 +90,13 @@
   margin-top: auto;
   margin-bottom: 40px;
   justify-self: flex-end;
-  
+
   & button {
     color: rgba(255, 255, 255, 0.848);
     background: rgba(255, 255, 255, 0);
     border: none;
     font-size: 15px;
+    cursor: pointer;
 
     &:hover {
       color: #443f7f;
