@@ -41,12 +41,14 @@ const Likes = ({ post }) => {
   // Initialize likes and like status
   useEffect(() => {
     try {
+      console.log("hello in likes");
       const likes = post.likes.data;
 
       setLikes(likes);
       updateLikesDisplay(likes.length);
       const propKey = getPropKey(likes);
-      if (propKey) {
+      console.log(propKey);
+      if (propKey !== null) {
         setLiked(true);
       }
 

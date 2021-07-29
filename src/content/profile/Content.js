@@ -12,8 +12,7 @@ const Content = () => {
   }
 
   const [postsSelected, setPostsSelected] = useState(true);
-  const [postList, updatePostList] = useState(<></>);
-
+  
   const { posts } = useSelector((state) => state.postList);
   const dispatch = useDispatch();
 
@@ -40,8 +39,6 @@ const Content = () => {
     return cleanPosts;
   };
 
-  const createJSX = () => posts.map((post) => <Post post={post} />);
-
   // Initialize posts
   const init = async () => {
     const payload = await getPostUserMade();
@@ -55,12 +52,6 @@ const Content = () => {
       init();
     }
   }, []);
-
-  // Update posts
-  useEffect(() => {
-    const jsx = createJSX(posts);
-    updatePostList(jsx);
-  }, [posts]);
 
   // Hande onClick
   const clickLiked = async () => {
@@ -93,7 +84,7 @@ const Content = () => {
       </aside>
 
       <div className="post-list-container-flex">
-        {postList}
+        {posts.map((post) => <Post post={post} />)}
       </div>
     </main>
   );
