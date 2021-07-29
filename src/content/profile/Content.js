@@ -59,6 +59,10 @@ const Content = () => {
     const payload = dataCleaner(res);
 
     dispatch({
+      type: 'POSTS_LOADED', payload: [],
+    });
+
+    dispatch({
       type: 'POSTS_LOADED', payload,
     });
     setPostsSelected(false);
@@ -66,6 +70,10 @@ const Content = () => {
 
   const clickPosted = async () => {
     const payload = await getPostUserMade();
+
+    dispatch({
+      type: 'POSTS_LOADED', payload: [],
+    });
 
     dispatch({
       type: 'POSTS_LOADED', payload,
