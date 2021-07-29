@@ -21,11 +21,12 @@ const LoginPage = () => {
       localStorage.setItem('userId', response.data.userTags);
       navToHomeClick();
     } catch (error) {
+      setLoading(false);
       return;
     }
     setName('');
     setPass('');
-    setLoading(true);
+    setLoading(false);
   };
 
   return (
@@ -34,7 +35,6 @@ const LoginPage = () => {
       <main className="main">
         {isLoading ? <Loader /> : <></>}
         <section className="form-container-flex">
-          {isLoading ? <Loader /> : <></>}
           <form className="card card--register" onSubmit={onSubmit}>
             <p className="card__register-title">Login</p>
 
